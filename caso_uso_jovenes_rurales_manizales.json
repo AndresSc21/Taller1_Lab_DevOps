@@ -1,0 +1,393 @@
+{
+	"caso": {
+		"id": "CU-001",
+		"titulo": "Permanencia de jóvenes en la zona rural de Manizales",
+		"nombre": "Generación de oportunidades laborales y productivas para favorecer la permanencia de jóvenes rurales en Manizales",
+		"sector": "Desarrollo rural y desarrollo productivo"
+	},
+	"territorio": {
+		"municipio": "Manizales",
+		"departamento": "Caldas",
+		"pais": "Colombia",
+		"zona": "Zona rural",
+		"corregimientos": "Siete corregimientos rurales de Manizales"
+	},
+	"poblacion": {
+		"principal": "Jóvenes rurales",
+		"rango_edad": "14 a 28 años",
+		"poblaciones_relacionadas": [
+			"Familias rurales",
+			"Productores rurales",
+			"Asociaciones de productores",
+			"Organizaciones cafeteras"
+		]
+	},
+	"problema": {
+		"central": "Dificultades para consolidar oportunidades laborales y productivas suficientemente atractivas para favorecer la permanencia de los jóvenes en la zona rural de Manizales.",
+		"pregunta_orientadora": "¿Qué condiciones laborales, productivas, educativas y territoriales influyen en la decisión de los jóvenes de permanecer en la zona rural de Manizales o buscar oportunidades fuera del territorio?",
+		"situacion_actual": "Los jóvenes rurales enfrentan condiciones que pueden hacer que las oportunidades urbanas sean percibidas como más atractivas para su proyecto de vida, mientras persisten retos relacionados con empleo, ingresos, acceso a activos productivos, formación, emprendimiento y comercialización.",
+		"delimitacion": "El análisis se concentra en los factores que pueden favorecer o dificultar la permanencia de jóvenes en la zona rural de Manizales. No se asume que la migración sea causada por un único factor ni que la falta de mano de obra sea una causalidad demostrada."
+	},
+	"factores_identificados": [
+		{
+			"factor": "Oportunidades laborales",
+			"tipo": "Laboral"
+		},
+		{
+			"factor": "Acceso a activos productivos",
+			"tipo": "Productivo"
+		},
+		{
+			"factor": "Entorno socioeconómico familiar",
+			"tipo": "Social"
+		},
+		{
+			"factor": "Educación y profesionalización",
+			"tipo": "Educativo"
+		},
+		{
+			"factor": "Emprendimiento rural",
+			"tipo": "Productivo"
+		},
+		{
+			"factor": "Comercialización",
+			"tipo": "Económico"
+		}
+	],
+	"objetivo_preliminar": {
+		"enunciado": "Contribuir a la generación de condiciones laborales, productivas, formativas y de emprendimiento que hagan más atractiva y viable la permanencia de los jóvenes en la zona rural de Manizales.",
+		"tipo": "Objetivo preliminar"
+	},
+	"involucrados": [
+		{
+			"grupo": "Jóvenes rurales",
+			"naturaleza": "Comunidad",
+			"relacion": "Población directamente relacionada con el problema",
+			"rol": "Población objetivo / actor principal",
+			"intereses": [
+				"Empleo",
+				"Ingresos",
+				"Educación",
+				"Desarrollo personal",
+				"Emprendimiento",
+				"Permanencia con oportunidades"
+			],
+			"problemas_percibidos": [
+				"Oportunidades laborales rurales poco atractivas",
+				"Limitaciones de acceso a activos productivos",
+				"Desconexión entre formación y oportunidades",
+				"Necesidad de mayores alternativas de ingreso"
+			],
+			"recursos_mandatos": [
+				"Conocimiento del territorio",
+				"Capacidades",
+				"Participación juvenil",
+				"Mano de obra"
+			],
+			"posicion": "+",
+			"fuerza": 2,
+			"intensidad": 5,
+			"estrategia": "Involucrar y escuchar"
+		},
+		{
+			"grupo": "Productores y unidades productivas rurales",
+			"naturaleza": "Productivo",
+			"relacion": "Actor productivo directamente relacionado",
+			"rol": "Productor / generador de oportunidades laborales",
+			"intereses": [
+				"Disponibilidad de mano de obra",
+				"Productividad",
+				"Continuidad de la actividad productiva",
+				"Relevo generacional"
+			],
+			"problemas_percibidos": [
+				"Dificultad para vincular y retener jóvenes",
+				"Necesidad de continuidad productiva"
+			],
+			"recursos_mandatos": [
+				"Tierra",
+				"Infraestructura",
+				"Conocimiento productivo",
+				"Capacidad de contratación"
+			],
+			"posicion": "+",
+			"fuerza": 4,
+			"intensidad": 5,
+			"estrategia": "Gestionar de cerca"
+		},
+		{
+			"grupo": "Familias rurales",
+			"naturaleza": "Comunidad",
+			"relacion": "Entorno socioeconómico de los jóvenes",
+			"rol": "Actor familiar y social",
+			"intereses": [
+				"Ingresos familiares",
+				"Calidad de vida",
+				"Oportunidades para las nuevas generaciones"
+			],
+			"problemas_percibidos": [
+				"Migración juvenil",
+				"Limitaciones de oportunidades rurales"
+			],
+			"recursos_mandatos": [
+				"Redes familiares",
+				"Conocimiento territorial",
+				"Activos productivos"
+			],
+			"posicion": "+",
+			"fuerza": 3,
+			"intensidad": 5,
+			"estrategia": "Gestionar de cerca"
+		},
+		{
+			"grupo": "Asociaciones de productores",
+			"naturaleza": "Productivo",
+			"relacion": "Actor colectivo del sector rural",
+			"rol": "Organización y articulación productiva",
+			"intereses": [
+				"Fortalecimiento productivo",
+				"Comercialización",
+				"Participación juvenil",
+				"Relevo generacional"
+			],
+			"problemas_percibidos": [
+				"Baja participación juvenil",
+				"Dificultades de relevo generacional"
+			],
+			"recursos_mandatos": [
+				"Capacidad organizativa",
+				"Redes",
+				"Infraestructura colectiva"
+			],
+			"posicion": "+",
+			"fuerza": 3,
+			"intensidad": 5,
+			"estrategia": "Gestionar de cerca"
+		},
+		{
+			"grupo": "Alcaldía de Manizales",
+			"naturaleza": "Institucional",
+			"relacion": "Responsable de política pública territorial",
+			"rol": "Decisor / articulador institucional",
+			"intereses": [
+				"Desarrollo rural",
+				"Bienestar territorial",
+				"Oportunidades para jóvenes"
+			],
+			"problemas_percibidos": [
+				"Necesidad de fortalecer oportunidades rurales",
+				"Necesidad de articulación institucional"
+			],
+			"recursos_mandatos": [
+				"Recursos públicos",
+				"Programas",
+				"Capacidad de articulación",
+				"Política pública"
+			],
+			"posicion": "+",
+			"fuerza": 5,
+			"intensidad": 4,
+			"estrategia": "Gestionar de cerca"
+		},
+		{
+			"grupo": "Secretaría de Agricultura",
+			"naturaleza": "Institucional",
+			"relacion": "Actor institucional directamente relacionado con desarrollo agropecuario",
+			"rol": "Promotor / articulador",
+			"intereses": [
+				"Desarrollo agropecuario",
+				"Productividad",
+				"Emprendimiento rural",
+				"Sostenibilidad"
+			],
+			"problemas_percibidos": [
+				"Necesidad de fortalecer participación juvenil",
+				"Necesidad de generar oportunidades productivas"
+			],
+			"recursos_mandatos": [
+				"Programas",
+				"Asistencia técnica",
+				"Articulación institucional",
+				"Capacidad de promoción"
+			],
+			"posicion": "+",
+			"fuerza": 5,
+			"intensidad": 5,
+			"estrategia": "Gestionar de cerca"
+		},
+		{
+			"grupo": "Comité de Cafeteros / organizaciones cafeteras",
+			"naturaleza": "Productivo / gremial",
+			"relacion": "Actor del sector cafetero y del relevo generacional",
+			"rol": "Aliado productivo y formativo",
+			"intereses": [
+				"Competitividad",
+				"Sostenibilidad",
+				"Relevo generacional"
+			],
+			"problemas_percibidos": [
+				"Baja participación de nuevas generaciones"
+			],
+			"recursos_mandatos": [
+				"Asistencia técnica",
+				"Capacitación",
+				"Redes productivas"
+			],
+			"posicion": "+",
+			"fuerza": 4,
+			"intensidad": 4,
+			"estrategia": "Gestionar de cerca"
+		},
+		{
+			"grupo": "Instituciones educativas rurales",
+			"naturaleza": "Educativo",
+			"relacion": "Formación de población rural",
+			"rol": "Formador",
+			"intereses": [
+				"Formación pertinente",
+				"Continuidad educativa",
+				"Oportunidades juveniles"
+			],
+			"problemas_percibidos": [
+				"Desconexión potencial entre formación y oportunidades territoriales"
+			],
+			"recursos_mandatos": [
+				"Docentes",
+				"Infraestructura",
+				"Programas educativos"
+			],
+			"posicion": "+",
+			"fuerza": 3,
+			"intensidad": 4,
+			"estrategia": "Mantener involucradas"
+		},
+		{
+			"grupo": "SENA / formación para el trabajo",
+			"naturaleza": "Educativo / institucional",
+			"relacion": "Formación para empleo y emprendimiento",
+			"rol": "Formador y promotor de competencias",
+			"intereses": [
+				"Empleabilidad",
+				"Emprendimiento",
+				"Formación pertinente"
+			],
+			"problemas_percibidos": [
+				"Necesidad de conexión entre formación y oportunidades reales"
+			],
+			"recursos_mandatos": [
+				"Programas de formación",
+				"Instructores",
+				"Certificación",
+				"Emprendimiento"
+			],
+			"posicion": "+",
+			"fuerza": 3,
+			"intensidad": 4,
+			"estrategia": "Mantener involucrado"
+		},
+		{
+			"grupo": "Universidades / educación superior",
+			"naturaleza": "Educativo",
+			"relacion": "Formación, investigación e innovación",
+			"rol": "Aliado académico",
+			"intereses": [
+				"Educación superior",
+				"Investigación",
+				"Innovación territorial"
+			],
+			"problemas_percibidos": [
+				"Limitadas oportunidades de desarrollo profesional percibidas en el territorio"
+			],
+			"recursos_mandatos": [
+				"Conocimiento",
+				"Investigación",
+				"Innovación",
+				"Extensión"
+			],
+			"posicion": "+",
+			"fuerza": 2,
+			"intensidad": 3,
+			"estrategia": "Mantener informadas"
+		},
+		{
+			"grupo": "Comercializadores y compradores rurales",
+			"naturaleza": "Mercado",
+			"relacion": "Cadena de comercialización",
+			"rol": "Comprador / articulador de mercado",
+			"intereses": [
+				"Disponibilidad de productos",
+				"Calidad",
+				"Continuidad de suministro"
+			],
+			"problemas_percibidos": [
+				"Riesgos de continuidad productiva"
+			],
+			"recursos_mandatos": [
+				"Canales de comercialización",
+				"Mercados",
+				"Relaciones comerciales"
+			],
+			"posicion": "0",
+			"fuerza": 4,
+			"intensidad": 3,
+			"estrategia": "Mantener satisfechos"
+		},
+		{
+			"grupo": "Empleadores urbanos",
+			"naturaleza": "Mercado laboral",
+			"relacion": "Competencia por oferta laboral juvenil",
+			"rol": "Generador de oportunidades laborales urbanas",
+			"intereses": [
+				"Disponibilidad de trabajadores",
+				"Contratación",
+				"Productividad"
+			],
+			"problemas_percibidos": [
+				"Necesidad de disponibilidad de mano de obra"
+			],
+			"recursos_mandatos": [
+				"Oferta laboral",
+				"Capacidad de contratación"
+			],
+			"posicion": "-",
+			"fuerza": 4,
+			"intensidad": 3,
+			"estrategia": "Gestionar y articular"
+		}
+	],
+	"fuentes": [
+		{
+			"tipo": "Académica",
+			"titulo": "Factores de expulsión y retención en la decisión migratoria de jóvenes rurales en Manizales, Colombia",
+			"url": "https://www.redalyc.org/journal/666/66648525003/",
+			"aporte": "Identificación de oportunidades laborales, activos productivos, entorno socioeconómico familiar y educación/profesionalización como factores asociados."
+		},
+		{
+			"tipo": "Institucional",
+			"titulo": "Jóvenes rurales de Manizales fortalecen emprendimientos productivos con apoyo institucional",
+			"url": "https://centrodeinformacion.manizales.gov.co/jovenes-rurales-de-manizales-fortalecen-emprendimientos-productivos-con-apoyo-institucional/",
+			"aporte": "Evidencia institucional de una estrategia dirigida a jóvenes rurales de 14 a 28 años en los siete corregimientos, con formación, acompañamiento e incentivos."
+		},
+		{
+			"tipo": "Institucional",
+			"titulo": "Secretaría de Agricultura – Alcaldía de Manizales",
+			"url": "https://manizales.gov.co/secretarias/secretaria-de-agricultura/",
+			"aporte": "Soporte para la identificación de la Secretaría de Agricultura como actor institucional relevante."
+		},
+		{
+			"tipo": "Institucional",
+			"titulo": "La Secretaría de Agricultura brinda espacio al joven de la zona rural, en el Mercado Campesino",
+			"url": "https://centrodeinformacion.manizales.gov.co/la-secretaria-de-agricultura-brinda-espacio-al-joven-de-la-zona-rural-en-el-mercado-campesino/",
+			"aporte": "Evidencia sobre comercialización, generación de ingresos y relevo generacional."
+		}
+	],
+	"participacion": {
+		"tecnica": "Grupos nominales"
+	},
+	"estado": {
+		"fase": "Avance 1",
+		"paso_mml": 1,
+		"validacion_participativa": false,
+		"observacion": "Las valoraciones de posición, fuerza e intensidad son preliminares y deben validarse con los involucrados."
+	}
+}
