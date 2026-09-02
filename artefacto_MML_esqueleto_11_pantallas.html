@@ -1,0 +1,7039 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artefacto MML · Formulación de Proyectos</title>
+  <style>
+    :root {
+      --verde: #0b5d3b;
+      --verde-oscuro: #08452d;
+      --verde-suave: #eaf4ef;
+      --gris-900: #1f2933;
+      --gris-700: #4b5563;
+      --gris-500: #6b7280;
+      --gris-300: #d1d5db;
+      --gris-200: #e5e7eb;
+      --gris-100: #f3f4f6;
+      --blanco: #fff;
+      --sombra: 0 8px 24px rgba(15, 23, 42, .06);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--gris-900);
+      background: #f7f8f7
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit
+    }
+
+    .app {
+      min-height: 100vh
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 286px;
+      background: #fff;
+      border-right: 1px solid var(--gris-200);
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .brand {
+      padding: 24px 22px 20px;
+      border-bottom: 1px solid var(--gris-200);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--verde);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .brand h1 {
+      font-size: 16px;
+      line-height: 1.3;
+      margin: 0 0 5px
+    }
+
+    .brand p {
+      font-size: 12px;
+      color: var(--gris-500);
+      margin: 0;
+      line-height: 1.45
+    }
+
+    .nav-section {
+      padding: 18px 12px 4px
+    }
+
+    .nav-section-title {
+      padding: 0 10px 8px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gris-500);
+    }
+
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      border: 0;
+      background: transparent;
+      color: var(--gris-700);
+      text-align: left;
+      padding: 9px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 2px 0;
+    }
+
+    .nav-item:hover {
+      background: var(--gris-100);
+      color: var(--gris-900)
+    }
+
+    .nav-item.active {
+      background: var(--verde-suave);
+      color: var(--verde-oscuro);
+      font-weight: 700
+    }
+
+    .nav-num {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--gris-300);
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    .nav-item.active .nav-num {
+      border-color: #a9cdbd;
+      background: #fff;
+      color: var(--verde)
+    }
+
+    .nav-label {
+      font-size: 13px;
+      line-height: 1.25
+    }
+
+    .main {
+      margin-left: 286px;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      min-height: 76px;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gris-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 34px;
+    }
+
+    .project-title {
+      min-width: 0;
+    }
+
+    .project-title .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--verde);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 3px;
+    }
+
+    .project-title strong {
+      display: block;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 760px;
+    }
+
+    .step-badge {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid var(--gris-200);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--gris-700);
+      font-size: 13px;
+    }
+
+    .step-badge strong {
+      color: var(--verde)
+    }
+
+    .content {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 42px 34px 60px;
+    }
+
+    .screen {
+      display: none
+    }
+
+    .screen.active {
+      display: block
+    }
+
+    .hero {
+      margin-bottom: 25px
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: var(--verde-suave);
+      color: var(--verde-oscuro);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin: 0 0 10px;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--gris-700);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--gris-200);
+      border-radius: 12px;
+      box-shadow: var(--sombra);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .construction {
+      border-left: 4px solid var(--verde);
+      background: #fbfdfc;
+    }
+
+    .construction .status {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: var(--verde-suave);
+      color: var(--verde-oscuro);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+
+    .construction h3 {
+      margin: 0 0 7px;
+      font-size: 17px
+    }
+
+    .construction p {
+      margin: 0;
+      color: var(--gris-700);
+      line-height: 1.55;
+      font-size: 14px
+    }
+
+    .field-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .field {
+      border: 1px solid var(--gris-200);
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .field strong {
+      display: block;
+      font-size: 13px;
+      color: var(--gris-900);
+      margin-bottom: 2px
+    }
+
+    .field span {
+      color: var(--gris-500)
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px
+    }
+
+    .form-group.full {
+      grid-column: 1/-1
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gris-700)
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--gris-300);
+      border-radius: 8px;
+      padding: 10px 11px;
+      color: var(--gris-900);
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #8eb9a6;
+      box-shadow: 0 0 0 3px rgba(11, 93, 59, .08);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical
+    }
+
+    .case-note {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      background: var(--gris-100);
+      color: var(--gris-700);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      color: var(--gris-500);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 24px;
+    }
+
+    .actor-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .actor-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .actor-field.full {
+      grid-column: 1/-1;
+    }
+
+    .actor-field small {
+      color: var(--gris-500);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .actor-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--gris-200);
+    }
+
+    .btn {
+      border: 1px solid var(--gris-300);
+      border-radius: 8px;
+      padding: 9px 14px;
+      cursor: pointer;
+      background: #fff;
+      color: var(--gris-700);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .btn:hover {
+      background: var(--gris-100);
+    }
+
+    .btn-primary {
+      background: var(--verde);
+      border-color: var(--verde);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--verde-oscuro);
+    }
+
+    .actor-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .actor-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .actor-table th,
+    .actor-table td {
+      border: 1px solid var(--gris-200);
+      padding: 12px;
+      vertical-align: top;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .actor-table th {
+      background: var(--gris-100);
+      color: var(--gris-900);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .actor-table th:nth-child(1) {
+      width: 21%
+    }
+
+    .actor-table th:nth-child(2) {
+      width: 24%
+    }
+
+    .actor-table th:nth-child(3) {
+      width: 31%
+    }
+
+    .actor-table th:nth-child(4) {
+      width: 24%
+    }
+
+    .actor-table td.empty-cell {
+      background: #fff0f0;
+      color: #b42318;
+    }
+
+    .actor-problem-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .actor-problem-list li {
+      margin: 0 0 5px;
+    }
+
+    .actor-table-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .btn-mini {
+      border: 1px solid var(--gris-300);
+      background: #fff;
+      border-radius: 6px;
+      padding: 5px 8px;
+      cursor: pointer;
+      font-size: 11px;
+      color: var(--gris-700);
+    }
+
+    .btn-mini:hover {
+      background: var(--gris-100);
+    }
+
+    .characterization-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    .characterization-table th,
+    .characterization-table td {
+      border: 1px solid var(--gris-200);
+      padding: 10px;
+      text-align: left;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+
+    .characterization-table th {
+      background: var(--gris-100);
+      font-weight: 800;
+    }
+
+    .position-positive {
+      color: #067647;
+      font-weight: 800;
+    }
+
+    .position-neutral {
+      color: #667085;
+      font-weight: 800;
+    }
+
+    .position-negative {
+      color: #b42318;
+      font-weight: 800;
+    }
+
+    .result-positive {
+      color: #067647;
+      font-weight: 800;
+    }
+
+    .result-negative {
+      color: #b42318;
+      font-weight: 800;
+    }
+
+    .quadrant-badge {
+      display: inline-flex;
+      padding: 4px 7px;
+      border-radius: 6px;
+      background: var(--gris-100);
+      color: var(--gris-700);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .actor-empty {
+      text-align: center;
+      color: var(--gris-500);
+      padding: 24px !important;
+    }
+
+    .validation-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--gris-100);
+      color: var(--gris-700);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media(max-width:850px) {
+      .actor-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actor-field.full {
+        grid-column: auto;
+      }
+    }
+
+    .actor-charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .chart-card {
+      border: 1px solid var(--gris-200);
+      border-radius: 10px;
+      background: #fff;
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .chart-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--gris-900);
+      margin-bottom: 8px;
+    }
+
+    .chart-title span {
+      color: var(--verde);
+    }
+
+    .actor-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .svg-axis {
+      stroke: #374151;
+      stroke-width: 1.5;
+    }
+
+    .svg-grid {
+      stroke: #d1d5db;
+      stroke-width: 1;
+      stroke-dasharray: 4 4;
+    }
+
+    .svg-quadrant-line {
+      stroke: #9ca3af;
+      stroke-width: 1.5;
+      stroke-dasharray: 7 5;
+    }
+
+    .svg-axis-label {
+      fill: #374151;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .svg-tick {
+      fill: #6b7280;
+      font-size: 11px;
+    }
+
+    .svg-quadrant-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-anchor: middle;
+    }
+
+    .svg-quadrant-strategy {
+      font-size: 10px;
+      font-weight: 600;
+      text-anchor: middle;
+    }
+
+    .svg-stakeholder-label {
+      fill: #1f2933;
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .svg-project-label {
+      fill: #1f2933;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .svg-legend-text {
+      fill: #374151;
+      font-size: 10px;
+    }
+
+    .svg-network-line {
+      stroke: #cbd5e1;
+      stroke-width: 1.5;
+    }
+
+    .svg-project-node {
+      fill: #f3f4f6;
+      stroke: #9ca3af;
+      stroke-width: 1.5;
+    }
+
+    .svg-empty-text {
+      fill: #6b7280;
+      font-size: 13px;
+      text-anchor: middle;
+    }
+
+    .actor-charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .actor-chart-card {
+      min-width: 0;
+    }
+
+    .actor-chart-wrapper {
+      width: 100%;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .actor-chart-wrapper svg {
+      width: 100%;
+      height: 520px;
+      display: block;
+    }
+
+
+    /* En pantallas más pequeñas, una tarjeta debajo de la otra */
+    @media (max-width: 900px) {
+
+      .actor-charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 1 · CAPAS METODOLÓGICAS
+   VALIDACIONES · ACTIVIDAD 4 · IA
+   ========================================================= */
+
+    .method-layer {
+      margin-bottom: 18px;
+    }
+
+    .validation-panel {
+      border: 1px solid var(--gris-200);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .validation-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--gris-200);
+    }
+
+    .validation-header h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .validation-count {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: var(--gris-100);
+      color: var(--gris-700);
+    }
+
+    .validation-list {
+      padding: 12px 16px;
+    }
+
+    .validation-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gris-200);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .validation-item:last-child {
+      border-bottom: 0;
+    }
+
+    .validation-icon {
+      flex: 0 0 22px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .validation-warning .validation-icon {
+      background: #fff4d6;
+      color: #8a5b00;
+    }
+
+    .validation-success .validation-icon {
+      background: var(--verde-suave);
+      color: var(--verde);
+    }
+
+    .validation-warning strong {
+      color: #7a5100;
+    }
+
+    .validation-success strong {
+      color: var(--verde-oscuro);
+    }
+
+    /* Actividad 4 */
+
+    .participation-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .participation-selection {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .participation-help {
+      border: 1px solid var(--gris-200);
+      border-radius: 9px;
+      background: #fbfdfc;
+      padding: 17px;
+    }
+
+    .participation-help h4 {
+      margin: 0 0 12px;
+      color: var(--verde-oscuro);
+      font-size: 15px;
+    }
+
+    .technique-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .technique-meta-item {
+      background: #fff;
+      border: 1px solid var(--gris-200);
+      border-radius: 7px;
+      padding: 10px;
+    }
+
+    .technique-meta-item strong {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--gris-500);
+      margin-bottom: 4px;
+    }
+
+    .technique-meta-item span {
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--gris-700);
+    }
+
+    .technique-section {
+      margin-top: 12px;
+    }
+
+    .technique-section strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .technique-section p {
+      margin: 0;
+      color: var(--gris-700);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .participation-justification {
+      margin-top: 16px;
+    }
+
+    .participation-note {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 7px;
+      background: var(--gris-100);
+      color: var(--gris-700);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    /* Instrucciones IA */
+
+    .ai-panel {
+      border: 1px solid var(--gris-200);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .ai-panel summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 15px 17px;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--gris-900);
+      background: #fafafa;
+    }
+
+    .ai-panel summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .ai-panel summary::before {
+      content: "▸";
+      display: inline-block;
+      margin-right: 8px;
+      color: var(--verde);
+      transition: transform .15s ease;
+    }
+
+    .ai-panel[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .ai-content {
+      padding: 16px;
+      border-top: 1px solid var(--gris-200);
+    }
+
+    .ai-content p {
+      font-size: 12px;
+      color: var(--gris-700);
+      line-height: 1.5;
+    }
+
+    .ai-prompt-box {
+      position: relative;
+      margin-top: 12px;
+    }
+
+    .ai-prompt {
+      margin: 0;
+      padding: 14px 46px 14px 14px;
+      background: #17221e;
+      color: #eef7f2;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .ai-copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: 1px solid rgba(255, 255, 255, .25);
+      background: #fff;
+      color: var(--gris-900);
+      border-radius: 6px;
+      padding: 5px 8px;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .ai-copy-btn:hover {
+      background: var(--gris-100);
+    }
+
+    .ai-responsible-note {
+      margin-top: 16px;
+      border: 1px solid #e5d8b0;
+      background: #fffaf0;
+      border-radius: 9px;
+      padding: 13px 15px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #5f4a17;
+    }
+
+    .ai-responsible-note strong {
+      color: #7a5100;
+    }
+
+    @media(max-width:850px) {
+      .participation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .technique-meta {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:850px) {
+      .actor-charts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:850px) {
+      .sidebar {
+        width: 235px
+      }
+
+      .main {
+        margin-left: 235px
+      }
+
+      .content {
+        padding: 30px 22px
+      }
+
+      .topbar {
+        padding: 12px 22px
+      }
+
+      .project-title strong {
+        max-width: 390px
+      }
+    }
+
+    @media(max-width:650px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        border-right: 0;
+        border-bottom: 1px solid var(--gris-200);
+      }
+
+      .main {
+        margin-left: 0
+      }
+
+      .topbar {
+        position: relative
+      }
+
+      .field-list,
+      .case-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-group.full {
+        grid-column: auto
+      }
+
+      .content {
+        padding: 25px 16px 45px
+      }
+
+      .hero h2 {
+        font-size: 25px
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 12px
+      }
+
+      .step-badge {
+        font-size: 12px
+      }
+    }
+
+    /* =========================================================
+   PASO 2 · ANÁLISIS DEL PROBLEMA
+   Navegación y subpantallas internas
+   ========================================================= */
+
+    /* Navegación interna del Paso 2 */
+    .step2-nav {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .step2-tab {
+      border: 1px solid #d7dce2;
+      background: #f7f8fa;
+      color: #4b5563;
+      border-radius: 8px;
+      padding: 11px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .step2-tab:hover {
+      background: #eef1f4;
+      border-color: #c5ccd5;
+    }
+
+    .step2-tab.active {
+      background: #1f2937;
+      color: #ffffff;
+      border-color: #1f2937;
+    }
+
+
+    /* Subpantallas del Paso 2 */
+    .problem-subscreen {
+      display: none;
+      margin-top: 18px;
+    }
+
+    .problem-subscreen.active {
+      display: block;
+    }
+
+
+    /* Encabezados internos */
+    .problem-subscreen .section-head {
+      margin-bottom: 18px;
+    }
+
+    .problem-subscreen .section-head h3 {
+      margin-bottom: 5px;
+    }
+
+
+    /* Distribución de campos */
+    .problem-subscreen .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .problem-subscreen .span-4 {
+      grid-column: span 4;
+    }
+
+    .problem-subscreen .span-6 {
+      grid-column: span 6;
+    }
+
+    .problem-subscreen .span-12 {
+      grid-column: span 12;
+    }
+
+
+    /* Tarjetas internas */
+    .problem-subscreen .card .card {
+      margin-top: 0;
+      box-shadow: none;
+    }
+
+
+    /* Áreas de texto */
+    .problem-subscreen textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+
+    /* Mensajes informativos */
+    .problem-subscreen .notice {
+      border: 1px solid #dfe4ea;
+      background: #f8fafc;
+      color: #4b5563;
+      border-radius: 8px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .problem-subscreen .notice strong {
+      color: #1f2937;
+    }
+
+
+    /* Texto auxiliar */
+    .problem-subscreen .small-note {
+      color: #6b7280;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+
+
+    /* Área de trabajo del árbol */
+    #problemTreeWorkspace {
+      min-height: 220px;
+    }
+
+    #nodeEvidenceWorkspace {
+      min-height: 120px;
+    }
+
+
+    /* Área de validación */
+    #problemValidationWorkspace {
+      min-height: 120px;
+    }
+
+
+    /* Área de bitácora */
+    #problemBitacoraWorkspace {
+      min-height: 120px;
+    }
+
+
+    /* Prompts de IA */
+    #problemAIPrompts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    #problemAIPrompts .card {
+      border: 1px solid #e1e5ea;
+      background: #fafbfc;
+    }
+
+    #problemAIPrompts textarea {
+      width: 100%;
+      min-height: 150px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      background: #ffffff;
+    }
+
+
+    /* Estado visual de campos */
+    .problem-subscreen input:focus,
+    .problem-subscreen textarea:focus,
+    .problem-subscreen select:focus {
+      outline: none;
+      border-color: #9aa4b2;
+      box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.12);
+    }
+
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+
+      .step2-nav {
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+      }
+
+    }
+
+    @media (max-width: 760px) {
+
+      .step2-nav {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+      }
+
+      .problem-subscreen .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-subscreen .span-4,
+      .problem-subscreen .span-6,
+      .problem-subscreen .span-12 {
+        grid-column: span 1;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+
+      .step2-nav {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    .global-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      margin-right: 12px;
+    }
+
+    .global-json-btn {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .global-actions {
+        order: 3;
+        width: 100%;
+        margin: 8px 0 0;
+      }
+    }
+
+    /* =========================================================
+   PASO 3 · ANÁLISIS DE OBJETIVOS
+   Estilos específicos del módulo
+   ========================================================= */
+
+    /* Navegación interna del Paso 3 */
+    .step3-nav {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .step3-tab {
+      border: 1px solid #d7dce2;
+      background: #f7f8fa;
+      color: #4b5563;
+      border-radius: 8px;
+      padding: 11px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .step3-tab:hover {
+      background: #eef1f4;
+      border-color: #c5ccd5;
+    }
+
+    .step3-tab.active {
+      background: #1f2937;
+      color: #ffffff;
+      border-color: #1f2937;
+    }
+
+
+    /* Subpantallas internas */
+    .objective-subscreen {
+      display: none;
+      margin-top: 18px;
+    }
+
+    .objective-subscreen.active {
+      display: block;
+    }
+
+
+    /* Grid interno */
+    .objective-subscreen .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .objective-subscreen .span-4 {
+      grid-column: span 4;
+    }
+
+    .objective-subscreen .span-6 {
+      grid-column: span 6;
+    }
+
+    .objective-subscreen .span-12 {
+      grid-column: span 12;
+    }
+
+
+    /* Tarjetas internas */
+    .objective-subscreen .card .card {
+      margin-top: 0;
+      box-shadow: none;
+    }
+
+
+    /* Áreas de trabajo */
+    #objectiveTransformationWorkspace,
+    #potentialAssumptionsWorkspace,
+    #objectiveTreeWorkspace,
+    #objectiveValidationWorkspace,
+    #actionsWorkspace,
+    #actionTraceabilityWorkspace,
+    #actionClassificationWorkspace,
+    #alternativesWorkspace,
+    #alternativeEvaluationWorkspace,
+    #sensitivityWorkspace,
+    #strategySelectionWorkspace {
+      width: 100%;
+    }
+
+
+    /* Mensajes informativos */
+    .objective-subscreen .notice {
+      border: 1px solid #dfe4ea;
+      background: #f8fafc;
+      color: #4b5563;
+      border-radius: 8px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .objective-subscreen .notice strong {
+      color: #1f2937;
+    }
+
+
+    /* Texto auxiliar */
+    .objective-subscreen .small-note {
+      color: #6b7280;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+
+
+    /* Campos */
+    .objective-subscreen textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .objective-subscreen input:focus,
+    .objective-subscreen textarea:focus,
+    .objective-subscreen select:focus {
+      outline: none;
+      border-color: #9aa4b2;
+      box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.12);
+    }
+
+
+    /* Espacio reservado para el árbol SVG */
+    #objectiveTreeWorkspace {
+      min-height: 300px;
+      overflow-x: auto;
+    }
+
+
+    /* Validación */
+    #objectiveValidationWorkspace {
+      min-height: 160px;
+    }
+
+
+    /* Acciones */
+    #actionsWorkspace {
+      min-height: 180px;
+    }
+
+    #actionTraceabilityWorkspace {
+      min-height: 140px;
+    }
+
+
+    /* Alternativas */
+    #actionClassificationWorkspace {
+      min-height: 180px;
+    }
+
+    #alternativesWorkspace {
+      min-height: 180px;
+    }
+
+
+    /* Evaluación */
+    #alternativeEvaluationWorkspace {
+      min-height: 220px;
+      overflow-x: auto;
+    }
+
+    #sensitivityWorkspace {
+      min-height: 160px;
+    }
+
+
+    /* Selección */
+    #strategySelectionWorkspace {
+      min-height: 120px;
+    }
+
+
+    /* Indicadores visuales que utilizaremos después
+   para propuestas y confianza */
+    .objective-proposal {
+      border-left: 4px solid #9ca3af;
+      background: #f9fafb;
+      padding: 12px 14px;
+      border-radius: 6px;
+    }
+
+    .objective-proposal .proposal-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .objective-confidence-low {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6b7280;
+    }
+
+
+    /* Tablas que utilizaremos en evaluación */
+    .objective-subscreen table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .objective-subscreen th,
+    .objective-subscreen td {
+      border: 1px solid #e1e5ea;
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    .objective-subscreen th {
+      background: #f5f7f9;
+      font-weight: 700;
+    }
+
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+
+      .step3-nav {
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+      }
+
+    }
+
+    @media (max-width: 760px) {
+
+      .step3-nav {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+      }
+
+      .objective-subscreen .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .objective-subscreen .span-4,
+      .objective-subscreen .span-6,
+      .objective-subscreen .span-12 {
+        grid-column: span 1;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+
+      .step3-nav {
+        grid-template-columns: 1fr;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">MML</div>
+        <h1>Formulación de Proyectos</h1>
+        <p>Artefacto educativo basado en la Metodología de Marco Lógico CEPAL/ILPES.</p>
+      </div>
+
+      <nav id="navigation"></nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+
+        <div class="project-title">
+          <div class="eyebrow">Proyecto</div>
+          <strong id="headerProjectTitle">Proyecto sin título</strong>
+        </div>
+
+        <div class="global-actions">
+
+          <button type="button" class="btn global-json-btn" id="btnExportJSON" onclick="exportStateJSON()">
+            Exportar JSON
+          </button>
+
+          <button type="button" class="btn global-json-btn" id="btnImportJSON" onclick="importStateJSON()">
+            Importar JSON
+          </button>
+
+          <input type="file" id="inputImportJSON" accept=".json,application/json" hidden>
+
+        </div>
+
+        <div class="step-badge">
+          <span id="headerStep">Paso 0</span>
+          <strong id="headerStepName">Ficha del caso</strong>
+        </div>
+
+      </header>
+
+      <div class="content">
+
+        <!-- PANTALLA 0 -->
+        <section class="screen active" id="screen0">
+          <div class="hero">
+            <div class="kicker">Punto de partida</div>
+            <h2>Ficha del caso</h2>
+            <p>Delimita el caso propio antes de iniciar el análisis metodológico. Esta información constituye el punto
+              de partida del proyecto.</p>
+          </div>
+
+          <div class="card">
+            <div class="case-grid">
+              <div class="form-group full">
+                <label for="casoTitulo">Título del proyecto</label>
+                <input id="casoTitulo" type="text" placeholder="Escriba un título claro y descriptivo">
+              </div>
+              <div class="form-group">
+                <label for="casoSector">Sector o ámbito de intervención</label>
+                <input id="casoSector" type="text" placeholder="Ej. desarrollo rural">
+              </div>
+              <div class="form-group">
+                <label for="casoTerritorio">Territorio</label>
+                <input id="casoTerritorio" type="text" placeholder="Municipio, departamento y zona">
+              </div>
+              <div class="form-group">
+                <label for="casoPoblacion">Población principal</label>
+                <input id="casoPoblacion" type="text" placeholder="Grupo poblacional">
+              </div>
+              <div class="form-group">
+                <label for="casoPeriodo">Periodo de referencia</label>
+                <input id="casoPeriodo" type="text" placeholder="Periodo del proyecto o del análisis">
+              </div>
+              <div class="form-group full">
+                <label for="casoSituacion">Situación actual</label>
+                <textarea id="casoSituacion"
+                  placeholder="Describa brevemente la situación que da origen al proyecto."></textarea>
+              </div>
+              <div class="form-group full">
+                <label for="casoPregunta">Pregunta orientadora</label>
+                <input id="casoPregunta" type="text" placeholder="¿Qué situación se busca transformar y para quién?">
+              </div>
+              <div class="form-group full">
+                <label for="casoDelimitacion">Delimitación del caso</label>
+                <textarea id="casoDelimitacion"
+                  placeholder="Precise población, territorio, periodo y alcance del análisis."></textarea>
+              </div>
+            </div>
+            <div class="case-note">
+              <strong>Uso metodológico:</strong> la ficha delimita el caso; no reemplaza el análisis de involucrados ni
+              la construcción del problema. La formulación debe partir de un caso propio, verificable y pertinente.
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="btn primary" id="btnStartWizard" onclick="iniciarWizard()">
+              Iniciar construcción del Marco Lógico →
+            </button>
+          </div>
+        </section>
+
+
+        <!-- PANTALLA 1 -->
+        <section class="screen" id="screen1">
+
+          <div class="hero">
+            <div class="kicker">Paso 1</div>
+            <h2>Análisis de involucrados</h2>
+            <p>
+              Identifica los grupos y organizaciones relacionados con el problema,
+              analiza sus intereses, problemas percibidos, recursos y mandatos,
+              y caracteriza su posición, fuerza e intensidad.
+            </p>
+          </div>
+
+          <!-- FORMULARIO -->
+          <div class="card">
+            <h3 id="actorFormTitle">Registrar involucrado</h3>
+
+            <div class="actor-form-grid">
+
+              <div class="actor-field">
+                <label for="actorGrupo">Cargo u organización *</label>
+                <input id="actorGrupo" type="text" placeholder="Ej. Alcaldía municipal / Asociación de productores">
+                <small>
+                  Registre únicamente cargos, grupos u organizaciones. No registre
+                  nombres de personas naturales ni datos de contacto.
+                </small>
+              </div>
+
+              <div class="actor-field">
+                <label for="actorNaturaleza">Naturaleza *</label>
+                <select id="actorNaturaleza">
+                  <option value="">Seleccione</option>
+                  <option value="Comunitaria">Comunitaria</option>
+                  <option value="Institucional">Institucional</option>
+                  <option value="Productiva">Productiva</option>
+                  <option value="Educativa">Educativa</option>
+                  <option value="Social">Social</option>
+                  <option value="Privada">Privada</option>
+                  <option value="Financiera">Financiera</option>
+                  <option value="Gremial">Gremial</option>
+                  <option value="Otra">Otra</option>
+                </select>
+              </div>
+
+              <div class="actor-field">
+                <label for="actorRelacion">Relación con el problema *</label>
+                <input id="actorRelacion" type="text" placeholder="Ej. Afectado directamente por el problema">
+              </div>
+
+              <div class="actor-field">
+                <label for="actorRol">Rol frente al problema *</label>
+                <input id="actorRol" type="text" placeholder="Ej. Beneficiario, regulador, financiador">
+              </div>
+
+              <div class="actor-field full">
+                <label for="actorIntereses">
+                  Intereses en relación directa con el problema *
+                </label>
+                <textarea id="actorIntereses"
+                  placeholder="¿Qué busca, necesita o espera este grupo frente al problema?"></textarea>
+              </div>
+
+              <div class="actor-field full">
+                <label for="actorProblemas">
+                  Problemas percibidos *
+                </label>
+                <textarea id="actorProblemas"
+                  placeholder="Escriba un problema por línea, desde la perspectiva del grupo y en negativo."></textarea>
+                <small>
+                  Cada línea se convertirá en un elemento independiente de la lista.
+                </small>
+              </div>
+
+              <div class="actor-field full">
+                <label for="actorRecursos">
+                  Recursos y mandatos *
+                </label>
+                <textarea id="actorRecursos"
+                  placeholder="Recursos disponibles, capacidades, competencias, normas o mandatos institucionales."></textarea>
+              </div>
+
+              <div class="actor-field">
+                <label for="actorPosicion">Posición *</label>
+                <select id="actorPosicion">
+                  <option value="">Seleccione</option>
+                  <option value="1">+1 · A favor</option>
+                  <option value="0">0 · Neutral / indiferente</option>
+                  <option value="-1">−1 · En contra</option>
+                </select>
+              </div>
+
+              <div class="actor-field">
+                <label for="actorFuerza">Fuerza / poder (1–5) *</label>
+                <select id="actorFuerza">
+                  <option value="">Seleccione</option>
+                  <option value="1">1 · Muy baja</option>
+                  <option value="2">2 · Baja</option>
+                  <option value="3">3 · Media</option>
+                  <option value="4">4 · Alta</option>
+                  <option value="5">5 · Muy alta</option>
+                </select>
+                <small>
+                  Dimensión de poder o capacidad de influencia. No se promedia con el interés.
+                </small>
+              </div>
+
+              <div class="actor-field">
+                <label for="actorIntensidad">Intensidad / interés (1–5) *</label>
+                <select id="actorIntensidad">
+                  <option value="">Seleccione</option>
+                  <option value="1">1 · Muy baja</option>
+                  <option value="2">2 · Baja</option>
+                  <option value="3">3 · Media</option>
+                  <option value="4">4 · Alta</option>
+                  <option value="5">5 · Muy alta</option>
+                </select>
+                <small>
+                  Dimensión de interés o afectación. No se promedia con el poder.
+                </small>
+              </div>
+
+              <div class="actor-field full">
+                <label for="actorRazon">Razón de la valoración *</label>
+                <textarea id="actorRazon"
+                  placeholder="Justifique la posición, la fuerza y la intensidad asignadas."></textarea>
+              </div>
+
+              <div class="actor-field full">
+                <label for="actorEstrategia">Estrategia de relacionamiento *</label>
+                <textarea id="actorEstrategia"
+                  placeholder="Describa cómo se gestionará la relación con este grupo."></textarea>
+              </div>
+
+            </div>
+
+            <div class="actor-actions">
+              <button type="button" class="btn" id="actorCancelBtn" style="display:none;">
+                Cancelar edición
+              </button>
+
+              <button type="button" class="btn btn-primary" id="actorSaveBtn">
+                Agregar involucrado
+              </button>
+            </div>
+          </div>
+
+          <!-- VALIDACIONES METODOLÓGICAS -->
+          <div class="card method-layer">
+            <div class="validation-panel">
+
+              <div class="validation-header">
+                <h3>Validaciones metodológicas</h3>
+                <span id="validationCount" class="validation-count">
+                  Sin hallazgos
+                </span>
+              </div>
+
+              <div id="actorValidations" class="validation-list">
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SALIDA PRINCIPAL -->
+          <div class="card">
+            <h3>Cuadro de análisis de involucrados</h3>
+
+            <p class="footer-note" style="margin-top:6px;">
+              El cuadro conserva exactamente las cuatro columnas requeridas.
+              Los problemas percibidos se presentan como lista, uno por línea.
+            </p>
+
+            <div class="actor-table-wrap">
+              <table class="actor-table">
+                <thead>
+                  <tr>
+                    <th>Grupos</th>
+                    <th>Intereses</th>
+                    <th>Problemas percibidos</th>
+                    <th>Recursos y mandatos</th>
+                  </tr>
+                </thead>
+                <tbody id="actorsMainTableBody">
+                  <tr>
+                    <td colspan="4" class="actor-empty">
+                      Aún no hay involucrados registrados.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SALIDA SECUNDARIA -->
+          <div class="card">
+            <h3>Caracterización y priorización</h3>
+
+            <p class="footer-note" style="margin-top:6px;">
+              La resultante se calcula en cada actualización como
+              <strong>fuerza × intensidad × posición</strong>.
+              No se almacena como dato del involucrado.
+            </p>
+
+            <div class="actor-table-wrap">
+              <table class="characterization-table">
+                <thead>
+                  <tr>
+                    <th>Grupos</th>
+                    <th>Posición</th>
+                    <th>Fuerza / poder</th>
+                    <th>Intensidad / interés</th>
+                    <th>Resultante</th>
+                    <th>Cuadrante</th>
+                    <th>Razón de la valoración</th>
+                    <th>Estrategia</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="actorsCharacterizationBody">
+                  <tr>
+                    <td colspan="9" class="actor-empty">
+                      Aún no hay involucrados registrados.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="validation-note">
+              <strong>Regla metodológica:</strong>
+              poder e interés son dimensiones distintas. La fuerza representa el
+              poder/capacidad de influencia y la intensidad representa el interés o
+              afectación. No se promedian. La resultante únicamente se calcula
+              cuando se necesita para ordenar la caracterización.
+            </div>
+          </div>
+          <!-- REPRESENTACIONES GRÁFICAS -->
+          <div class="card">
+            <h3>Representaciones gráficas</h3>
+            <p class="footer-note" style="margin-top:6px;">
+              Las representaciones se generan automáticamente a partir de los
+              involucrados registrados y se actualizan cada vez que cambia la lista.
+            </p>
+
+            <!-- MAPA DE INVOLUCRADOS -->
+            <div class="section-head">
+              <div>
+                <h3>Mapa de involucrados</h3>
+                <p>
+                  Relación de los grupos involucrados con el proyecto,
+                  agrupados por naturaleza.
+                </p>
+              </div>
+            </div>
+
+
+            <div class="actor-chart-wrapper">
+              <svg id="interestPowerChart" class="actor-svg" viewBox="0 0 760 540" role="img"
+                aria-label="Matriz de interés y poder de los involucrados">
+              </svg>
+            </div>
+          </div>
+
+
+          <!-- DIAGRAMA DE INVOLUCRADOS -->
+          <div class="card">
+            <div class="section-head">
+              <div>
+                <h3>Diagrama de involucrados</h3>
+                <p>
+                  Relación de los grupos involucrados con el proyecto,
+                  agrupados por proyecto.
+                </p>
+              </div>
+
+              <div class="actor-chart-wrapper">
+                <svg id="stakeholderNetworkChart" class="actor-svg" viewBox="0 0 760 540" role="img"
+                  aria-label="Diagrama de involucrados alrededor del proyecto">
+                </svg>
+              </div>
+            </div>
+            <!-- ACTIVIDAD 4 · PARTICIPACIÓN CON INVOLUCRADOS -->
+            <div class="card method-layer">
+
+              <div class="hero" style="margin-bottom:18px;">
+                <div class="kicker">Actividad 4 · Paso 1</div>
+                <h3 style="margin:0 0 7px;font-size:19px;">
+                  Identificación, análisis y selección con los involucrados
+                </h3>
+                <p style="margin:0;font-size:13px;">
+                  Selecciona una técnica de participación y justifica su uso a partir
+                  de la caracterización de los involucrados.
+                </p>
+              </div>
+
+              <div class="participation-grid">
+
+                <div class="participation-selection">
+
+                  <label for="participationTechnique">
+                    Técnica seleccionada *
+                  </label>
+
+                  <select id="participationTechnique">
+                    <option value="">
+                      Seleccione una técnica
+                    </option>
+                    <option value="grupos_nominales">
+                      Grupos nominales
+                    </option>
+                    <option value="delphi">
+                      Delphi
+                    </option>
+                    <option value="easw">
+                      EASW
+                    </option>
+                    <option value="nucleos_intervencion">
+                      Núcleos de intervención participativa
+                    </option>
+                  </select>
+
+                  <label for="participationActors">
+                    Involucrados convocados *
+                  </label>
+
+                  <textarea id="participationActors"
+                    placeholder="Indique los grupos u organizaciones que participarían."></textarea>
+
+                  <label for="participationMoment">
+                    Momento de aplicación *
+                  </label>
+
+                  <input id="participationMoment" type="text" placeholder="Ej. Validación del problema y priorización">
+
+                  <label for="participationProduct">
+                    Producto esperado *
+                  </label>
+
+                  <textarea id="participationProduct"
+                    placeholder="¿Qué producto concreto se espera obtener?"></textarea>
+
+                  <label for="participationLimitations">
+                    Limitaciones previstas
+                  </label>
+
+                  <textarea id="participationLimitations"
+                    placeholder="Condiciones que podrían limitar la técnica en este caso."></textarea>
+
+                </div>
+
+                <div id="techniqueHelp" class="participation-help">
+
+                  <h4>Ayuda contextual</h4>
+
+                  <p style="font-size:12px;color:var(--gris-500);">
+                    Seleccione una técnica para consultar su procedimiento,
+                    participantes, duración y cuándo evitarla.
+                  </p>
+
+                </div>
+
+              </div>
+
+              <div class="participation-justification">
+                <label for="participationJustification">
+                  Justificación de la elección
+                </label>
+
+                <textarea id="participationJustification"
+                  placeholder="Justifique en función de la fuerza, intensidad, posición, intereses y limitaciones de los involucrados."></textarea>
+              </div>
+
+              <div class="participation-note">
+                <strong>Regla metodológica:</strong>
+                la técnica no se selecciona automáticamente. El artefacto puede
+                mostrar información contextual, pero la decisión sobre qué técnica
+                utilizar, con quién, cuándo y para qué producto corresponde al
+                formulador.
+              </div>
+            </div>
+            <!-- INSTRUCCIONES PARA IA -->
+            <div class="card method-layer">
+
+              <div class="hero" style="margin-bottom:18px;">
+                <div class="kicker">Uso de inteligencia artificial</div>
+                <h3 style="margin:0 0 7px;font-size:19px;">
+                  Instrucciones para IA
+                </h3>
+                <p style="margin:0;font-size:13px;">
+                  Utilice estas instrucciones como apoyo para revisar el análisis,
+                  no para delegar las decisiones metodológicas.
+                </p>
+              </div>
+
+              <details class="ai-panel">
+                <summary>
+                  Instrucción 1 · Revisión crítica del análisis de involucrados
+                </summary>
+
+                <div class="ai-content">
+                  <p>
+                    Utilice esta instrucción para solicitar una revisión metodológica
+                    del cuadro sin permitir que la IA invente actores o tome decisiones.
+                  </p>
+
+                  <div class="ai-prompt-box">
+                    <pre id="aiPrompt1"
+                      class="ai-prompt">Actúa como revisor metodológico de un análisis de involucrados basado en la Metodología de Marco Lógico CEPAL/ILPES.
+
+          Revisa exclusivamente la información que te proporcione.
+
+          Identifica:
+          1. posibles grupos omitidos;
+          2. problemas percibidos formulados en positivo;
+          3. problemas percibidos formulados como soluciones o como ausencia de una solución;
+          4. intereses que no tengan relación directa con el problema;
+          5. valoraciones de posición, fuerza e intensidad que carezcan de justificación;
+          6. posibles inconsistencias entre poder e interés;
+          7. grupos demasiado amplios que deban desagregarse.
+
+          NO inventes involucrados.
+          NO inventes intereses, problemas, recursos ni mandatos.
+          NO modifiques posición, fuerza o intensidad.
+          NO selecciones la estrategia de relacionamiento por el formulador.
+
+          Entrega únicamente hallazgos y preguntas de revisión. Marca toda propuesta como propuesta de IA, con confianza baja y sin evidencia propia.</pre>
+
+                    <button type="button" class="ai-copy-btn" onclick="copyAIPrompt('aiPrompt1',this)">
+                      Copiar
+                    </button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="ai-panel" style="margin-top:10px;">
+                <summary>
+                  Instrucción 2 · Revisión de problemas percibidos
+                </summary>
+
+                <div class="ai-content">
+                  <p>
+                    Utilice esta instrucción para contrastar la redacción de los
+                    problemas percibidos sin convertirlos automáticamente en causas.
+                  </p>
+
+                  <div class="ai-prompt-box">
+                    <pre id="aiPrompt2" class="ai-prompt">Revisa los siguientes problemas percibidos por involucrados.
+
+          Para cada uno indica:
+          - si está formulado como estado negativo;
+          - si está formulado en positivo;
+          - si está formulado como una solución;
+          - si está expresado como ausencia de una solución;
+          - si parece demasiado general;
+          - si requiere mayor precisión.
+
+          No reescribas automáticamente los problemas.
+          No los conviertas en causas del árbol.
+          No inventes información.
+
+          Presenta las observaciones como recomendaciones que el formulador debe validar.</pre>
+
+                    <button type="button" class="ai-copy-btn" onclick="copyAIPrompt('aiPrompt2',this)">
+                      Copiar
+                    </button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="ai-panel" style="margin-top:10px;">
+                <summary>
+                  Instrucción 3 · Preparación de la Actividad 4
+                </summary>
+
+                <div class="ai-content">
+                  <p>
+                    Utilice esta instrucción para recibir una comparación de las
+                    técnicas sin delegar la decisión.
+                  </p>
+
+                  <div class="ai-prompt-box">
+                    <pre id="aiPrompt3" class="ai-prompt">Actúa como apoyo para preparar la Actividad 4 del Paso 1 de la Metodología de Marco Lógico.
+
+          Con base únicamente en la caracterización de los involucrados que te proporcione:
+
+          1. describe qué ventajas y limitaciones tendría cada técnica disponible;
+          2. relaciona cada técnica con los tipos de involucrados y la situación identificada;
+          3. señala qué información adicional necesitaría el formulador para decidir;
+          4. presenta alternativas de decisión, sin escoger una por él.
+
+          Las técnicas a considerar son:
+          - Grupos nominales.
+          - Delphi.
+          - EASW.
+          - Núcleos de intervención participativa.
+
+          NO selecciones la técnica.
+          NO inventes participantes.
+          NO inventes datos del caso.
+          NO inventes evidencia.
+          Toda recomendación debe quedar marcada como propuesta de IA, con confianza baja.</pre>
+
+                    <button type="button" class="ai-copy-btn" onclick="copyAIPrompt('aiPrompt3',this)">
+                      Copiar
+                    </button>
+                  </div>
+                </div>
+              </details>
+
+              <div class="ai-responsible-note">
+                <strong>Uso responsable de la IA:</strong>
+                la inteligencia artificial se utiliza como apoyo para revisar,
+                comparar y formular propuestas. El criterio metodológico y las
+                decisiones finales pertenecen al formulador. No introduzca en
+                herramientas de IA nombres de personas naturales, números de
+                identificación, teléfonos, correos electrónicos ni otros datos
+                personales. El artefacto mantiene esta prohibición como regla
+                permanente, en concordancia con la Ley 1581 de 2012.
+              </div>
+
+            </div>
+            <div class="wizard-actions">
+              <button type="button" class="btn primary" onclick="continuarAlPaso2()">
+                Continuar al análisis del problema →
+              </button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 2 · ANÁLISIS DEL PROBLEMA -->
+        <section class="screen" id="screen2">
+
+          <div class="hero">
+            <div class="kicker">Paso 2 · Análisis del problema</div>
+            <h2>Análisis del problema</h2>
+            <p>
+              Construye, organiza y valida el problema central, sus efectos y sus causas
+              antes de avanzar al análisis de objetivos.
+            </p>
+          </div>
+
+          <!-- NAVEGACIÓN INTERNA DEL PASO 2 -->
+          <div class="card">
+            <div class="section-head">
+              <div>
+                <h3>Ruta de trabajo</h3>
+                <p>
+                  El análisis del problema se desarrolla en siete momentos.
+                  Solo uno se muestra a la vez.
+                </p>
+              </div>
+            </div>
+
+            <div class="step2-nav">
+              <button class="step2-tab active" onclick="showProblemSubscreen('contexto', this)">
+                1. Contexto
+              </button>
+
+              <button class="step2-tab" onclick="showProblemSubscreen('problema', this)">
+                2. Problema central
+              </button>
+
+              <button class="step2-tab" onclick="showProblemSubscreen('causas', this)">
+                3. Efectos y causas
+              </button>
+
+              <button class="step2-tab" onclick="showProblemSubscreen('arbol', this)">
+                4. Árbol
+              </button>
+
+              <button class="step2-tab" onclick="showProblemSubscreen('validacion', this)">
+                5. Validación
+              </button>
+
+              <button class="step2-tab" onclick="showProblemSubscreen('prompts', this)">
+                6. Prompts
+              </button>
+
+              <button class="step2-tab" onclick="showProblemSubscreen('bitacora', this)">
+                7. Bitácora
+              </button>
+            </div>
+          </div>
+
+
+          <!-- 2.1 CONTEXTO -->
+          <div class="problem-subscreen active" id="problemSubscreen-contexto">
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>1. Contexto</h3>
+                  <p>
+                    Registra los elementos del caso que delimitan el análisis del problema.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid">
+
+                <div class="field span-6">
+                  <label for="problemCaseName">Nombre del caso</label>
+                  <input id="problemCaseName" type="text" placeholder="Nombre del caso">
+                </div>
+
+                <div class="field span-6">
+                  <label for="problemTerritory">Territorio</label>
+                  <input id="problemTerritory" type="text" placeholder="Territorio delimitado">
+                </div>
+
+                <div class="field span-6">
+                  <label for="problemPopulation">Población afectada</label>
+                  <input id="problemPopulation" type="text" placeholder="Población directamente afectada">
+                </div>
+
+                <div class="field span-6">
+                  <label for="problemPeriod">Periodo</label>
+                  <input id="problemPeriod" type="text" placeholder="Periodo de referencia">
+                </div>
+
+                <div class="field span-12">
+                  <label for="problemSituation">Situación problemática</label>
+                  <textarea id="problemSituation"
+                    placeholder="Describe brevemente la situación problemática observada."></textarea>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>Continuidad con el Paso 1</h3>
+                  <p>
+                    Los problemas percibidos por los involucrados constituyen insumos
+                    para el análisis, pero no se convierten automáticamente en causas.
+                  </p>
+                </div>
+              </div>
+
+              <div id="problemStakeholderInputs">
+                <div class="notice">
+                  Los involucrados y sus percepciones se cargarán desde el modelo
+                  general del artefacto.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <!-- 2.2 PROBLEMA CENTRAL -->
+          <!-- 2.2 PROBLEMA CENTRAL -->
+          <div class="problem-subscreen" id="problemSubscreen-problema">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>2. Problema central</h3>
+                  <p>
+                    Formula el problema como un estado negativo observable,
+                    con población y territorio definidos.
+                  </p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="problemStatement">
+                  Enunciado del problema central
+                </label>
+
+                <textarea id="problemStatement"
+                  placeholder="El enunciado se construirá a partir de los cuatro componentes." readonly
+                  style="background:#f7f8f8;">
+      </textarea>
+              </div>
+
+              <div class="grid" style="margin-top:16px">
+
+                <div class="field span-3">
+                  <label for="problemCondition">
+                    Condición negativa observable *
+                  </label>
+
+                  <textarea id="problemCondition" placeholder="¿Qué estado negativo se observa?"></textarea>
+                </div>
+
+                <div class="field span-3">
+                  <label for="problemAttribute">
+                    Atributo o manifestación *
+                  </label>
+
+                  <textarea id="problemAttribute" placeholder="¿Cómo se manifiesta el problema?"></textarea>
+                </div>
+
+                <div class="field span-3">
+                  <label for="problemPopulation">
+                    Población afectada *
+                  </label>
+
+                  <textarea id="problemPopulation" placeholder="¿Quiénes están afectados?"></textarea>
+                </div>
+
+                <div class="field span-3">
+                  <label for="problemDelimitation">
+                    Territorio y delimitación *
+                  </label>
+
+                  <textarea id="problemDelimitation" placeholder="¿Dónde y durante qué periodo ocurre?"></textarea>
+                </div>
+
+              </div>
+
+              <div class="notice" style="margin-top:16px;">
+                <strong>Regla metodológica:</strong>
+                evita expresiones como "falta", "no hay", "se necesita",
+                "capacitar", "construir" o "implementar". El problema debe
+                expresar un estado negativo, no la ausencia de una solución.
+              </div>
+
+              <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+
+                <button type="button" class="btn primary" onclick="validateCentralProblem()">
+                  Validar formulación
+                </button>
+
+                <button type="button" class="btn" onclick="confirmCentralProblem()">
+                  Confirmar problema central
+                </button>
+
+              </div>
+
+              <div id="centralProblemValidation" style="margin-top:16px;">
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- 2.3 EFECTOS Y CAUSAS -->
+          <!-- 2.3 EFECTOS Y CAUSAS -->
+          <div class="problem-subscreen" id="problemSubscreen-causas">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>3. Efectos y causas</h3>
+                  <p>
+                    Registra los nodos del árbol de problemas. Cada nodo debe
+                    representar un estado negativo y conservar evidencia,
+                    línea base y nivel de confianza.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid">
+
+                <div class="field span-3">
+
+                  <label for="nodeType">
+                    Tipo de nodo *
+                  </label>
+
+                  <select id="nodeType">
+                    <option value="causa">Causa</option>
+                    <option value="efecto">Efecto</option>
+                  </select>
+
+                </div>
+
+                <div class="field span-3">
+
+                  <label for="nodeLevel">
+                    Nivel *
+                  </label>
+
+                  <select id="nodeLevel">
+                    <option value="1">1 · Directo</option>
+                    <option value="2">2 · Indirecto</option>
+                    <option value="3">3 · Profundización</option>
+                    <option value="4">4 · Raíz / final</option>
+                  </select>
+
+                </div>
+
+                <div class="field span-6">
+
+                  <label for="nodeParent">
+                    Nodo padre *
+                  </label>
+
+                  <select id="nodeParent">
+                    <option value="P">P · Problema central</option>
+                  </select>
+
+                </div>
+
+                <div class="field span-12">
+
+                  <label for="nodeStatement">
+                    Enunciado del nodo *
+                  </label>
+
+                  <textarea id="nodeStatement"
+                    placeholder="Ejemplo: Baja disponibilidad de oportunidades laborales para jóvenes rurales."></textarea>
+
+                </div>
+
+                <div class="field span-6">
+
+                  <label for="nodeEvidence">
+                    Evidencia
+                  </label>
+
+                  <textarea id="nodeEvidence" placeholder="Fuente o evidencia que respalda el nodo."></textarea>
+
+                </div>
+
+                <div class="field span-6">
+
+                  <label for="nodeBaseline">
+                    Línea base
+                  </label>
+
+                  <textarea id="nodeBaseline"
+                    placeholder="Dato actual disponible o pendiente de consolidar."></textarea>
+
+                </div>
+
+                <div class="field span-4">
+
+                  <label for="nodeConfidence">
+                    Confianza
+                  </label>
+
+                  <select id="nodeConfidence">
+                    <option value="Alta">Alta</option>
+                    <option value="Media" selected>Media</option>
+                    <option value="Baja">Baja</option>
+                  </select>
+
+                </div>
+
+                <div class="field span-8">
+
+                  <label for="nodeOrigin">
+                    Origen
+                  </label>
+
+                  <select id="nodeOrigin">
+                    <option value="Formulador">Formulador</option>
+                    <option value="Propuesta IA">Propuesta IA</option>
+                  </select>
+
+                </div>
+
+              </div>
+
+              <div class="notice" style="margin-top:16px;">
+                Los problemas percibidos por los involucrados son insumos
+                para el análisis. No se convierten automáticamente en causas
+                ni en efectos.
+              </div>
+
+              <div style="margin-top:16px;">
+
+                <button type="button" class="btn primary" onclick="addProblemNode()">
+                  + Agregar nodo
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid" style="margin-top:16px;">
+
+              <div class="card span-6">
+
+                <div class="section-head">
+                  <div>
+                    <h3>Efectos registrados</h3>
+                    <p class="small-note">
+                      Consecuencias que se derivan del problema central.
+                    </p>
+                  </div>
+                </div>
+
+                <div id="effectsWorkspace"></div>
+
+              </div>
+
+
+              <div class="card span-6">
+
+                <div class="section-head">
+                  <div>
+                    <h3>Causas registradas</h3>
+                    <p class="small-note">
+                      Factores que explican el problema central.
+                    </p>
+                  </div>
+                </div>
+
+                <div id="causesWorkspace"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- 2.4 ÁRBOL -->
+          <div class="problem-subscreen" id="problemSubscreen-arbol">
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>4. Árbol de problemas</h3>
+                  <p>
+                    Integra los efectos, el problema central y las causas
+                    en una estructura causal única.
+                  </p>
+                </div>
+              </div>
+
+              <div id="problemTreeWorkspace"></div>
+            </div>
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>Ficha de sustentación de nodos</h3>
+                  <p>
+                    Cada nodo debe conservar evidencia, línea base y nivel de confianza.
+                  </p>
+                </div>
+              </div>
+
+              <div id="nodeEvidenceWorkspace">
+                <div class="notice">
+                  Aún no hay nodos registrados.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <!-- 2.5 VALIDACIÓN -->
+          <div class="problem-subscreen" id="problemSubscreen-validacion">
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>5. Validación metodológica</h3>
+                  <p>
+                    Revisa la consistencia lógica del árbol antes de continuar.
+                  </p>
+                </div>
+              </div>
+
+              <div id="problemValidationWorkspace">
+                <div class="notice">
+                  Las pruebas de validez se ejecutarán sobre el árbol construido.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <!-- 2.6 PROMPTS -->
+          <div class="problem-subscreen" id="problemSubscreen-prompts">
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>6. Asistente IA</h3>
+                  <p>
+                    La IA funciona como apoyo para depurar, proponer y cuestionar.
+                    No decide el problema ni valida causalidad.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notice">
+                <strong>Uso responsable:</strong>
+                las propuestas generadas por IA deben ser revisadas por el formulador,
+                contrastadas con evidencia y, cuando corresponda, validadas con los
+                involucrados.
+              </div>
+
+              <div id="problemAIPrompts" style="margin-top:16px">
+
+                <div class="card">
+                  <h3>Depuración del problema central</h3>
+                  <p class="small-note">
+                    Generar una instrucción contextualizada a partir del estado actual.
+                  </p>
+                  <button class="btn" onclick="generateProblemPrompt('problema')">
+                    Preparar consulta
+                  </button>
+                  <textarea id="problemPromptProblema" style="margin-top:10px" readonly
+                    placeholder="La instrucción aparecerá aquí."></textarea>
+                </div>
+
+                <div class="card">
+                  <h3>Propuesta de causas y efectos</h3>
+                  <p class="small-note">
+                    Generar una instrucción para ampliar hipótesis causales y efectos.
+                  </p>
+                  <button class="btn" onclick="generateProblemPrompt('arbol')">
+                    Preparar consulta
+                  </button>
+                  <textarea id="problemPromptArbol" style="margin-top:10px" readonly
+                    placeholder="La instrucción aparecerá aquí."></textarea>
+                </div>
+
+                <div class="card">
+                  <h3>Contradicción del árbol</h3>
+                  <p class="small-note">
+                    Generar una instrucción para buscar inconsistencias y supuestos débiles.
+                  </p>
+                  <button class="btn" onclick="generateProblemPrompt('validacion')">
+                    Preparar consulta
+                  </button>
+                  <textarea id="problemPromptValidacion" style="margin-top:10px" readonly
+                    placeholder="La instrucción aparecerá aquí."></textarea>
+                </div>
+
+              </div>
+
+              <div class="notice" style="margin-top:16px">
+                No incorporar datos personales. La IA debe utilizarse como apoyo
+                metodológico y no como autoridad sobre la realidad territorial.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- 2.7 BITÁCORA -->
+          <div class="problem-subscreen" id="problemSubscreen-bitacora">
+
+            <div class="card">
+              <div class="section-head">
+                <div>
+                  <h3>7. Bitácora</h3>
+                  <p>
+                    Registra el uso de IA, las propuestas recibidas y las decisiones
+                    tomadas por el formulador.
+                  </p>
+                </div>
+              </div>
+
+              <div id="problemBitacoraWorkspace">
+                <div class="notice">
+                  No hay registros en la bitácora.
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- PANTALLA 3 -->
+        <!-- PANTALLA 3 · ANÁLISIS DE OBJETIVOS -->
+        <section class="screen" id="screen3">
+
+          <!-- ENCABEZADO -->
+          <div class="hero">
+            <div class="kicker">Paso 3 · Análisis de objetivos</div>
+
+            <div class="hero-row">
+              <div>
+                <h2>Análisis de objetivos</h2>
+                <p>
+                  Convierte el árbol de problemas en un árbol de objetivos,
+                  identifica medios y fines, formula acciones y compara
+                  alternativas de solución.
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- RUTA INTERNA DEL PASO 3 -->
+          <div class="card">
+
+            <div class="section-head">
+              <div>
+                <h3>Ruta de trabajo</h3>
+                <p>
+                  El análisis de objetivos se desarrolla progresivamente.
+                  Las propuestas generadas por el sistema siempre requieren
+                  revisión del formulador.
+                </p>
+              </div>
+            </div>
+
+            <div class="step3-nav">
+
+              <button type="button" class="step3-tab active" onclick="showObjectiveSubscreen('transformacion', this)">
+                1. Transformación
+              </button>
+
+              <button type="button" class="step3-tab" onclick="showObjectiveSubscreen('arbol', this)">
+                2. Árbol de objetivos
+              </button>
+
+              <button type="button" class="step3-tab" onclick="showObjectiveSubscreen('validacion', this)">
+                3. Validación
+              </button>
+
+              <button type="button" class="step3-tab" onclick="showObjectiveSubscreen('acciones', this)">
+                4. Acciones
+              </button>
+
+              <button type="button" class="step3-tab" onclick="showObjectiveSubscreen('alternativas', this)">
+                5. Alternativas
+              </button>
+
+              <button type="button" class="step3-tab" onclick="showObjectiveSubscreen('evaluacion', this)">
+                6. Evaluación
+              </button>
+
+              <button type="button" class="step3-tab" onclick="showObjectiveSubscreen('seleccion', this)">
+                7. Selección
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.1 TRANSFORMACIÓN
+       ===================================================== -->
+          <div class="objective-subscreen active" id="objectiveSubscreen-transformacion">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>1. Transformación de problemas en objetivos</h3>
+                  <p>
+                    Cada nodo del árbol de problemas se transforma en un
+                    estado positivo deseado. La propuesta es editable y
+                    no constituye una decisión automática.
+                  </p>
+                </div>
+              </div>
+
+              <div id="objectiveTransformationWorkspace">
+
+                <div class="notice">
+                  Los nodos del Paso 2 aparecerán aquí para realizar
+                  su transformación en objetivos.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>Supuestos potenciales</h3>
+                  <p>
+                    Un objetivo puede marcarse como posible supuesto para
+                    revisión posterior. El sistema no decide cuáles deben
+                    ser supuestos.
+                  </p>
+                </div>
+              </div>
+
+              <div id="potentialAssumptionsWorkspace">
+
+                <div class="notice">
+                  Aún no se han identificado objetivos candidatos
+                  a supuesto.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.2 ÁRBOL DE OBJETIVOS
+       ===================================================== -->
+          <div class="objective-subscreen" id="objectiveSubscreen-arbol">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>2. Árbol de objetivos</h3>
+                  <p>
+                    Representación gráfica de la transformación del árbol
+                    de problemas en una estructura de medios y fines.
+                  </p>
+                </div>
+              </div>
+
+              <div id="objectiveTreeWorkspace">
+
+                <div class="notice">
+                  El árbol de objetivos se visualizará aquí a partir
+                  de los nodos transformados.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.3 VALIDACIÓN
+       ===================================================== -->
+          <div class="objective-subscreen" id="objectiveSubscreen-validacion">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>3. Validación metodológica</h3>
+                  <p>
+                    Revisa la consistencia de la transformación y de la
+                    estructura medios-fines.
+                  </p>
+                </div>
+              </div>
+
+              <div id="objectiveValidationWorkspace">
+
+                <div class="notice">
+                  Se ejecutarán cinco pruebas sobre el árbol de objetivos:
+                  correspondencia, signo, lógica medios-fines, no solución
+                  y suficiencia.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.4 ACCIONES
+       ===================================================== -->
+          <div class="objective-subscreen" id="objectiveSubscreen-acciones">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>4. Identificación de acciones</h3>
+                  <p>
+                    Identifica acciones asociadas a los medios
+                    operacionalizables y verifica su relación causal.
+                  </p>
+                </div>
+              </div>
+
+              <div id="actionsWorkspace">
+
+                <div class="notice">
+                  Los medios operacionalizables y sus acciones
+                  aparecerán aquí.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>Cadena de trazabilidad</h3>
+                  <p>
+                    Cada acción debe poder relacionarse con el medio,
+                    la causa y el problema central.
+                  </p>
+                </div>
+              </div>
+
+              <div id="actionTraceabilityWorkspace">
+
+                <div class="notice">
+                  La cadena acción → medio → causa → problema
+                  se verificará aquí.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.5 ALTERNATIVAS
+       ===================================================== -->
+          <div class="objective-subscreen" id="objectiveSubscreen-alternativas">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>5. Configuración de alternativas</h3>
+                  <p>
+                    Clasifica las acciones y construye las alternativas
+                    de solución a partir de sus relaciones.
+                  </p>
+                </div>
+              </div>
+
+              <div id="actionClassificationWorkspace">
+
+                <div class="notice">
+                  Aquí se clasificará cada acción como
+                  complementaria o excluyente.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>Alternativas configuradas</h3>
+                  <p>
+                    El núcleo común estará conformado por acciones
+                    complementarias. Cada decisión excluyente abrirá
+                    una rama alternativa.
+                  </p>
+                </div>
+              </div>
+
+              <div id="alternativesWorkspace">
+
+                <div class="notice">
+                  Aún no se han configurado alternativas.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.6 EVALUACIÓN
+       ===================================================== -->
+          <div class="objective-subscreen" id="objectiveSubscreen-evaluacion">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>6. Evaluación de alternativas</h3>
+                  <p>
+                    Compara las alternativas mediante criterios y pesos
+                    editables. La escala de valoración será de 1 a 5.
+                  </p>
+                </div>
+              </div>
+
+              <div id="alternativeEvaluationWorkspace">
+
+                <div class="notice">
+                  La matriz de evaluación aparecerá cuando existan
+                  alternativas configuradas.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>Sensibilidad</h3>
+                  <p>
+                    Revisa el comportamiento de la comparación ante
+                    variaciones de ±0,10 en los pesos.
+                  </p>
+                </div>
+              </div>
+
+              <div id="sensitivityWorkspace">
+
+                <div class="notice">
+                  La sensibilidad se calculará a partir de los pesos
+                  definidos por el formulador.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================================
+       3.7 SELECCIÓN
+       ===================================================== -->
+          <div class="objective-subscreen" id="objectiveSubscreen-seleccion">
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>7. Selección de la estrategia óptima</h3>
+                  <p>
+                    Documenta la alternativa seleccionada por el
+                    formulador y las razones que sustentan la decisión.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notice">
+                <strong>Decisión humana:</strong>
+                el sistema calcula y presenta resultados comparativos,
+                pero no selecciona automáticamente la estrategia.
+              </div>
+
+              <div id="strategySelectionWorkspace" style="margin-top:16px">
+
+                <div class="notice">
+                  Las alternativas disponibles aparecerán aquí para
+                  documentar la decisión.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="section-head">
+                <div>
+                  <h3>Justificación de la selección</h3>
+                  <p>
+                    Registra los argumentos utilizados para seleccionar
+                    la estrategia.
+                  </p>
+                </div>
+              </div>
+
+              <div class="field">
+
+                <label for="strategySelectionJustification">
+                  Justificación
+                </label>
+
+                <textarea id="strategySelectionJustification"
+                  placeholder="Explica por qué se selecciona la alternativa."></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- NOTA METODOLÓGICA -->
+          <div class="notice" style="margin-top:18px">
+
+            <strong>Nota metodológica:</strong>
+            las transformaciones, acciones y resultados generados
+            automáticamente se consideran propuestas y deben ser
+            revisados por el formulador. El sistema no decide medios,
+            supuestos, pesos ni estrategia.
+
+          </div>
+
+        </section>
+
+        <!-- PANTALLA 4 -->
+        <section class="screen" id="screen4">
+          <div class="hero">
+            <div class="kicker">Paso 4</div>
+            <h2>Selección de la estrategia óptima</h2>
+            <p>Configura acciones y alternativas, compara opciones mediante criterios explícitos y sustenta la
+              estrategia seleccionada.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Medio operacionalizable</strong><span>Objetivo de nivel bajo sobre el que actúa
+                  la intervención.</span></div>
+              <div class="field"><strong>Acción propuesta</strong><span>Intervención que produce el medio.</span></div>
+              <div class="field"><strong>Cadena de coherencia</strong><span>Acción → medio → causa → problema.</span>
+              </div>
+              <div class="field"><strong>Clasificación de acción</strong><span>Complementaria o excluyente.</span></div>
+              <div class="field"><strong>Núcleo común</strong><span>Acciones complementarias presentes en las
+                  alternativas.</span></div>
+              <div class="field"><strong>Alternativas</strong><span>Combinaciones viables de acciones.</span></div>
+              <div class="field"><strong>Criterios de selección</strong><span>Criterios definidos para comparar
+                  alternativas.</span></div>
+              <div class="field"><strong>Pesos</strong><span>Ponderación de cada criterio.</span></div>
+              <div class="field"><strong>Valoración por alternativa</strong><span>Calificación de cada opción.</span>
+              </div>
+              <div class="field"><strong>Total ponderado</strong><span>Resultado de la comparación multicriterio.</span>
+              </div>
+              <div class="field"><strong>Análisis de sensibilidad</strong><span>Comportamiento de la selección ante
+                  cambios de peso.</span></div>
+              <div class="field"><strong>Estrategia seleccionada</strong><span>Decisión del formulador y
+                  justificación.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 5 -->
+        <section class="screen" id="screen5">
+          <div class="hero">
+            <div class="kicker">Paso 5</div>
+            <h2>Estructura Analítica del Proyecto</h2>
+            <p>Esquematiza la alternativa seleccionada en cuatro niveles jerárquicos y establece el puente hacia la
+              Matriz de Marco Lógico.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Fin</strong><span>Objetivo superior al que el proyecto contribuye.</span></div>
+              <div class="field"><strong>Propósito</strong><span>Resultado esperado al final de la ejecución.</span>
+              </div>
+              <div class="field"><strong>Componentes</strong><span>Resultados terminados que entregará el
+                  proyecto.</span></div>
+              <div class="field"><strong>Actividades</strong><span>Tareas necesarias para producir cada
+                  componente.</span></div>
+              <div class="field"><strong>Relación componente–actividad</strong><span>Agrupación de actividades por
+                  componente.</span></div>
+              <div class="field"><strong>Elementos fuera de gobernabilidad</strong><span>Factores que se tratarán
+                  posteriormente como supuestos.</span></div>
+              <div class="field"><strong>EAP de cuatro niveles</strong><span>Representación jerárquica de la
+                  intervención.</span></div>
+              <div class="field"><strong>Validación de lógica vertical</strong><span>Relaciones causales entre
+                  niveles.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 6 -->
+        <section class="screen" id="screen6">
+          <div class="hero">
+            <div class="kicker">Paso 6</div>
+            <h2>Resumen narrativo</h2>
+            <p>Redacta la columna de objetivos de la matriz con la forma metodológica correspondiente a cada nivel.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Fin</strong><span>Redacción como contribución: «Contribuir a…».</span></div>
+              <div class="field"><strong>Propósito</strong><span>Un único resultado esperado, redactado como
+                  participio.</span></div>
+              <div class="field"><strong>Componentes</strong><span>Resultados terminados: sustantivo +
+                  participio.</span></div>
+              <div class="field"><strong>Actividades</strong><span>Acciones en infinitivo, agrupadas por
+                  componente.</span></div>
+              <div class="field"><strong>Identificadores estables</strong><span>Llaves de trazabilidad entre niveles y
+                  módulos.</span></div>
+              <div class="field"><strong>Reglas de redacción</strong><span>Validación de la forma gramatical por
+                  nivel.</span></div>
+              <div class="field"><strong>Lógica vertical</strong><span>Verificación de la cadena actividades →
+                  componentes → propósito → fin.</span></div>
+              <div class="field"><strong>Elementos trasladados a supuestos</strong><span>Registro de condiciones fuera
+                  de gobernabilidad.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 7 -->
+        <section class="screen" id="screen7">
+          <div class="hero">
+            <div class="kicker">Paso 7</div>
+            <h2>Indicadores</h2>
+            <p>Define indicadores verificables para los objetivos, incorporando cantidad, calidad y tiempo y
+              seleccionando los más útiles.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Objetivo asociado</strong><span>Identificador del fin, propósito, componente o
+                  actividad.</span></div>
+              <div class="field"><strong>Indicador</strong><span>Medición propuesta para el logro del objetivo.</span>
+              </div>
+              <div class="field"><strong>Cantidad</strong><span>Cuánto se quiere lograr.</span></div>
+              <div class="field"><strong>Calidad</strong><span>Estándar o condición que debe cumplirse.</span></div>
+              <div class="field"><strong>Tiempo</strong><span>Cuándo se espera alcanzar el resultado.</span></div>
+              <div class="field"><strong>Tipo cuantitativo/cualitativo</strong><span>Clasificación del indicador.</span>
+              </div>
+              <div class="field"><strong>Tipo final/intermedio/proxy</strong><span>Clasificación según su relación con
+                  el resultado.</span></div>
+              <div class="field"><strong>Criterios PNUD A–E</strong><span>Claridad, disponibilidad, tangibilidad,
+                  alcance de recolección y representatividad.</span></div>
+              <div class="field"><strong>Puntaje y selección</strong><span>Recomendación: incluir con puntaje ≥ 4;
+                  revisar en caso contrario.</span></div>
+              <div class="field"><strong>Meta final</strong><span>Resultado esperado al cierre.</span></div>
+              <div class="field"><strong>Metas intermedias</strong><span>Hitos para seguimiento durante la
+                  operación.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 8 -->
+        <section class="screen" id="screen8">
+          <div class="hero">
+            <div class="kicker">Paso 8</div>
+            <h2>Medios de verificación</h2>
+            <p>Precisa dónde y cómo se obtendrá la información necesaria para calcular cada indicador.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Indicador asociado</strong><span>Identificador del indicador que se
+                  verificará.</span></div>
+              <div class="field"><strong>Fuente</strong><span>De dónde proviene el dato.</span></div>
+              <div class="field"><strong>Método de recolección</strong><span>Cómo se obtiene la información.</span>
+              </div>
+              <div class="field"><strong>Método de análisis</strong><span>Cómo se procesa el dato.</span></div>
+              <div class="field"><strong>Frecuencia</strong><span>Cada cuánto se obtiene o actualiza.</span></div>
+              <div class="field"><strong>Responsable</strong><span>Cargo u organización que produce o suministra el
+                  dato.</span></div>
+              <div class="field"><strong>Disponibilidad</strong><span>Existencia o facilidad de obtención de la
+                  información.</span></div>
+              <div class="field"><strong>Regularidad y actualización</strong><span>Condiciones de calidad del
+                  registro.</span></div>
+              <div class="field"><strong>Desagregación</strong><span>Nivel de detalle requerido para interpretar el
+                  indicador.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 9 -->
+        <section class="screen" id="screen9">
+          <div class="hero">
+            <div class="kicker">Paso 9</div>
+            <h2>Supuestos</h2>
+            <p>Identifica condiciones externas necesarias para la lógica del proyecto y verifica cuáles constituyen
+              riesgos relevantes.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Nivel</strong><span>Fin, propósito, componente o actividad.</span></div>
+              <div class="field"><strong>Factor externo</strong><span>Condición que no está bajo control directo del
+                  proyecto.</span></div>
+              <div class="field"><strong>Importancia</strong><span>Relevancia para el éxito de la intervención.</span>
+              </div>
+              <div class="field"><strong>Probabilidad</strong><span>Valoración de probabilidad del factor.</span></div>
+              <div class="field"><strong>Supuesto seleccionado</strong><span>Condición que cumple los criterios
+                  metodológicos.</span></div>
+              <div class="field"><strong>Umbral y plazo</strong><span>Formulación concreta del supuesto cuando
+                  corresponda.</span></div>
+              <div class="field"><strong>Gobernabilidad</strong><span>Verificación de que no se trate de una actividad
+                  interna.</span></div>
+              <div class="field"><strong>Riesgo fatal</strong><span>Identificación de condiciones que exigirían
+                  rediseño.</span></div>
+              <div class="field"><strong>Lógica vertical con supuestos</strong><span>Validación de la cadena
+                  causal.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 10 -->
+        <section class="screen" id="screen10">
+          <div class="hero">
+            <div class="kicker">Paso 10</div>
+            <h2>Previsión de la evaluación intermedia</h2>
+            <p>Define anticipadamente qué se observará, cuándo y con qué información para valorar el avance durante la
+              operación.</p>
+          </div>
+          <div class="card construction">
+            <div class="status">Módulo en construcción</div>
+            <h3>Campos previstos</h3>
+            <div class="field-list">
+              <div class="field"><strong>Qué se observará</strong><span>Metas intermedias, actividades, componentes,
+                  supuestos y probabilidad de logro.</span></div>
+              <div class="field"><strong>Cuándo</strong><span>Momento de mitad de operación o punto crítico definido por
+                  la gerencia.</span></div>
+              <div class="field"><strong>Con qué información</strong><span>Indicadores y medios de verificación
+                  disponibles.</span></div>
+              <div class="field"><strong>Metas intermedias de referencia</strong><span>Hitos utilizados para valorar el
+                  avance.</span></div>
+              <div class="field"><strong>Estado de los supuestos</strong><span>Seguimiento de las condiciones
+                  externas.</span></div>
+              <div class="field"><strong>Probabilidad de logro</strong><span>Valoración de propósito y fin a mitad de
+                  operación.</span></div>
+              <div class="field"><strong>Hallazgos</strong><span>Resultados de la revisión intermedia.</span></div>
+              <div class="field"><strong>Decisiones de ajuste</strong><span>Acciones de gestión derivadas de la
+                  evaluación.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <p class="footer-note">
+          Artefacto educativo en construcción. Estructura basada en la secuencia de diez pasos de la Metodología de
+          Marco Lógico de CEPAL/ILPES y en los documentos de formulación del curso.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function iniciarWizard() {
+      showScreen(1);
+    }
+    function continuarAlPaso2() {
+      prepararPaso2();
+      renderProblemContext();
+      renderProblemModule();
+      showScreen(2);
+    }
+    function prepararPaso2() {
+
+      const caso = state.caso || {};
+
+      const involucrados =
+        Array.isArray(state.involucrados)
+          ? state.involucrados
+          : [];
+
+      /*
+       * Asegurar estructura del problema
+       */
+      if (!state.problema ||
+        typeof state.problema !== "object") {
+
+        state.problema = {
+          cond: "",
+          atributo: "",
+          poblacion: "",
+          delim: ""
+        };
+      }
+
+      /*
+       * Asegurar estructura de nodos
+       */
+      if (!Array.isArray(state.nodos)) {
+        state.nodos = [];
+      }
+
+      /*
+       * =====================================================
+       * INSUMOS DEL PASO 0
+       * =====================================================
+       */
+
+      const insumoCaso = {
+        nombre: caso.nombre || "",
+        territorio: caso.territorio || "",
+        poblacion: caso.poblacion || "",
+        periodo: caso.periodo || "",
+        situacion: caso.situacion || ""
+      };
+
+      /*
+       * =====================================================
+       * INSUMOS DEL PASO 1
+       * =====================================================
+       */
+
+      const insumoInvolucrados =
+        involucrados.map(function (actor) {
+
+          return {
+            grupo: actor.grupo || "",
+            naturaleza: actor.naturaleza || "",
+            relacion: actor.relacion || "",
+            rol: actor.rol || "",
+            intereses: actor.intereses || "",
+
+            problemasPercibidos:
+              Array.isArray(actor.problemasPercibidos)
+                ? actor.problemasPercibidos.slice()
+                : [],
+
+            recursosMandatos:
+              Array.isArray(actor.recursos_mandatos)
+                ? actor.recursos_mandatos.slice()
+                : [],
+
+            posicion:
+              actor.posicion ?? "",
+
+            fuerza:
+              actor.fuerza ?? "",
+
+            intensidad:
+              actor.intensidad ?? ""
+          };
+
+        });
+
+      /*
+       * =====================================================
+       * INSUMOS PARA EL ANÁLISIS DEL PROBLEMA
+       * =====================================================
+       */
+
+      state.problema.insumos = {
+        caso: insumoCaso,
+        involucrados: insumoInvolucrados
+      };
+
+      /*
+       * =====================================================
+       * PROBLEMA CENTRAL
+       * =====================================================
+       */
+
+
+
+      /*
+       * =====================================================
+       * PROPUESTAS DE NODOS A PARTIR DE INVOLUCRADOS
+       * =====================================================
+       *
+       * Los problemas percibidos son INSUMOS.
+       * No se convierten automáticamente en causas.
+       *
+       * Por ahora se conservan como propuestas para
+       * posterior clasificación y validación.
+       */
+
+      const problemasPercibidos = [];
+
+      insumoInvolucrados.forEach(function (actor) {
+
+        actor.problemasPercibidos.forEach(function (problema) {
+
+          const texto =
+            String(problema || "").trim();
+
+          if (!texto) {
+            return;
+          }
+
+          const existe =
+            problemasPercibidos.some(function (item) {
+
+              return item.texto.toLowerCase() ===
+                texto.toLowerCase();
+
+            });
+
+          if (!existe) {
+
+            problemasPercibidos.push({
+
+              texto: texto,
+
+              grupos: [
+                actor.grupo
+              ].filter(Boolean)
+
+            });
+
+          } else {
+
+            const existente =
+              problemasPercibidos.find(function (item) {
+
+                return item.texto.toLowerCase() ===
+                  texto.toLowerCase();
+
+              });
+
+            if (
+              actor.grupo &&
+              !existente.grupos.includes(actor.grupo)
+            ) {
+
+              existente.grupos.push(actor.grupo);
+
+            }
+
+          }
+
+        });
+
+      });
+
+      /*
+       * Guardamos los problemas percibidos como
+       * insumo explícito para la construcción de
+       * causas y efectos.
+       */
+
+      state.problema.insumos.problemasPercibidos =
+        problemasPercibidos;
+
+    }
+    function renderProblemContext() {
+
+      const caso = state.caso || {};
+      const problema = state.problema || {};
+
+      const fields = {
+
+        problemCaseName:
+          caso.nombre || "",
+
+        problemTerritory:
+          caso.territorio || "",
+
+        problemPopulation:
+          problema.poblacion ||
+          caso.poblacion ||
+          "",
+
+        problemPeriod:
+          caso.periodo || "",
+
+        problemSituation:
+          caso.situacion || "",
+
+        problemCondition:
+          problema.cond || "",
+
+        problemAttribute:
+          problema.atributo || "",
+
+        problemDelimitation:
+          problema.delim || ""
+
+      };
+
+      Object.keys(fields).forEach(function (fieldId) {
+
+        const field =
+          document.getElementById(fieldId);
+
+        if (!field) {
+          return;
+        }
+
+        field.value = fields[fieldId];
+
+      });
+
+    }
+    (function () {
+      "use strict";
+
+      const NAV = [
+        { id: 0, label: "Ficha del caso", group: "Punto de partida" },
+        { id: 1, label: "Análisis de involucrados", group: "Análisis situacional", step: "Paso 1" },
+        { id: 2, label: "Análisis del problema", group: "Análisis situacional", step: "Paso 2" },
+        { id: 3, label: "Análisis de objetivos", group: "Análisis situacional", step: "Paso 3" },
+        { id: 4, label: "Selección de la estrategia óptima", group: "Análisis situacional", step: "Paso 4" },
+        { id: 5, label: "Estructura Analítica", group: "Matriz de Marco Lógico", step: "Paso 5" },
+        { id: 6, label: "Resumen narrativo", group: "Matriz de Marco Lógico", step: "Paso 6" },
+        { id: 7, label: "Indicadores", group: "Matriz de Marco Lógico", step: "Paso 7" },
+        { id: 8, label: "Medios de verificación", group: "Matriz de Marco Lógico", step: "Paso 8" },
+        { id: 9, label: "Supuestos", group: "Matriz de Marco Lógico", step: "Paso 9" },
+        { id: 10, label: "Previsión de la evaluación intermedia", group: "Matriz de Marco Lógico", step: "Paso 10" }
+      ];
+
+      window.state = {
+
+        /* =====================================================
+          CONTROL DE NAVEGACIÓN
+          ===================================================== */
+        current: 0,
+
+
+        /* =====================================================
+          CASO
+          ===================================================== */
+        caso: {
+          titulo: "",
+          sector: "",
+          territorio: "",
+          poblacion: "",
+          periodo: "",
+          situacion: "",
+          pregunta: "",
+          delimitacion: ""
+        },
+
+
+        /* =====================================================
+          PASO 1 · ANÁLISIS DE INVOLUCRADOS
+          ===================================================== */
+        involucrados: [],
+        editingActorIndex: null,
+
+
+        /* =====================================================
+          PASO 2 · ANÁLISIS DEL PROBLEMA
+          ===================================================== */
+        problema: {
+          condicion: "",
+          atributo: "",
+          poblacion: "",
+          delimitacion: "",
+          enunciado: ""
+        },
+
+        nodos: [],
+
+
+        /* =====================================================
+          PASO 3 · ANÁLISIS DE OBJETIVOS
+          ===================================================== */
+        objetivos: [],
+
+        acciones: [],
+
+        alternativas: [],
+
+        evaluacion: {
+          criterios: [],
+          pesos: {},
+          valoraciones: {},
+          sensibilidad: {}
+        },
+
+        seleccion: {
+          alternativa: "",
+          justificacion: ""
+        },
+
+
+        /* =====================================================
+          TRAZABILIDAD
+          ===================================================== */
+        bitacora: []
+
+      };
+
+      function buildNav() {
+        const nav = document.getElementById("navigation");
+        let lastGroup = "";
+
+        NAV.forEach(item => {
+          if (item.group !== lastGroup) {
+            const section = document.createElement("div");
+            section.className = "nav-section";
+
+            const title = document.createElement("div");
+            title.className = "nav-section-title";
+            title.textContent = item.group;
+
+            section.appendChild(title);
+            nav.appendChild(section);
+            lastGroup = item.group;
+          }
+
+          const button = document.createElement("button");
+          button.className = "nav-item";
+          button.type = "button";
+          button.dataset.id = item.id;
+          button.innerHTML =
+            '<span class="nav-num">' + item.id + '</span>' +
+            '<span class="nav-label">' + item.label + '</span>';
+
+          button.addEventListener("click", function () {
+            showScreen(item.id);
+          });
+
+          nav.lastElementChild.appendChild(button);
+        });
+      }
+
+      function showScreen(id) {
+        state.current = Number(id);
+
+        document.querySelectorAll(".screen").forEach(screen => {
+          screen.classList.toggle(
+            "active",
+            screen.id === "screen" + state.current
+          );
+        });
+
+        document.querySelectorAll(".nav-item").forEach(button => {
+          button.classList.toggle(
+            "active",
+            Number(button.dataset.id) === state.current
+          );
+        });
+
+        updateHeader();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+
+      /* Permite que funciones externas al IIFE puedan cambiar de pantalla */
+      window.showScreen = showScreen;
+
+      function updateHeader() {
+        const item = NAV.find(x => x.id === state.current);
+        const title = state.caso.titulo.trim() || "Proyecto sin título";
+
+        document.getElementById("headerProjectTitle").textContent = title;
+        document.getElementById("headerStep").textContent = item.step || "Punto de partida";
+        document.getElementById("headerStepName").textContent = item.label;
+      }
+
+      function syncObjectivesFromProblemNodes() {
+
+        if (!Array.isArray(state.nodos)) {
+          state.nodos = [];
+        }
+
+        if (!Array.isArray(state.objetivos)) {
+          state.objetivos = [];
+        }
+
+        state.nodos.forEach(function (nodo) {
+
+          if (!nodo || !nodo.codigo) {
+            return;
+          }
+
+          const existente = state.objetivos.find(function (objetivo) {
+            return objetivo.codigo === nodo.codigo;
+          });
+
+          if (!existente) {
+
+            state.objetivos.push({
+              codigo: nodo.codigo,
+              tipoOrigen: nodo.tipo || "",
+              nivel: nodo.nivel ?? null,
+              padre: nodo.padre || "",
+              enunciadoOrigen: nodo.enunciado || "",
+
+              /* El objetivo todavía NO se genera automáticamente */
+              objetivo: "",
+
+              /* Toda propuesta automática deberá quedar trazada */
+              propuesta: true,
+              confianza: "Baja",
+              origen: "Propuesta IA",
+
+              /* Decisión exclusiva del formulador */
+              posibleSupuesto: false
+            });
+
+          } else {
+
+            /*
+             * Mantener actualizada la trazabilidad con el nodo
+             * original sin sobrescribir las decisiones del formulador.
+             */
+            existente.tipoOrigen = nodo.tipo || existente.tipoOrigen;
+            existente.nivel = nodo.nivel ?? existente.nivel;
+            existente.padre = nodo.padre || existente.padre;
+            existente.enunciadoOrigen = nodo.enunciado || existente.enunciado;
+
+          }
+
+        });
+      }
+
+      function actorValue(id) {
+        return document.getElementById(id).value.trim();
+      }
+
+      function normalizeLines(text) {
+        return text
+          .split(/\r?\n/)
+          .map(line => line.trim())
+          .filter(Boolean);
+      }
+
+      function escapeHTML(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      window.escapeHTML = escapeHTML;
+
+      function actorPositionLabel(position) {
+        if (position === "1") {
+          return '<span class="position-positive">+1 · A favor</span>';
+        }
+
+        if (position === "-1") {
+          return '<span class="position-negative">−1 · En contra</span>';
+        }
+
+        return '<span class="position-neutral">0 · Neutral</span>';
+      }
+
+      function actorPositionClass(position) {
+        if (position === "1") return "position-positive";
+        if (position === "-1") return "position-negative";
+        return "position-neutral";
+      }
+
+      function actorQuadrant(actor) {
+        const force = Number(actor.fuerza);
+        const intensity = Number(actor.intensidad);
+
+        const highPower = force >= 4;
+        const highInterest = intensity >= 4;
+
+        if (highPower && highInterest) {
+          return "Alto poder · Alto interés";
+        }
+
+        if (highPower && !highInterest) {
+          return "Alto poder · Bajo interés";
+        }
+
+        if (!highPower && highInterest) {
+          return "Bajo poder · Alto interés";
+        }
+
+        return "Bajo poder · Bajo interés";
+      }
+
+      /*
+       * La resultante NO se almacena.
+       * Se calcula cada vez que se requiere.
+       */
+      function calculateActorResult(actor) {
+        return Number(actor.fuerza || 0)
+          * Number(actor.intensidad || 0)
+          * Number(actor.posicion || 0);
+      }
+
+      function actorIsComplete(actor) {
+        return Boolean(
+          actor.grupo &&
+          actor.naturaleza &&
+          actor.relacion &&
+          actor.rol &&
+          actor.intereses &&
+          actor.problemas_percibidos &&
+          actor.problemas_percibidos.length &&
+          actor.recursos_mandatos &&
+          actor.posicion !== "" &&
+          actor.fuerza &&
+          actor.intensidad &&
+          actor.razon &&
+          actor.estrategia
+        );
+      }
+
+      function clearActorForm() {
+        [
+          "actorGrupo",
+          "actorRelacion",
+          "actorRol",
+          "actorIntereses",
+          "actorProblemas",
+          "actorRecursos",
+          "actorRazon",
+          "actorEstrategia"
+        ].forEach(id => {
+          document.getElementById(id).value = "";
+        });
+
+        document.getElementById("actorNaturaleza").value = "";
+        document.getElementById("actorPosicion").value = "";
+        document.getElementById("actorFuerza").value = "";
+        document.getElementById("actorIntensidad").value = "";
+
+        state.editingActorIndex = null;
+
+        document.getElementById("actorFormTitle").textContent =
+          "Registrar involucrado";
+
+        document.getElementById("actorSaveBtn").textContent =
+          "Agregar involucrado";
+
+        document.getElementById("actorCancelBtn").style.display =
+          "none";
+      }
+
+      function readActorForm() {
+        return {
+          grupo: actorValue("actorGrupo"),
+          naturaleza: actorValue("actorNaturaleza"),
+          relacion: actorValue("actorRelacion"),
+          rol: actorValue("actorRol"),
+          intereses: actorValue("actorIntereses"),
+          problemas_percibidos: normalizeLines(
+            document.getElementById("actorProblemas").value
+          ),
+          recursos_mandatos: actorValue("actorRecursos"),
+          posicion: actorValue("actorPosicion"),
+          fuerza: actorValue("actorFuerza"),
+          intensidad: actorValue("actorIntensidad"),
+          razon: actorValue("actorRazon"),
+          estrategia: actorValue("actorEstrategia")
+        };
+      }
+
+      function validateActor(actor) {
+        const missing = [];
+
+        if (!actor.grupo) missing.push("cargo u organización");
+        if (!actor.naturaleza) missing.push("naturaleza");
+        if (!actor.relacion) missing.push("relación con el problema");
+        if (!actor.rol) missing.push("rol frente al problema");
+        if (!actor.intereses) missing.push("intereses");
+        if (!actor.problemas_percibidos.length) {
+          missing.push("problemas percibidos");
+        }
+        if (!actor.recursos_mandatos) {
+          missing.push("recursos y mandatos");
+        }
+        if (actor.posicion === "") {
+          missing.push("posición");
+        }
+        if (!actor.fuerza) {
+          missing.push("fuerza / poder");
+        }
+        if (!actor.intensidad) {
+          missing.push("intensidad / interés");
+        }
+        if (!actor.razon) {
+          missing.push("razón de la valoración");
+        }
+        if (!actor.estrategia) {
+          missing.push("estrategia de relacionamiento");
+        }
+
+        if (missing.length) {
+          alert(
+            "Complete los siguientes campos antes de continuar:\n\n• " +
+            missing.join("\n• ")
+          );
+          return false;
+        }
+
+        return true;
+      }
+
+      function fillActorForm(actor) {
+        document.getElementById("actorGrupo").value =
+          actor.grupo || "";
+
+        document.getElementById("actorNaturaleza").value =
+          actor.naturaleza || "";
+
+        document.getElementById("actorRelacion").value =
+          actor.relacion || "";
+
+        document.getElementById("actorRol").value =
+          actor.rol || "";
+
+        document.getElementById("actorIntereses").value =
+          actor.intereses || "";
+
+        document.getElementById("actorProblemas").value =
+          (actor.problemas_percibidos || []).join("\n");
+
+        document.getElementById("actorRecursos").value =
+          actor.recursos_mandatos || "";
+
+        document.getElementById("actorPosicion").value =
+          actor.posicion || "";
+
+        document.getElementById("actorFuerza").value =
+          actor.fuerza || "";
+
+        document.getElementById("actorIntensidad").value =
+          actor.intensidad || "";
+
+        document.getElementById("actorRazon").value =
+          actor.razon || "";
+
+        document.getElementById("actorEstrategia").value =
+          actor.estrategia || "";
+
+        document.getElementById("actorFormTitle").textContent =
+          "Editar involucrado";
+
+        document.getElementById("actorSaveBtn").textContent =
+          "Guardar cambios";
+
+        document.getElementById("actorCancelBtn").style.display =
+          "inline-block";
+
+        window.scrollTo({
+          top: document.getElementById("screen1").offsetTop,
+          behavior: "smooth"
+        });
+      }
+
+      function saveActor() {
+        const actor = readActorForm();
+
+        if (!validateActor(actor)) {
+          return;
+        }
+
+        if (state.editingActorIndex === null) {
+          state.involucrados.push(actor);
+        } else {
+          state.involucrados[state.editingActorIndex] = actor;
+        }
+
+        clearActorForm();
+        renderActors();
+      }
+
+      function editActor(index) {
+        const actor = state.involucrados[index];
+
+        if (!actor) {
+          return;
+        }
+
+        state.editingActorIndex = index;
+        fillActorForm(actor);
+      }
+
+      function deleteActor(index) {
+        const actor = state.involucrados[index];
+
+        if (!actor) {
+          return;
+        }
+
+        const confirmed = confirm(
+          "¿Desea eliminar este involucrado?\n\n" +
+          actor.grupo
+        );
+
+        if (!confirmed) {
+          return;
+        }
+
+        state.involucrados.splice(index, 1);
+
+        if (state.editingActorIndex === index) {
+          clearActorForm();
+        }
+
+        renderActors();
+      }
+
+      function renderMainActorTable() {
+        const body = document.getElementById("actorsMainTableBody");
+
+        if (!body) {
+          return;
+        }
+
+        if (!state.involucrados.length) {
+          body.innerHTML = `
+      <tr>
+        <td colspan="4" class="actor-empty">
+          Aún no hay involucrados registrados.
+        </td>
+      </tr>
+    `;
+          return;
+        }
+
+        body.innerHTML = state.involucrados.map((actor, index) => {
+
+          const problems = actor.problemas_percibidos || [];
+
+          const groupEmpty = !actor.grupo;
+          const interestEmpty = !actor.intereses;
+          const problemsEmpty = !problems.length;
+          const resourcesEmpty = !actor.recursos_mandatos;
+
+          return `
+      <tr>
+
+        <td class="${groupEmpty ? "empty-cell" : ""}">
+          ${groupEmpty
+              ? "Celda vacía"
+              : escapeHTML(actor.grupo)}
+        </td>
+
+        <td class="${interestEmpty ? "empty-cell" : ""}">
+          ${interestEmpty
+              ? "Celda vacía"
+              : escapeHTML(actor.intereses)}
+        </td>
+
+        <td class="${problemsEmpty ? "empty-cell" : ""}">
+          ${problemsEmpty
+              ? "Celda vacía"
+              : `<ul class="actor-problem-list">
+                  ${problems.map(problem =>
+                `<li>${escapeHTML(problem)}</li>`
+              ).join("")}
+                </ul>`
+            }
+        </td>
+
+        <td class="${resourcesEmpty ? "empty-cell" : ""}">
+          ${resourcesEmpty
+              ? "Celda vacía"
+              : escapeHTML(actor.recursos_mandatos)}
+        </td>
+
+      </tr>
+    `;
+        }).join("");
+      }
+
+      function renderCharacterization() {
+        const body = document.getElementById(
+          "actorsCharacterizationBody"
+        );
+
+        if (!body) {
+          return;
+        }
+
+        if (!state.involucrados.length) {
+          body.innerHTML = `
+      <tr>
+        <td colspan="9" class="actor-empty">
+          Aún no hay involucrados registrados.
+        </td>
+      </tr>
+    `;
+          return;
+        }
+
+        /*
+         * La resultante se calcula solamente para ordenar y mostrar.
+         * Nunca se agrega al objeto actor.
+         */
+        const ordered = state.involucrados
+          .map((actor, index) => ({
+            actor,
+            index,
+            result: calculateActorResult(actor)
+          }))
+          .sort((a, b) =>
+            Math.abs(b.result) - Math.abs(a.result)
+          );
+
+        body.innerHTML = ordered.map(item => {
+          const actor = item.actor;
+          const result = item.result;
+
+          const resultClass =
+            result > 0
+              ? "result-positive"
+              : result < 0
+                ? "result-negative"
+                : "position-neutral";
+
+          const positionClass =
+            actorPositionClass(actor.posicion);
+
+          return `
+      <tr>
+
+        <td>
+          <strong>${escapeHTML(actor.grupo)}</strong>
+        </td>
+
+        <td>
+          ${actorPositionLabel(actor.posicion)}
+        </td>
+
+        <td>
+          ${escapeHTML(actor.fuerza)}/5
+        </td>
+
+        <td>
+          ${escapeHTML(actor.intensidad)}/5
+        </td>
+
+        <td class="${resultClass}">
+          ${result > 0 ? "+" : ""}${result}
+        </td>
+
+        <td>
+          <span class="quadrant-badge">
+            ${escapeHTML(actorQuadrant(actor))}
+          </span>
+        </td>
+
+        <td>
+          ${escapeHTML(actor.razon)}
+        </td>
+
+        <td>
+          ${escapeHTML(actor.estrategia)}
+        </td>
+
+        <td>
+          <div class="actor-table-actions">
+            <button
+              type="button"
+              class="btn-mini"
+              onclick="editActor(${item.index})">
+              Editar
+            </button>
+
+            <button
+              type="button"
+              class="btn-mini"
+              onclick="deleteActor(${item.index})">
+              Eliminar
+            </button>
+          </div>
+        </td>
+
+      </tr>
+    `;
+        }).join("");
+      }
+
+      function svgEl(tag, attributes = {}) {
+        const el = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          tag
+        );
+
+        Object.entries(attributes).forEach(([key, value]) => {
+          el.setAttribute(key, value);
+        });
+
+        return el;
+      }
+
+      function addSvgText(svg, text, x, y, className = "") {
+        const node = svgEl("text", {
+          x,
+          y,
+          class: className
+        });
+
+        node.textContent = text;
+        svg.appendChild(node);
+
+        return node;
+      }
+
+      function actorPointColor(position) {
+        if (position === "1") {
+          return "#16a34a";
+        }
+
+        if (position === "-1") {
+          return "#dc2626";
+        }
+
+        return "#c58a16";
+      }
+
+      function drawInterestPowerChart() {
+
+        const svg = document.getElementById(
+          "interestPowerChart"
+        );
+
+        if (!svg) {
+          return;
+        }
+
+        svg.innerHTML = "";
+
+        const width = 760;
+        const height = 540;
+
+        const plot = {
+          left: 72,
+          right: 705,
+          top: 48,
+          bottom: 450
+        };
+
+        const plotWidth =
+          plot.right - plot.left;
+
+        const plotHeight =
+          plot.bottom - plot.top;
+
+        function xScale(value) {
+          return plot.left +
+            ((Number(value) - 1) / 4) *
+            plotWidth;
+        }
+
+        function yScale(value) {
+          return plot.bottom -
+            ((Number(value) - 1) / 4) *
+            plotHeight;
+        }
+
+        /* Fondo */
+        svg.appendChild(
+          svgEl("rect", {
+            x: plot.left,
+            y: plot.top,
+            width: plotWidth,
+            height: plotHeight,
+            fill: "#ffffff",
+            stroke: "#d1d5db"
+          })
+        );
+
+        /* Líneas de cuadrícula */
+        for (let value = 1; value <= 5; value++) {
+
+          const x = xScale(value);
+          const y = yScale(value);
+
+          svg.appendChild(
+            svgEl("line", {
+              x1: x,
+              y1: plot.top,
+              x2: x,
+              y2: plot.bottom,
+              class: "svg-grid"
+            })
+          );
+
+          svg.appendChild(
+            svgEl("line", {
+              x1: plot.left,
+              y1: y,
+              x2: plot.right,
+              y2: y,
+              class: "svg-grid"
+            })
+          );
+
+          addSvgText(
+            svg,
+            String(value),
+            x,
+            plot.bottom + 22,
+            "svg-tick"
+          );
+
+          addSvgText(
+            svg,
+            String(value),
+            plot.left - 22,
+            y + 4,
+            "svg-tick"
+          );
+        }
+
+        /* Líneas divisorias de cuadrantes */
+        const midX = xScale(3);
+        const midY = yScale(3);
+
+        svg.appendChild(
+          svgEl("line", {
+            x1: midX,
+            y1: plot.top,
+            x2: midX,
+            y2: plot.bottom,
+            class: "svg-quadrant-line"
+          })
+        );
+
+        svg.appendChild(
+          svgEl("line", {
+            x1: plot.left,
+            y1: midY,
+            x2: plot.right,
+            y2: midY,
+            class: "svg-quadrant-line"
+          })
+        );
+
+        /* Ejes */
+        svg.appendChild(
+          svgEl("line", {
+            x1: plot.left,
+            y1: plot.bottom,
+            x2: plot.right + 12,
+            y2: plot.bottom,
+            class: "svg-axis"
+          })
+        );
+
+        svg.appendChild(
+          svgEl("line", {
+            x1: plot.left,
+            y1: plot.bottom,
+            x2: plot.left,
+            y2: plot.top - 12,
+            class: "svg-axis"
+          })
+        );
+
+        /* Flechas */
+        svg.appendChild(
+          svgEl("polygon", {
+            points:
+              `${plot.right + 12},${plot.bottom} ` +
+              `${plot.right + 3},${plot.bottom - 5} ` +
+              `${plot.right + 3},${plot.bottom + 5}`,
+            fill: "#374151"
+          })
+        );
+
+        svg.appendChild(
+          svgEl("polygon", {
+            points:
+              `${plot.left},${plot.top - 12} ` +
+              `${plot.left - 5},${plot.top - 3} ` +
+              `${plot.left + 5},${plot.top - 3}`,
+            fill: "#374151"
+          })
+        );
+
+        /* Títulos de ejes */
+        addSvgText(
+          svg,
+          "INTERÉS / AFECTACIÓN",
+          (plot.left + plot.right) / 2,
+          500,
+          "svg-axis-label"
+        );
+
+        const yLabel = addSvgText(
+          svg,
+          "PODER / INFLUENCIA",
+          20,
+          (plot.top + plot.bottom) / 2,
+          "svg-axis-label"
+        );
+
+        yLabel.setAttribute(
+          "transform",
+          `rotate(-90 20 ${(plot.top + plot.bottom) / 2})`
+        );
+
+        /* Cuadrantes */
+        addSvgText(
+          svg,
+          "ALTO PODER · BAJO INTERÉS",
+          xScale(2),
+          20,
+          "svg-quadrant-title"
+        );
+
+        addSvgText(
+          svg,
+          "Mantener satisfecho",
+          xScale(2),
+          35,
+          "svg-quadrant-strategy"
+        );
+
+        addSvgText(
+          svg,
+          "ALTO PODER · ALTO INTERÉS",
+          xScale(4),
+          20,
+          "svg-quadrant-title"
+        );
+
+        addSvgText(
+          svg,
+          "Involucrar estrechamente",
+          xScale(4),
+          35,
+          "svg-quadrant-strategy"
+        );
+
+        addSvgText(
+          svg,
+          "BAJO PODER · BAJO INTERÉS",
+          xScale(2),
+          425,
+          "svg-quadrant-title"
+        );
+
+        addSvgText(
+          svg,
+          "Monitorear",
+          xScale(2),
+          440,
+          "svg-quadrant-strategy"
+        );
+
+        addSvgText(
+          svg,
+          "BAJO PODER · ALTO INTERÉS",
+          xScale(4),
+          425,
+          "svg-quadrant-title"
+        );
+
+        addSvgText(
+          svg,
+          "Involucrar y empoderar",
+          xScale(4),
+          440,
+          "svg-quadrant-strategy"
+        );
+
+        if (!state.involucrados.length) {
+
+          addSvgText(
+            svg,
+            "Registre involucrados para visualizar la matriz",
+            width / 2,
+            260,
+            "svg-empty-text"
+          );
+
+          return;
+        }
+
+        /*
+         * Agrupamos posiciones coincidentes.
+         * Esto permite alternar las etiquetas arriba/abajo.
+         */
+        const occupied = {};
+
+        state.involucrados.forEach((actor, index) => {
+
+          const x = xScale(actor.intensidad);
+          const y = yScale(actor.fuerza);
+
+          const key =
+            `${actor.intensidad}-${actor.fuerza}`;
+
+          if (!occupied[key]) {
+            occupied[key] = 0;
+          }
+
+          const duplicateIndex =
+            occupied[key]++;
+
+          const result =
+            calculateActorResult(actor);
+
+          /*
+           * El tamaño depende de |resultante|.
+           * Se mantiene dentro de un rango legible.
+           */
+          const radius =
+            8 + Math.min(
+              20,
+              Math.sqrt(Math.abs(result)) * 1.8
+            );
+
+          const point = svgEl("circle", {
+            cx: x,
+            cy: y,
+            r: radius,
+            fill: actorPointColor(actor.posicion),
+            "fill-opacity": "0.82",
+            stroke: "#ffffff",
+            "stroke-width": "2"
+          });
+
+          svg.appendChild(point);
+
+          /*
+           * Etiquetas alternadas arriba / abajo.
+           * En caso de coincidencia, cada etiqueta recibe
+           * una separación adicional.
+           */
+          const labelAbove =
+            duplicateIndex % 2 === 0;
+
+          const verticalOffset =
+            labelAbove
+              ? -(radius + 14 + Math.floor(duplicateIndex / 2) * 18)
+              : (radius + 16 + Math.floor(duplicateIndex / 2) * 18);
+
+          const lines =
+            splitSvgLabel(actor.grupo, 18);
+
+          lines.forEach((line, lineIndex) => {
+
+            const labelY =
+              y +
+              verticalOffset +
+              lineIndex * 12;
+
+            addSvgText(
+              svg,
+              line,
+              x,
+              labelY,
+              "svg-stakeholder-label"
+            );
+          });
+        });
+
+        /* Leyenda de posición */
+        const legendY = 525;
+
+        [
+          { position: "1", label: "Apoya (+1)" },
+          { position: "0", label: "Indiferente (0)" },
+          { position: "-1", label: "Se opone (−1)" }
+        ].forEach((item, index) => {
+
+          const x = 95 + index * 170;
+
+          svg.appendChild(
+            svgEl("circle", {
+              cx: x,
+              cy: legendY - 4,
+              r: 7,
+              fill: actorPointColor(item.position)
+            })
+          );
+
+          addSvgText(
+            svg,
+            item.label,
+            x + 12,
+            legendY,
+            "svg-legend-text"
+          );
+        });
+      }
+
+      /* =========================================================
+         DIAGRAMA DE INVOLUCRADOS · SVG
+         ========================================================= */
+
+      function natureColor(nature) {
+
+        const colors = {
+          "Comunitaria": "#22c55e",
+          "Institucional": "#16a34a",
+          "Productiva": "#84cc16",
+          "Educativa": "#3b82f6",
+          "Social": "#8b5cf6",
+          "Privada": "#f59e0b",
+          "Financiera": "#ef4444",
+          "Gremial": "#14b8a6",
+          "Otra": "#9ca3af"
+        };
+
+        return colors[nature] || colors["Otra"];
+      }
+
+      function drawStakeholderNetwork() {
+
+        const svg = document.getElementById(
+          "stakeholderNetworkChart"
+        );
+
+        if (!svg) {
+          return;
+        }
+
+        svg.innerHTML = "";
+
+        const width = 760;
+        const height = 540;
+
+        const center = {
+          x: 290,
+          y: 275
+        };
+
+        const radius = 175;
+
+        /* Círculo guía */
+        svg.appendChild(
+          svgEl("circle", {
+            cx: center.x,
+            cy: center.y,
+            r: radius,
+            fill: "none",
+            stroke: "#d1d5db",
+            "stroke-width": "1",
+            "stroke-dasharray": "4 5"
+          })
+        );
+
+        /* Nodo central */
+        svg.appendChild(
+          svgEl("circle", {
+            cx: center.x,
+            cy: center.y,
+            r: 58,
+            class: "svg-project-node"
+          })
+        );
+
+        addSvgText(
+          svg,
+          "PROYECTO",
+          center.x,
+          center.y,
+          "svg-project-label"
+        );
+
+        if (!state.involucrados.length) {
+
+          addSvgText(
+            svg,
+            "Registre involucrados para visualizar el diagrama",
+            center.x,
+            center.y + 100,
+            "svg-empty-text"
+          );
+
+          return;
+        }
+
+        /*
+         * Los involucrados se distribuyen alrededor del proyecto
+         * en círculo.
+         */
+        const total =
+          state.involucrados.length;
+
+        state.involucrados.forEach((actor, index) => {
+
+          const angle =
+            (-Math.PI / 2) +
+            (index / total) * Math.PI * 2;
+
+          const x =
+            center.x +
+            Math.cos(angle) * radius;
+
+          const y =
+            center.y +
+            Math.sin(angle) * radius;
+
+          /*
+           * Tamaño del nodo según relevancia.
+           * La relevancia vuelve a calcularse desde
+           * la resultante; no se almacena.
+           */
+          const result =
+            calculateActorResult(actor);
+
+          const nodeRadius =
+            28 +
+            Math.min(
+              12,
+              Math.sqrt(Math.abs(result)) * 1.1
+            );
+
+          /* Línea al proyecto */
+          svg.appendChild(
+            svgEl("line", {
+              x1: center.x,
+              y1: center.y,
+              x2: x,
+              y2: y,
+              class: "svg-network-line"
+            })
+          );
+
+          /* Nodo */
+          svg.appendChild(
+            svgEl("circle", {
+              cx: x,
+              cy: y,
+              r: nodeRadius,
+              fill: natureColor(actor.naturaleza),
+              "fill-opacity": "0.78",
+              stroke: natureColor(actor.naturaleza),
+              "stroke-width": "1.5"
+            })
+          );
+
+          /* Etiqueta */
+          const lines =
+            splitSvgLabel(actor.grupo, 16);
+
+          const firstY =
+            y -
+            ((lines.length - 1) * 6);
+
+          lines.forEach((line, lineIndex) => {
+
+            addSvgText(
+              svg,
+              line,
+              x,
+              firstY + lineIndex * 12,
+              "svg-stakeholder-label"
+            );
+          });
+        });
+
+        /* Leyenda por naturaleza */
+        const legendX = 535;
+        const legendY = 100;
+
+        addSvgText(
+          svg,
+          "LEYENDA · NATURALEZA",
+          legendX,
+          legendY - 24,
+          "svg-axis-label"
+        );
+
+        const natureList = [
+          "Comunitaria",
+          "Institucional",
+          "Productiva",
+          "Educativa",
+          "Social",
+          "Privada",
+          "Financiera",
+          "Gremial",
+          "Otra"
+        ];
+
+        natureList.forEach((nature, index) => {
+
+          const y =
+            legendY +
+            index * 34;
+
+          svg.appendChild(
+            svgEl("circle", {
+              cx: legendX,
+              cy: y,
+              r: 8,
+              fill: natureColor(nature)
+            })
+          );
+
+          addSvgText(
+            svg,
+            nature,
+            legendX + 17,
+            y + 4,
+            "svg-legend-text"
+          );
+        });
+      }
+
+      function splitSvgLabel(text, maxChars) {
+
+        const words =
+          String(text || "").split(/\s+/);
+
+        const lines = [];
+        let current = "";
+
+        words.forEach(word => {
+
+          if (
+            current &&
+            (current + " " + word).length > maxChars
+          ) {
+            lines.push(current);
+            current = word;
+          } else {
+            current =
+              current
+                ? current + " " + word
+                : word;
+          }
+        });
+
+        if (current) {
+          lines.push(current);
+        }
+
+        return lines.slice(0, 3);
+      }
+
+      function renderActors() {
+        renderMainActorTable();
+
+        renderCharacterization();
+
+        drawInterestPowerChart();
+
+        drawStakeholderNetwork();
+
+        renderActorValidations();
+      }
+
+      window.renderActors = renderActors;
+
+      /* =========================================================
+        VALIDACIONES METODOLÓGICAS · PASO 1
+        ========================================================= */
+
+      function normalizeTextForValidation(text) {
+        return String(text || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[.,;:!?¿¡()"']/g, "")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function containsAny(text, patterns) {
+        const normalized =
+          normalizeTextForValidation(text);
+
+        return patterns.some(pattern =>
+          normalized.includes(pattern)
+        );
+      }
+
+      function actorValidationMessages() {
+
+        const actors =
+          state.involucrados || [];
+
+        const messages = [];
+
+        /* 1 · Menos de ocho involucrados */
+        if (actors.length < 8) {
+          messages.push(
+            "Hay menos de ocho involucrados. Revise si faltan financiadores, reguladores, organizaciones relacionadas, afectados y grupos que podrían perder algo con la solución."
+          );
+        }
+
+        /* 2 · Ninguna posición negativa */
+        const hasNegative =
+          actors.some(actor =>
+            String(actor.posicion) === "-1"
+          );
+
+        if (actors.length > 0 && !hasNegative) {
+          messages.push(
+            "Ningún involucrado tiene posición negativa. Un análisis sin opositores suele requerir revisar si se omitieron grupos que podrían resistirse o perder algo con el proyecto."
+          );
+        }
+
+        /* 3 · Valoración sin razón */
+        actors.forEach(actor => {
+          if (!String(actor.razon || "").trim()) {
+            messages.push(
+              `La valoración de «${actor.grupo || "grupo sin nombre"}» no tiene razón registrada. Un número sin justificación no es defendible.`
+            );
+          }
+        });
+
+        /* 4 · Sin problemas percibidos */
+        actors.forEach(actor => {
+          if (
+            !Array.isArray(actor.problemas_percibidos) ||
+            actor.problemas_percibidos.length === 0
+          ) {
+            messages.push(
+              `«${actor.grupo || "Grupo sin nombre"}» no registra problemas percibidos.`
+            );
+          }
+        });
+
+        /* 5 · Sin recursos o mandatos */
+        actors.forEach(actor => {
+          if (!String(actor.recursos_mandatos || "").trim()) {
+            messages.push(
+              `«${actor.grupo || "Grupo sin nombre"}» no registra recursos y mandatos.`
+            );
+          }
+        });
+
+        /*
+         * 6 · Problemas percibidos formulados en positivo
+         *
+         * Heurística deliberadamente conservadora:
+         * busca expresiones que suelen indicar estados deseables,
+         * no pretende decidir por el formulador.
+         */
+        const positivePatterns = [
+          "mejora",
+          "mejoras",
+          "aumento",
+          "aumentar",
+          "incremento",
+          "incrementar",
+          "fortalecimiento",
+          "fortalecer",
+          "mayor acceso",
+          "mayor cobertura",
+          "alta calidad",
+          "mejor calidad",
+          "desarrollo",
+          "crecimiento",
+          "oportunidades",
+          "bienestar",
+          "satisfaccion",
+          "satisfaccion"
+        ];
+
+        actors.forEach(actor => {
+
+          (actor.problemas_percibidos || [])
+            .forEach(problem => {
+
+              if (
+                containsAny(problem, positivePatterns)
+              ) {
+                messages.push(
+                  `«${actor.grupo}» tiene un problema percibido que podría estar formulado en positivo: «${problem}». Revise que exprese claramente un estado negativo.`
+                );
+              }
+            });
+        });
+
+        /*
+         * 7 · Problemas como ausencia de solución.
+         */
+        const absencePatterns = [
+          "no hay ",
+          "falta ",
+          "faltan ",
+          "ausencia de ",
+          "sin acceso",
+          "sin apoyo",
+          "sin capacitacion",
+          "sin capacitación",
+          "sin asistencia",
+          "sin recursos",
+          "sin infraestructura"
+        ];
+
+        actors.forEach(actor => {
+
+          (actor.problemas_percibidos || [])
+            .forEach(problem => {
+
+              if (
+                containsAny(problem, absencePatterns)
+              ) {
+                messages.push(
+                  `«${actor.grupo}» registra un problema percibido como ausencia o falta: «${problem}». Revise si describe realmente el problema o si está nombrando implícitamente una solución ausente.`
+                );
+              }
+            });
+        });
+
+        /*
+         * 8 · Mismo problema percibido por todos.
+         */
+        if (actors.length >= 2) {
+
+          const problemGroups =
+            new Map();
+
+          actors.forEach(actor => {
+
+            const uniqueProblems =
+              new Set(
+                (actor.problemas_percibidos || [])
+                  .map(normalizeTextForValidation)
+                  .filter(Boolean)
+              );
+
+            uniqueProblems.forEach(problem => {
+
+              if (!problemGroups.has(problem)) {
+                problemGroups.set(problem, 0);
+              }
+
+              problemGroups.set(
+                problem,
+                problemGroups.get(problem) + 1
+              );
+            });
+          });
+
+          problemGroups.forEach((count, problem) => {
+
+            if (count === actors.length) {
+
+              messages.push(
+                `Todos los grupos perciben el mismo problema: «${problem}». Revise si realmente existe una única percepción o si falta desagregar diferencias entre involucrados.`
+              );
+            }
+          });
+        }
+
+        /*
+         * 9 · Poder alto e interés bajo.
+         */
+        actors.forEach(actor => {
+
+          const force =
+            Number(actor.fuerza);
+
+          const interest =
+            Number(actor.intensidad);
+
+          if (
+            force >= 4 &&
+            interest <= 2
+          ) {
+            messages.push(
+              `«${actor.grupo}» presenta poder ≥ 4 e interés ≤ 2. Revise si esta condición debe reaparecer como posible supuesto en el Paso 9.`
+            );
+          }
+        });
+
+        /*
+         * 10 · "La comunidad" / "la ciudadanía"
+         */
+        actors.forEach(actor => {
+
+          const group =
+            normalizeTextForValidation(actor.grupo);
+
+          if (
+            group === "la comunidad" ||
+            group === "comunidad" ||
+            group === "la ciudadania" ||
+            group === "ciudadania"
+          ) {
+            messages.push(
+              `«${actor.grupo}» es un grupo demasiado amplio. Desagregue sus intereses y posiciones cuando existan diferencias internas.`
+            );
+          }
+        });
+
+        return messages;
+      }
+
+      function renderActorValidations() {
+
+        const container =
+          document.getElementById("actorValidations");
+
+        const count =
+          document.getElementById("validationCount");
+
+        if (!container || !count) {
+          return;
+        }
+
+        const messages =
+          actorValidationMessages();
+
+        if (!messages.length) {
+
+          count.textContent =
+            "Sin hallazgos";
+
+          container.innerHTML = `
+      <div class="validation-item validation-success">
+        <span class="validation-icon">✓</span>
+        <div>
+          <strong>No se identifican hallazgos automáticos.</strong>
+          <br>
+          El análisis supera las comprobaciones configuradas.
+          Esto no sustituye la revisión metodológica ni la validación
+          con los involucrados.
+        </div>
+      </div>
+    `;
+
+          return;
+        }
+
+        count.textContent =
+          `${messages.length} hallazgo${messages.length === 1 ? "" : "s"}`;
+
+        container.innerHTML =
+          messages.map(message => `
+      <div class="validation-item validation-warning">
+        <span class="validation-icon">!</span>
+        <div>${escapeHTML(message)}</div>
+      </div>
+    `).join("");
+      }
+
+      /* =========================================================
+   ACTIVIDAD 4 · AYUDA CONTEXTUAL
+   ========================================================= */
+
+      const participationTechniques = {
+
+        grupos_nominales: {
+          nombre: "Grupos nominales",
+
+          procedimiento:
+            "Generación silenciosa inicial de ideas, puesta en común estructurada y priorización colectiva.",
+
+          participantes:
+            "6 a 12 participantes, presenciales.",
+
+          duracion:
+            "2 a 3 horas.",
+
+          evitar:
+            "Evitar cuando existen conflictos abiertos y una diferencia de poder muy marcada en la sala."
+        },
+
+        delphi: {
+          nombre: "Delphi",
+
+          procedimiento:
+            "Consulta anónima e iterativa a un panel mediante varias rondas, buscando convergencia informada entre las respuestas.",
+
+          participantes:
+            "10 a 30 panelistas, normalmente remotos.",
+
+          duracion:
+            "3 a 8 semanas, con 2 a 4 rondas.",
+
+          evitar:
+            "Evitar cuando se requiere deliberación cara a cara o legitimidad pública directa."
+        },
+
+        easw: {
+          nombre: "EASW",
+
+          procedimiento:
+            "Taller de escenarios que reúne sectores de actores para construir una visión compartida y formular propuestas.",
+
+          participantes:
+            "25 a 40 participantes, organizados en cuatro grupos sectoriales.",
+
+          duracion:
+            "1 a 2 jornadas completas.",
+
+          evitar:
+            "Evitar cuando no existen recursos ni compromiso institucional para dar seguimiento a los acuerdos."
+        },
+
+        nucleos_intervencion: {
+          nombre: "Núcleos de intervención participativa",
+
+          procedimiento:
+            "Técnica participativa contemplada dentro de la Actividad 4. El diseño concreto del núcleo debe definirse según el propósito, los involucrados y el contexto de intervención.",
+
+          participantes:
+            "Debe definirse según el diseño de la intervención y los involucrados convocados.",
+
+          duracion:
+            "Debe definirse según el alcance y diseño de la actividad.",
+
+          evitar:
+            "No existe en los materiales del curso consultados un parámetro específico de participantes o duración que permita establecer una regla fija. Defina la limitación para el caso antes de seleccionarla."
+        }
+      };
+
+      function renderTechniqueHelp() {
+
+        const select =
+          document.getElementById(
+            "participationTechnique"
+          );
+
+        const container =
+          document.getElementById(
+            "techniqueHelp"
+          );
+
+        if (!select || !container) {
+          return;
+        }
+
+        const key =
+          select.value;
+
+        if (!key) {
+
+          container.innerHTML = `
+      <h4>Ayuda contextual</h4>
+      <p style="font-size:12px;color:var(--gris-500);">
+        Seleccione una técnica para consultar su procedimiento,
+        participantes, duración y cuándo evitarla.
+      </p>
+    `;
+
+          return;
+        }
+
+        const technique =
+          participationTechniques[key];
+
+        container.innerHTML = `
+    <h4>${escapeHTML(technique.nombre)}</h4>
+
+    <div class="technique-meta">
+
+      <div class="technique-meta-item">
+        <strong>Participantes</strong>
+        <span>${escapeHTML(technique.participantes)}</span>
+      </div>
+
+      <div class="technique-meta-item">
+        <strong>Duración</strong>
+        <span>${escapeHTML(technique.duracion)}</span>
+      </div>
+
+    </div>
+
+    <div class="technique-section">
+      <strong>Procedimiento</strong>
+      <p>${escapeHTML(technique.procedimiento)}</p>
+    </div>
+
+    <div class="technique-section">
+      <strong>Cuándo evitarla</strong>
+      <p>${escapeHTML(technique.evitar)}</p>
+    </div>
+
+    <div class="participation-note">
+      La información contextual orienta la decisión; no la toma por usted.
+    </div>
+  `;
+      }
+
+
+      function renderTechniqueHelp() {
+
+        const select =
+          document.getElementById(
+            "participationTechnique"
+          );
+
+        const container =
+          document.getElementById(
+            "techniqueHelp"
+          );
+
+        if (!select || !container) {
+          return;
+        }
+
+        const key =
+          select.value;
+
+        if (!key) {
+
+          container.innerHTML = `
+      <h4>Ayuda contextual</h4>
+      <p style="font-size:12px;color:var(--gris-500);">
+        Seleccione una técnica para consultar su procedimiento,
+        participantes, duración y cuándo evitarla.
+      </p>
+    `;
+
+          return;
+        }
+
+        const technique =
+          participationTechniques[key];
+
+        container.innerHTML = `
+    <h4>${escapeHTML(technique.nombre)}</h4>
+
+    <div class="technique-meta">
+
+      <div class="technique-meta-item">
+        <strong>Participantes</strong>
+        <span>${escapeHTML(technique.participantes)}</span>
+      </div>
+
+      <div class="technique-meta-item">
+        <strong>Duración</strong>
+        <span>${escapeHTML(technique.duracion)}</span>
+      </div>
+
+    </div>
+
+    <div class="technique-section">
+      <strong>Procedimiento</strong>
+      <p>${escapeHTML(technique.procedimiento)}</p>
+    </div>
+
+    <div class="technique-section">
+      <strong>Cuándo evitarla</strong>
+      <p>${escapeHTML(technique.evitar)}</p>
+    </div>
+
+    <div class="participation-note">
+      La información contextual orienta la decisión; no la toma por usted.
+    </div>
+  `;
+      }
+
+      /* =========================================================
+         INSTRUCCIONES IA · COPIAR
+         ========================================================= */
+
+      async function copyAIPrompt(elementId, button) {
+
+        const element =
+          document.getElementById(elementId);
+
+        if (!element) {
+          return;
+        }
+
+        const text =
+          element.textContent;
+
+        try {
+
+          await navigator.clipboard.writeText(text);
+
+          const original =
+            button.textContent;
+
+          button.textContent =
+            "Copiado";
+
+          setTimeout(() => {
+            button.textContent =
+              original;
+          }, 1500);
+
+        } catch (error) {
+
+          /*
+           * Fallback para navegadores que bloqueen
+           * navigator.clipboard al abrir el HTML localmente.
+           */
+          const helper =
+            document.createElement("textarea");
+
+          helper.value = text;
+          helper.style.position = "fixed";
+          helper.style.opacity = "0";
+
+          document.body.appendChild(helper);
+
+          helper.focus();
+          helper.select();
+
+          try {
+            document.execCommand("copy");
+
+            button.textContent =
+              "Copiado";
+
+            setTimeout(() => {
+              button.textContent =
+                "Copiar";
+            }, 1500);
+
+          } finally {
+            document.body.removeChild(helper);
+          }
+        }
+      }
+
+      function initActorModule() {
+
+        const saveButton =
+          document.getElementById("actorSaveBtn");
+
+        const cancelButton =
+          document.getElementById("actorCancelBtn");
+
+        if (!saveButton || !cancelButton) {
+          return;
+        }
+
+        saveButton.addEventListener("click", saveActor);
+
+        cancelButton.addEventListener(
+          "click",
+          clearActorForm
+        );
+
+        const techniqueSelect =
+          document.getElementById(
+            "participationTechnique"
+          );
+
+        if (techniqueSelect) {
+
+          techniqueSelect.addEventListener(
+            "change",
+            renderTechniqueHelp
+          );
+        }
+
+        renderTechniqueHelp();
+
+        renderActors();
+      }
+
+      function bindCaseField(id, key) {
+        const input = document.getElementById(id);
+        input.addEventListener("input", function () {
+          state.caso[key] = input.value;
+          if (key === "titulo") updateHeader();
+        });
+      }
+
+      buildNav();
+
+      bindCaseField("casoTitulo", "titulo");
+      bindCaseField("casoSector", "sector");
+      bindCaseField("casoTerritorio", "territorio");
+      bindCaseField("casoPoblacion", "poblacion");
+      bindCaseField("casoPeriodo", "periodo");
+      bindCaseField("casoSituacion", "situacion");
+      bindCaseField("casoPregunta", "pregunta");
+      bindCaseField("casoDelimitacion", "delimitacion");
+
+      initActorModule();
+
+      showScreen(0);
+    })();
+    /* =========================================================
+   PASO 2 · ANÁLISIS DEL PROBLEMA
+   Navegación interna de las 7 etapas
+   ========================================================= */
+
+    function showProblemSubscreen(subscreen, button) {
+
+      // Ocultar todas las subpantallas del Paso 2
+      const subscreens = document.querySelectorAll('.problem-subscreen');
+
+      subscreens.forEach(function (screen) {
+        screen.classList.remove('active');
+      });
+
+      // Quitar estado activo de todos los botones
+      const buttons = document.querySelectorAll('.step2-tab');
+
+      buttons.forEach(function (tab) {
+        tab.classList.remove('active');
+      });
+
+      // Mostrar la subpantalla seleccionada
+      const selectedScreen = document.getElementById(
+        'problemSubscreen-' + subscreen
+      );
+
+      if (selectedScreen) {
+        selectedScreen.classList.add('active');
+      }
+
+      // Activar el botón seleccionado
+      if (button) {
+        button.classList.add('active');
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      bindProblemCentralFields();
+
+      renderProblemContext();
+
+      renderProblemModule();
+
+      refreshNodeParentOptions();
+
+    });
+
+    const originalShowProblemSubscreen = showProblemSubscreen;
+
+    showProblemSubscreen = function (subscreen, button) {
+
+      originalShowProblemSubscreen(subscreen, button);
+
+      bindProblemCentralFields();
+      renderProblemContext();
+      renderProblemModule();
+      refreshNodeParentOptions();
+
+    };
+
+    /* =========================================================
+   PASO 2 · PROBLEMA CENTRAL
+   ========================================================= */
+
+    function composeCentralProblem() {
+
+      const condition =
+        document.getElementById("problemCondition")?.value.trim() || "";
+
+      const attribute =
+        document.getElementById("problemAttribute")?.value.trim() || "";
+
+      const population =
+        document.getElementById("problemPopulation")?.value.trim() || "";
+
+      const delimitation =
+        document.getElementById("problemDelimitation")?.value.trim() || "";
+
+      const parts = [
+        condition,
+        attribute,
+        population,
+        delimitation
+      ].filter(Boolean);
+
+      const statement = parts.join(" ");
+
+      const output =
+        document.getElementById("problemStatement");
+
+      if (output) {
+        output.value = statement;
+      }
+
+      return statement;
+    }
+
+
+    function bindProblemCentralFields() {
+
+      [
+        "problemCondition",
+        "problemAttribute",
+        "problemPopulation",
+        "problemDelimitation"
+      ].forEach(function (id) {
+
+        const field = document.getElementById(id);
+
+        if (!field || field.dataset.bound === "true") {
+          return;
+        }
+
+        field.dataset.bound = "true";
+
+        field.addEventListener("input", function () {
+
+          const statement = composeCentralProblem();
+
+          window.state.problema.condicion =
+            document.getElementById("problemCondition").value.trim();
+
+          window.state.problema.atributo =
+            document.getElementById("problemAttribute").value.trim();
+
+          window.state.problema.poblacion =
+            document.getElementById("problemPopulation").value.trim();
+
+          window.state.problema.delimitacion =
+            document.getElementById("problemDelimitation").value.trim();
+
+          window.state.problema.enunciado = statement;
+
+          renderProblemTree();
+
+        });
+
+      });
+    }
+
+
+    function validateCentralProblem() {
+
+      const statement = composeCentralProblem();
+
+      const condition =
+        document.getElementById("problemCondition")?.value.trim() || "";
+
+      const attribute =
+        document.getElementById("problemAttribute")?.value.trim() || "";
+
+      const population =
+        document.getElementById("problemPopulation")?.value.trim() || "";
+
+      const delimitation =
+        document.getElementById("problemDelimitation")?.value.trim() || "";
+
+      const checks = [];
+
+      checks.push({
+        ok: Boolean(statement),
+        title: "Existe un enunciado",
+        message: statement
+          ? "El problema tiene una formulación."
+          : "Debe construirse el enunciado."
+      });
+
+      checks.push({
+        ok: Boolean(condition),
+        title: "Condición negativa",
+        message: condition
+          ? "Se identificó una condición observable."
+          : "Falta la condición negativa observable."
+      });
+
+      checks.push({
+        ok: Boolean(attribute),
+        title: "Atributo o manifestación",
+        message: attribute
+          ? "Se identificó la manifestación del problema."
+          : "Falta describir cómo se manifiesta."
+      });
+
+      checks.push({
+        ok: Boolean(population),
+        title: "Población afectada",
+        message: population
+          ? "La población está delimitada."
+          : "Debe identificarse la población afectada."
+      });
+
+      checks.push({
+        ok: Boolean(delimitation),
+        title: "Territorio y delimitación",
+        message: delimitation
+          ? "El ámbito territorial está delimitado."
+          : "Debe indicarse territorio y periodo."
+      });
+
+      const solutionPattern =
+        /\b(falta|faltan|no hay|ausencia de|se necesita|se requiere|capacitar|construir|implementar|crear)\b/i;
+
+      checks.push({
+        ok: !solutionPattern.test(statement),
+        title: "No está redactado como solución",
+        message: solutionPattern.test(statement)
+          ? "El enunciado incorpora una carencia o solución. Reescríbelo como estado negativo."
+          : "No se detectó lenguaje típico de solución."
+      });
+
+      checks.push({
+        ok: !/\by\b/i.test(statement),
+        title: "Un solo núcleo problemático",
+        message: /\by\b/i.test(statement)
+          ? "Revisa si la conjunción 'y' está uniendo dos problemas."
+          : "No se detectó una posible unión de problemas."
+      });
+
+      checks.push({
+        ok: statement.length <= 300,
+        title: "Extensión controlada",
+        message: statement.length <= 300
+          ? "La extensión es manejable."
+          : "El enunciado es demasiado extenso."
+      });
+
+      const box =
+        document.getElementById("centralProblemValidation");
+
+      if (!box) {
+        return false;
+      }
+
+      box.innerHTML = `
+    <div style="
+      display:grid;
+      gap:8px;
+    ">
+      ${checks.map(function (check) {
+
+        return `
+          <div class="notice"
+            style="
+              border-left:4px solid ${check.ok ? "#2e7d32" : "#b42318"};
+              background:${check.ok ? "#f3faf4" : "#fff5f4"};
+            ">
+
+            <strong>
+              ${check.ok ? "✓" : "✕"}
+              ${escapeHTML(check.title)}
+            </strong>
+
+            <div class="small-note" style="margin-top:4px;">
+              ${escapeHTML(check.message)}
+            </div>
+
+          </div>
+        `;
+
+      }).join("")}
+    </div>
+  `;
+
+      return checks.every(function (check) {
+        return check.ok;
+      });
+    }
+
+
+    function confirmCentralProblem() {
+
+      const valid = validateCentralProblem();
+
+      if (!valid) {
+        alert(
+          "Corrige los hallazgos de formulación antes de confirmar el problema central."
+        );
+        return;
+      }
+
+      const statement = composeCentralProblem();
+
+      window.state.problema.condicion =
+        document.getElementById("problemCondition").value.trim();
+
+      window.state.problema.atributo =
+        document.getElementById("problemAttribute").value.trim();
+
+      window.state.problema.poblacion =
+        document.getElementById("problemPopulation").value.trim();
+
+      window.state.problema.delimitacion =
+        document.getElementById("problemDelimitation").value.trim();
+
+      window.state.problema.enunciado = statement;
+
+      /*
+       * El problema central es el nodo raíz especial P.
+       * No se guarda como causa ni como efecto.
+       */
+
+      const existingRoot =
+        window.state.nodos.find(function (node) {
+          return node && node.codigo === "P";
+        });
+
+      if (existingRoot) {
+
+        existingRoot.tipo = "problema";
+        existingRoot.nivel = 0;
+        existingRoot.padre = "";
+        existingRoot.enunciado = statement;
+        existingRoot.evidencia =
+          existingRoot.evidencia || "";
+        existingRoot.lineaBase =
+          existingRoot.lineaBase || "";
+        existingRoot.confianza =
+          existingRoot.confianza || "Media";
+        existingRoot.origen =
+          existingRoot.origen || "Formulador";
+
+      } else {
+
+        window.state.nodos.unshift({
+          codigo: "P",
+          tipo: "problema",
+          nivel: 0,
+          padre: "",
+          enunciado: statement,
+          evidencia: "",
+          lineaBase: "",
+          confianza: "Media",
+          origen: "Formulador"
+        });
+
+      }
+
+      renderProblemModule();
+
+      alert("Problema central confirmado.");
+
+      showProblemSubscreen(
+        "causas",
+        document.querySelector(
+          '.step2-tab[onclick*="causas"]'
+        )
+      );
+    }
+
+
+    /* =========================================================
+       PASO 2 · NODOS DE CAUSAS Y EFECTOS
+       ========================================================= */
+
+    function nextNodeCode(type, level) {
+
+      const prefix = type === "causa" ? "C" : "E";
+
+      const existing =
+        window.state.nodos.filter(function (node) {
+
+          return node &&
+            node.tipo === type &&
+            Number(node.nivel) === Number(level);
+
+        });
+
+      return prefix +
+        Number(level) +
+        "." +
+        (existing.length + 1);
+    }
+
+
+    function refreshNodeParentOptions() {
+
+      const select =
+        document.getElementById("nodeParent");
+
+      if (!select) {
+        return;
+      }
+
+      const currentValue = select.value || "P";
+
+      const nodes =
+        Array.isArray(window.state.nodos)
+          ? window.state.nodos
+          : [];
+
+      const validParents =
+        nodes.filter(function (node) {
+
+          return node &&
+            node.codigo &&
+            node.codigo !== "P";
+
+        });
+
+      select.innerHTML =
+        `<option value="P">P · Problema central</option>` +
+        validParents.map(function (node) {
+
+          return `
+        <option value="${escapeHTML(node.codigo)}">
+          ${escapeHTML(node.codigo)} ·
+          ${escapeHTML(node.enunciado)}
+        </option>
+      `;
+
+        }).join("");
+
+      if (
+        Array.from(select.options)
+          .some(option => option.value === currentValue)
+      ) {
+        select.value = currentValue;
+      } else {
+        select.value = "P";
+      }
+    }
+
+
+    function addProblemNode() {
+
+      const type =
+        document.getElementById("nodeType").value;
+
+      const level =
+        Number(document.getElementById("nodeLevel").value);
+
+      const parent =
+        document.getElementById("nodeParent").value || "P";
+
+      const statement =
+        document.getElementById("nodeStatement").value.trim();
+
+      const evidence =
+        document.getElementById("nodeEvidence").value.trim();
+
+      const baseline =
+        document.getElementById("nodeBaseline").value.trim();
+
+      const confidence =
+        document.getElementById("nodeConfidence").value;
+
+      const origin =
+        document.getElementById("nodeOrigin").value;
+
+      if (!statement) {
+        alert("Escribe el enunciado del nodo.");
+        return;
+      }
+
+      /*
+       * Los nodos del árbol representan estados negativos.
+       * Se advierten acciones o soluciones.
+       */
+
+      const actionPattern =
+        /^(capacitar|crear|construir|implementar|diseñar|desarrollar|fortalecer|promover|realizar|ejecutar)\b/i;
+
+      if (actionPattern.test(statement)) {
+
+        alert(
+          "El nodo parece estar redactado como una acción o solución.\n\n" +
+          "Reescríbelo como un estado negativo observable."
+        );
+
+        return;
+      }
+
+      /*
+       * Evitar duplicados exactos.
+       */
+
+      const duplicate =
+        window.state.nodos.some(function (node) {
+
+          return node &&
+            String(node.enunciado || "")
+              .trim()
+              .toLowerCase() === statement.toLowerCase();
+
+        });
+
+      if (duplicate) {
+
+        alert(
+          "Ya existe un nodo con el mismo enunciado."
+        );
+
+        return;
+      }
+
+      /*
+       * No permitir saltos de nivel.
+       * Un nivel > 1 debe depender de un nodo existente
+       * de nivel inmediatamente anterior.
+       */
+
+      if (level > 1 && parent === "P") {
+
+        const previousLevelExists =
+          window.state.nodos.some(function (node) {
+
+            return node &&
+              node.tipo === type &&
+              Number(node.nivel) === level - 1;
+
+          });
+
+        if (previousLevelExists) {
+
+          alert(
+            "Para un nodo de nivel " +
+            level +
+            ", selecciona un padre del nivel anterior."
+          );
+
+          return;
+        }
+
+      }
+
+      const node = {
+
+        codigo:
+          nextNodeCode(type, level),
+
+        tipo:
+          type,
+
+        nivel:
+          level,
+
+        padre:
+          parent,
+
+        enunciado:
+          statement,
+
+        evidencia:
+          evidence,
+
+        lineaBase:
+          baseline,
+
+        confianza:
+          origin === "Propuesta IA"
+            ? "Baja"
+            : confidence,
+
+        origen:
+          origin
+
+      };
+
+      window.state.nodos.push(node);
+
+      /*
+       * Limpiar únicamente los campos de captura.
+       */
+
+      document.getElementById("nodeStatement").value = "";
+      document.getElementById("nodeEvidence").value = "";
+      document.getElementById("nodeBaseline").value = "";
+
+      renderProblemModule();
+
+      refreshNodeParentOptions();
+    }
+
+
+    function deleteProblemNode(codigo) {
+
+      const index =
+        window.state.nodos.findIndex(function (node) {
+          return node && node.codigo === codigo;
+        });
+
+      if (index === -1) {
+        return;
+      }
+
+      /*
+       * El problema central P no puede eliminarse desde
+       * el listado de causas y efectos.
+       */
+
+      if (codigo === "P") {
+        alert("El problema central se modifica desde la sección 2.2.");
+        return;
+      }
+
+      const confirmed =
+        confirm(
+          "¿Desea eliminar el nodo " +
+          codigo +
+          "?"
+        );
+
+      if (!confirmed) {
+        return;
+      }
+
+      window.state.nodos.splice(index, 1);
+
+      /*
+       * Si otros nodos apuntaban al nodo eliminado,
+       * se reconectan provisionalmente al problema central.
+       * La validación posterior señalará la relación para revisión.
+       */
+
+      window.state.nodos.forEach(function (node) {
+
+        if (node.padre === codigo) {
+          node.padre = "P";
+        }
+
+      });
+
+      renderProblemModule();
+
+      refreshNodeParentOptions();
+    }
+    /* =========================================================
+   PASO 2 · RENDERIZADO DE NODOS
+   Fuente única: state.nodos
+   ========================================================= */
+
+    function renderProblemNodes() {
+
+      const effectsBox =
+        document.getElementById("effectsWorkspace");
+
+      const causesBox =
+        document.getElementById("causesWorkspace");
+
+      if (!effectsBox || !causesBox) {
+        return;
+      }
+
+      const nodes =
+        Array.isArray(window.state.nodos)
+          ? window.state.nodos
+          : [];
+
+      const effects =
+        nodes.filter(function (node) {
+          return node &&
+            node.tipo === "efecto";
+        });
+
+      const causes =
+        nodes.filter(function (node) {
+          return node &&
+            node.tipo === "causa";
+        });
+
+      function nodeCard(node) {
+
+        const origin =
+          node.origen === "Propuesta IA"
+            ? "Propuesta IA"
+            : "Formulador";
+
+        return `
+      <div class="card"
+        style="
+          margin-top:10px;
+          border-left:4px solid
+          ${node.tipo === "causa" ? "#8b5e34" : "#4b6b8a"};
+        ">
+
+        <div class="section-head">
+
+          <div>
+
+            <div>
+              <strong>
+                ${escapeHTML(node.codigo)}
+              </strong>
+
+              <span class="pill">
+                ${node.tipo === "causa"
+            ? "Causa"
+            : "Efecto"}
+              </span>
+            </div>
+
+            <h4 style="margin-top:7px;">
+              ${escapeHTML(node.enunciado)}
+            </h4>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn-mini"
+            onclick="deleteProblemNode('${escapeHTML(node.codigo)}')">
+            Eliminar
+          </button>
+
+        </div>
+
+        <div class="small-note">
+
+          Nivel ${escapeHTML(node.nivel)}
+          · Padre ${escapeHTML(node.padre || "P")}
+          · ${escapeHTML(origin)}
+          · Confianza ${escapeHTML(node.confianza || "Baja")}
+
+        </div>
+
+        <div
+          style="
+            margin-top:8px;
+            display:grid;
+            gap:5px;
+          ">
+
+          <div class="small-note">
+            <strong>Evidencia:</strong>
+            ${escapeHTML(node.evidencia || "Pendiente")}
+          </div>
+
+          <div class="small-note">
+            <strong>Línea base:</strong>
+            ${escapeHTML(node.lineaBase || "Pendiente")}
+          </div>
+
+        </div>
+
+      </div>
+    `;
+      }
+
+      effectsBox.innerHTML =
+        effects.length
+          ? effects.map(nodeCard).join("")
+          : `
+        <div class="notice">
+          Aún no hay efectos registrados.
+        </div>
+      `;
+
+      causesBox.innerHTML =
+        causes.length
+          ? causes.map(nodeCard).join("")
+          : `
+        <div class="notice">
+          Aún no hay causas registradas.
+        </div>
+      `;
+
+      refreshNodeParentOptions();
+    }
+
+    function renderProblemTree() {
+
+      const container =
+        document.getElementById("problemTreeWorkspace");
+
+      if (!container) {
+        return;
+      }
+
+      const nodes =
+        Array.isArray(window.state.nodos)
+          ? window.state.nodos
+          : [];
+
+      const problem =
+        window.state.problema?.enunciado || "";
+
+      const effects =
+        nodes
+          .filter(function (node) {
+            return node &&
+              node.tipo === "efecto";
+          })
+          .sort(function (a, b) {
+            return Number(a.nivel || 0) -
+              Number(b.nivel || 0);
+          });
+
+      const causes =
+        nodes
+          .filter(function (node) {
+            return node &&
+              node.tipo === "causa";
+          })
+          .sort(function (a, b) {
+            return Number(b.nivel || 0) -
+              Number(a.nivel || 0);
+          });
+
+      function cards(list) {
+
+        if (!list.length) {
+
+          return `
+        <div class="notice">
+          No hay nodos registrados.
+        </div>
+      `;
+
+        }
+
+        return list.map(function (node) {
+
+          return `
+        <div class="tree-node"
+          style="
+            min-width:220px;
+            max-width:360px;
+          ">
+
+          <strong>
+            ${escapeHTML(node.codigo)}
+          </strong>
+
+          <div style="margin-top:6px;">
+            ${escapeHTML(node.enunciado)}
+          </div>
+
+          <small
+            style="
+              display:block;
+              margin-top:7px;
+            ">
+
+            Nivel ${escapeHTML(node.nivel)}
+            · Padre ${escapeHTML(node.padre || "P")}
+
+          </small>
+
+        </div>
+      `;
+
+        }).join("");
+
+      }
+
+      container.innerHTML = `
+
+    <div style="
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+      align-items:center;
+    ">
+
+      <div>
+
+        <div
+          class="small-note"
+          style="
+            text-align:center;
+            font-weight:700;
+            margin-bottom:8px;
+          ">
+
+          EFECTOS
+
+        </div>
+
+        <div style="
+          display:flex;
+          flex-wrap:wrap;
+          gap:10px;
+          justify-content:center;
+        ">
+
+          ${cards(effects)}
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="tree-node"
+        style="
+          border:2px solid #374151;
+          background:#f3f4f6;
+          text-align:center;
+          max-width:560px;
+          margin:0 auto;
+          width:100%;
+        ">
+
+        <strong>
+          PROBLEMA CENTRAL
+        </strong>
+
+        <div style="margin-top:8px;">
+
+          ${escapeHTML(
+        problem || "Problema central pendiente"
+      )}
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div
+          class="small-note"
+          style="
+            text-align:center;
+            font-weight:700;
+            margin-bottom:8px;
+          ">
+
+          CAUSAS
+
+        </div>
+
+        <div style="
+          display:flex;
+          flex-wrap:wrap;
+          gap:10px;
+          justify-content:center;
+        ">
+
+          ${cards(causes)}
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+    }
+
+    function renderProblemModule() {
+
+      renderProblemNodes();
+
+      renderProblemTree();
+
+    }
+
+
+    function renderTreeNode(node) {
+
+      return `
+    <div class="tree-node"
+      style="
+        min-width:220px;
+        max-width:360px;
+      ">
+
+      <strong>
+        ${escapeHTML(node.codigo || "Sin código")}
+      </strong>
+
+      <div style="margin-top:6px;">
+        ${escapeHTML(
+        node.enunciado || "Sin enunciado"
+      )}
+      </div>
+
+      <small style="
+        display:block;
+        margin-top:7px;
+      ">
+
+        Nivel ${escapeHTML(node.nivel ?? "—")}
+        · Padre ${escapeHTML(node.padre || "P")}
+
+      </small>
+
+    </div>
+  `;
+    }
+
+
+    function renderProblemNodeList(nodes, type) {
+
+      if (!nodes.length) {
+
+        return `
+      <div class="notice">
+        No hay ${type === "efecto"
+            ? "efectos"
+            : "causas"} registrados.
+      </div>
+    `;
+      }
+
+      return nodes.map(function (node) {
+
+        const origin =
+          node.origen === "Propuesta IA"
+            ? "Propuesta IA"
+            : "Formulador";
+
+        const confidence =
+          node.confianza || "Baja";
+
+        return `
+      <div class="card" style="margin-top:10px">
+
+        <div class="section-head">
+
+          <div>
+
+            <div>
+              <strong>${escapeHTML(node.codigo || "Sin código")}</strong>
+              <span class="pill">
+                ${node.tipo === "efecto"
+            ? "Efecto"
+            : "Causa"}
+              </span>
+            </div>
+
+            <h4 style="margin-top:7px">
+              ${escapeHTML(
+              node.enunciado || "Sin enunciado"
+            )}
+            </h4>
+
+          </div>
+
+        </div>
+
+        <div class="small-note">
+
+          Nivel:
+          <strong>
+            ${escapeHTML(node.nivel ?? "—")}
+          </strong>
+
+          · Padre:
+          <strong>
+            ${escapeHTML(node.padre || "P")}
+          </strong>
+
+          · Confianza:
+          <strong>
+            ${escapeHTML(confidence)}
+          </strong>
+
+          · Origen:
+          <strong>
+            ${escapeHTML(origin)}
+          </strong>
+
+        </div>
+
+        <div class="small-note">
+
+          <strong>Evidencia:</strong>
+          ${escapeHTML(
+              node.evidencia || "Pendiente"
+            )}
+
+        </div>
+
+        <div class="small-note">
+
+          <strong>Línea base:</strong>
+          ${escapeHTML(
+              node.lineaBase || "Pendiente"
+            )}
+
+        </div>
+
+      </div>
+    `;
+
+      }).join("");
+    }
+    /* =========================================================
+   PASO 3 · ANÁLISIS DE OBJETIVOS
+   Navegación interna de las 7 etapas
+   ========================================================= */
+
+    function showObjectiveSubscreen(subscreen, button) {
+
+      // Ocultar todas las subpantallas del Paso 3
+      const subscreens = document.querySelectorAll('.objective-subscreen');
+
+      subscreens.forEach(function (screen) {
+        screen.classList.remove('active');
+      });
+
+      // Quitar estado activo de todos los botones
+      const buttons = document.querySelectorAll('.step3-tab');
+
+      buttons.forEach(function (tab) {
+        tab.classList.remove('active');
+      });
+
+      // Mostrar la subpantalla seleccionada
+      const selectedScreen = document.getElementById(
+        'objectiveSubscreen-' + subscreen
+      );
+
+      if (selectedScreen) {
+        selectedScreen.classList.add('active');
+      }
+
+      // Activar el botón seleccionado
+      if (button) {
+        button.classList.add('active');
+      }
+    }
+    function exportStateJSON() {
+
+      const json = JSON.stringify(state, null, 2);
+
+      const blob = new Blob(
+        [json],
+        { type: "application/json;charset=utf-8" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "estado_MML.json";
+
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    }
+
+    function importStateJSON() {
+
+      const input = document.getElementById("inputImportJSON");
+
+      if (!input) {
+        console.error("No se encontró el selector de archivo para importar JSON.");
+        return;
+      }
+
+      input.value = "";
+      input.click();
+    }
+
+    document
+      .getElementById("inputImportJSON")
+      .addEventListener("change", function (event) {
+
+        const file = event.target.files[0];
+
+        if (!file) {
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+          try {
+
+            const importedState = JSON.parse(e.target.result);
+
+            if (!importedState || typeof importedState !== "object") {
+              throw new Error("El archivo no contiene un objeto JSON válido.");
+            }
+
+            if (!importedState.caso) {
+              throw new Error("El JSON no contiene la sección 'caso'.");
+            }
+
+            if (!Array.isArray(importedState.involucrados)) {
+              throw new Error("El JSON no contiene una lista válida de involucrados.");
+            }
+
+            if (!Array.isArray(importedState.nodos)) {
+              throw new Error("El JSON no contiene una lista válida de nodos.");
+            }
+
+            /*
+             * Solo después de validar la estructura mínima
+             * reemplazamos el estado actual.
+             */
+            window.state = importedState;
+
+            /*
+             * Asegurar estructuras utilizadas por el artefacto.
+             */
+            if (!Array.isArray(window.state.objetivos)) {
+              window.state.objetivos = [];
+            }
+
+            if (!Array.isArray(window.state.acciones)) {
+              window.state.acciones = [];
+            }
+
+            if (!Array.isArray(window.state.alternativas)) {
+              window.state.alternativas = [];
+            }
+
+            if (!window.state.evaluacion ||
+              typeof window.state.evaluacion !== "object") {
+
+              window.state.evaluacion = {
+                criterios: [],
+                pesos: {},
+                valoraciones: {},
+                sensibilidad: {}
+              };
+            }
+
+            if (!window.state.seleccion ||
+              typeof window.state.seleccion !== "object") {
+
+              window.state.seleccion = {
+                alternativa: "",
+                justificacion: ""
+              };
+            }
+
+            if (!Array.isArray(window.state.bitacora)) {
+              window.state.bitacora = [];
+            }
+
+            /*
+             * Mantener la navegación en una pantalla válida.
+             */
+            if (
+              typeof window.state.current !== "number" ||
+              window.state.current < 0 ||
+              window.state.current > 10
+            ) {
+              window.state.current = 0;
+            }
+
+            /*
+             * Redibujar la pantalla actual.
+             */
+            /* =====================================================
+   RECONSTRUIR LA INTERFAZ DESDE EL ESTADO IMPORTADO
+   ===================================================== */
+
+            /* ---------- Ficha del caso ---------- */
+
+            const caseFields = {
+              casoTitulo: "titulo",
+              casoSector: "sector",
+              casoTerritorio: "territorio",
+              casoPoblacion: "poblacion",
+              casoPeriodo: "periodo",
+              casoSituacion: "situacion",
+              casoPregunta: "pregunta",
+              casoDelimitacion: "delimitacion"
+            };
+
+            Object.keys(caseFields).forEach(function (fieldId) {
+
+              const input = document.getElementById(fieldId);
+
+              if (!input) {
+                return;
+              }
+
+              const stateKey = caseFields[fieldId];
+
+              input.value = window.state.caso[stateKey] || "";
+
+            });
+
+
+            /* ---------- Paso 1 · Involucrados ---------- */
+
+            /*
+             * renderActors pertenece al módulo de involucrados.
+             * Se ejecuta únicamente si está disponible globalmente.
+             */
+            if (typeof window.renderActors === "function") {
+              window.renderActors();
+            }
+
+
+
+
+            /* =====================================================
+   PASO 2 · ANÁLISIS DEL PROBLEMA
+   Reconstrucción de contexto y problema central
+   ===================================================== */
+
+            if (window.state.problema &&
+              typeof window.state.problema === "object") {
+
+              /* ---------- 2.1 Contexto ---------- */
+
+              const problemContextFields = {
+
+                problemCaseName: window.state.caso?.titulo || "",
+
+                problemTerritory: window.state.caso?.territorio || "",
+
+                problemPopulation: window.state.caso?.poblacion || "",
+
+                problemPeriod: window.state.caso?.periodo || "",
+
+                problemSituation:
+                  window.state.caso?.situacion ||
+                  window.state.problema?.enunciado ||
+                  ""
+
+              };
+
+              Object.keys(problemContextFields).forEach(function (fieldId) {
+
+                const field = document.getElementById(fieldId);
+
+                if (!field) {
+                  return;
+                }
+
+                field.value = problemContextFields[fieldId];
+
+              });
+
+
+              /* ---------- 2.2 Problema central ---------- */
+
+              const problemFields = {
+
+                problemStatement:
+                  window.state.problema.enunciado || "",
+
+                problemCondition:
+                  window.state.problema.condicion || "",
+
+                problemAttribute:
+                  window.state.problema.atributo || "",
+
+                problemDelimitation:
+                  window.state.problema.delimitacion || ""
+
+              };
+
+              Object.keys(problemFields).forEach(function (fieldId) {
+
+                const field = document.getElementById(fieldId);
+
+                if (!field) {
+                  return;
+                }
+
+                field.value = problemFields[fieldId];
+
+              });
+
+            }
+            renderProblemModule();
+
+
+            /* ---------- Mostrar pantalla importada ---------- */
+
+            window.showScreen(window.state.current);
+
+            alert("Estado del proyecto importado correctamente.");
+
+          } catch (error) {
+
+            console.error("Error al importar JSON:", error);
+
+            alert(
+              "No fue posible importar el archivo JSON.\n\n" +
+              error.message
+            );
+          }
+
+        };
+
+        reader.onerror = function () {
+
+          console.error("No fue posible leer el archivo JSON.");
+
+          alert(
+            "No fue posible leer el archivo seleccionado."
+          );
+
+        };
+
+        reader.readAsText(file, "UTF-8");
+
+      });
+
+  </script>
+</body>
+
+</html>
