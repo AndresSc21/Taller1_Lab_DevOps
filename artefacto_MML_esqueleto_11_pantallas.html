@@ -2729,6 +2729,367 @@
       }
 
     }
+
+    /* =========================================================
+   TRANSICIÓN ENTRE MÓDULOS
+   ========================================================= */
+
+    .module-transition {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border: 1px solid #dfe5e8;
+      border-radius: 10px;
+      background: #f8fafb;
+    }
+
+    .module-transition-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .module-transition-text strong {
+      color: #273442;
+      font-size: 12px;
+    }
+
+    .module-transition-text span {
+      color: #74818a;
+      font-size: 10.5px;
+    }
+
+    @media(max-width:650px) {
+
+      .module-transition {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 3.1 · TRANSFORMACIÓN
+   ========================================================= */
+
+    .objective-transformation-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      border: 1px solid #dfe5e8;
+      border-radius: 9px;
+      background: #f8fafb;
+    }
+
+    .objective-transformation-toolbar strong {
+      display: block;
+      color: #273442;
+      font-size: 12px;
+    }
+
+    .objective-transformation-toolbar span {
+      display: block;
+      margin-top: 3px;
+      color: #77838c;
+      font-size: 10.5px;
+    }
+
+    .objective-transformation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .objective-transformation-card {
+      padding: 13px 14px;
+      border: 1px solid #dfe5e8;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .objective-source {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #edf0f2;
+    }
+
+    .objective-source>div:first-child {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .objective-code {
+      color: #273442;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .objective-role {
+      display: inline-flex;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-size: 8.5px;
+      font-weight: 800;
+    }
+
+    .objective-role.purpose {
+      background: #eef1f4;
+      color: #374654;
+    }
+
+    .objective-role.means {
+      background: #fbf2e8;
+      color: #8b5a2d;
+    }
+
+    .objective-role.ends {
+      background: #edf4f9;
+      color: #3e6787;
+    }
+
+    .objective-proposal-badge {
+      display: inline-flex !important;
+      margin: 0 !important;
+      padding: 3px 6px;
+      border-radius: 5px;
+      background: #fff5df;
+      color: #806126;
+      font-size: 8px !important;
+      font-weight: 800;
+    }
+
+    .objective-source-meta {
+      color: #7b8790;
+      font-size: 9.5px;
+    }
+
+    .objective-conversion {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .objective-problem-side,
+    .objective-target-side {
+      min-width: 0;
+    }
+
+    .objective-problem-side label,
+    .objective-target-side label {
+      display: block;
+      margin-bottom: 5px;
+      color: #5c6a74;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .objective-source-text {
+      min-height: 72px;
+      padding: 9px 10px;
+      border: 1px solid #e3e7e9;
+      border-radius: 7px;
+      background: #f7f9fa;
+      color: #687680;
+      font-size: 10.5px;
+      line-height: 1.45;
+    }
+
+    .objective-target-side textarea {
+      width: 100%;
+      min-height: 72px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    .objective-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a969e;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .objective-edit-note {
+      margin-top: 5px;
+      color: #89949b;
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    .objective-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 9px;
+      border-top: 1px solid #edf0f2;
+    }
+
+    .objective-assumption {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #596873;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .objective-assumption input {
+      width: auto;
+      min-height: auto;
+    }
+
+    .objective-origin {
+      color: #8a959c;
+      font-size: 9px;
+    }
+
+    .objective-method-note {
+      margin-top: 12px;
+    }
+
+    .objective-assumption-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .objective-assumption-card {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 4px 10px;
+      padding: 10px 12px;
+      border: 1px solid #eadfca;
+      border-left: 3px solid #b28742;
+      border-radius: 8px;
+      background: #fffdf8;
+    }
+
+    .objective-assumption-card strong {
+      color: #806126;
+      font-size: 10.5px;
+    }
+
+    .objective-assumption-card span {
+      color: #596873;
+      font-size: 10.5px;
+      line-height: 1.4;
+    }
+
+    .objective-assumption-card small {
+      grid-column: 2;
+      color: #8b7a5b;
+      font-size: 9px;
+    }
+
+    @media(max-width:750px) {
+
+      .objective-transformation-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .objective-conversion {
+        grid-template-columns: 1fr;
+      }
+
+      .objective-arrow {
+        transform: rotate(90deg);
+      }
+
+      .objective-source {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .objective-card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .objective-assumption-card {
+        grid-template-columns: 1fr;
+      }
+
+      .objective-assumption-card small {
+        grid-column: auto;
+      }
+
+    }
+
+    .potential-assumptions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .potential-assumption-card {
+      padding: 11px 13px;
+      border: 1px solid #e4dfd4;
+      border-left: 3px solid #b28742;
+      border-radius: 8px;
+      background: #fffdf8;
+    }
+
+    .potential-assumption-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .potential-assumption-header>div {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .potential-assumption-header strong {
+      color: #374654;
+      font-size: 10.5px;
+    }
+
+    .potential-assumption-badge {
+      padding: 3px 6px;
+      border-radius: 5px;
+      background: #f4ead7;
+      color: #806126;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .potential-assumption-objective {
+      margin-top: 8px;
+      color: #4f606c;
+      font-size: 10.5px;
+      line-height: 1.45;
+    }
+
+    .potential-assumption-note {
+      margin-top: 7px;
+      padding-top: 7px;
+      border-top: 1px solid #eee8dc;
+      color: #8a7d68;
+      font-size: 9px;
+      line-height: 1.4;
+    }
   </style>
 </head>
 
@@ -3574,8 +3935,6 @@
 
           </div>
 
-
-          <!-- 2.3 EFECTOS Y CAUSAS -->
           <!-- 2.3 EFECTOS Y CAUSAS -->
           <div class="problem-subscreen" id="problemSubscreen-causas">
 
@@ -3782,8 +4141,6 @@
 
           </div>
 
-
-          <!-- 2.5 VALIDACIÓN -->
           <!-- 2.5 VALIDACIÓN -->
           <div class="problem-subscreen" id="problemSubscreen-validacion">
 
@@ -4307,6 +4664,33 @@
 
           </div>
 
+          <!-- =====================================================
+              TRANSICIÓN · MÓDULO 2 → MÓDULO 3
+              ===================================================== -->
+
+          <div class="wizard-actions module-transition">
+
+            <div class="module-transition-text">
+
+              <strong>
+                Análisis del problema completado
+              </strong>
+
+              <span>
+                El árbol de problemas alimentará directamente
+                el análisis de objetivos.
+              </span>
+
+            </div>
+
+            <button type="button" class="btn primary" onclick="continuarAlPaso3()">
+
+              Continuar al análisis de objetivos →
+
+            </button>
+
+          </div>
+
         </section>
 
         <!-- PANTALLA 3 -->
@@ -4397,14 +4781,7 @@
                 </div>
               </div>
 
-              <div id="objectiveTransformationWorkspace">
-
-                <div class="notice">
-                  Los nodos del Paso 2 aparecerán aquí para realizar
-                  su transformación en objetivos.
-                </div>
-
-              </div>
+              <div id="objectiveTransformationWorkspace"></div>
 
             </div>
 
@@ -4422,14 +4799,7 @@
                 </div>
               </div>
 
-              <div id="potentialAssumptionsWorkspace">
-
-                <div class="notice">
-                  Aún no se han identificado objetivos candidatos
-                  a supuesto.
-                </div>
-
-              </div>
+              <div id="potentialAssumptionsWorkspace"></div>
 
             </div>
 
@@ -4983,6 +5353,8 @@
       renderNodeEvidence();
       showScreen(2);
     }
+
+
     function prepararPaso2() {
 
       const caso = state.caso || {};
@@ -6467,6 +6839,40 @@
 
     }
 
+    function continuarAlPaso3() {
+
+      /*
+      * Sincroniza los nodos del árbol de problemas
+      * con la estructura de objetivos.
+      *
+      * Todavía NO genera ni decide los objetivos.
+      */
+
+      if (
+        typeof syncObjectivesFromProblemNodes ===
+        "function"
+      ) {
+
+        syncObjectivesFromProblemNodes();
+
+      }
+
+
+      /*
+      * Llevar al usuario al Paso 3.
+      */
+
+      if (
+        typeof window.showScreen ===
+        "function"
+      ) {
+
+        window.showScreen(3);
+
+      }
+
+    }
+
 
 
     (function () {
@@ -6616,6 +7022,12 @@
           top: 0,
           behavior: "smooth"
         });
+
+        if (id === 3) {
+          renderObjectiveTransformation();
+          renderObjectiveAssumptions();
+        }
+
       }
 
       /* Permite que funciones externas al IIFE puedan cambiar de pantalla */
@@ -6685,6 +7097,672 @@
           }
 
         });
+      }
+
+      /* =========================================================
+   PASO 3.1 · TRANSFORMACIÓN DE PROBLEMAS EN OBJETIVOS
+   ========================================================= */
+
+      function renderObjectiveTransformation() {
+
+        const box =
+          document.getElementById(
+            "objectiveTransformationWorkspace"
+          );
+
+        if (!box) {
+          return;
+        }
+
+        const nodes =
+          Array.isArray(state.nodos)
+            ? state.nodos
+            : [];
+
+        const objectives =
+          Array.isArray(state.objetivos)
+            ? state.objetivos
+            : [];
+
+
+        if (!nodes.length) {
+
+          box.innerHTML = `
+      <div class="notice">
+        No hay nodos provenientes del árbol de problemas.
+        Regresa al Paso 2 y construye primero el árbol.
+      </div>
+    `;
+
+          return;
+        }
+
+
+        /*
+         * Garantizar correspondencia nodo ↔ objetivo.
+         */
+
+        syncObjectivesFromProblemNodes();
+
+
+        const refreshedObjectives =
+          state.objetivos;
+
+
+        box.innerHTML = `
+
+    <div class="objective-transformation-toolbar">
+
+      <div>
+
+        <strong>
+          Revelado del árbol de objetivos
+        </strong>
+
+        <span>
+          ${nodes.length} nodos provenientes del árbol de problemas.
+          Cada conversión permanece editable y marcada como propuesta.
+        </span>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="btn"
+        onclick="generateObjectiveProposals()">
+
+        Generar propuestas
+
+      </button>
+
+    </div>
+
+
+    <div class="objective-transformation-list">
+
+      ${nodes.map(function (node) {
+
+          const objective =
+            refreshedObjectives.find(function (item) {
+
+              return item.codigo === node.codigo;
+
+            });
+
+
+          if (!objective) {
+            return "";
+          }
+
+
+          const role =
+            node.codigo === "P"
+              ? "Propósito"
+              : node.tipo === "causa"
+                ? (
+                  node.raiz
+                    ? "Medio operacionalizable"
+                    : "Medio"
+                )
+                : "Fin";
+
+
+          const roleClass =
+            node.codigo === "P"
+              ? "purpose"
+              : node.tipo === "causa"
+                ? "means"
+                : "ends";
+
+
+          return `
+
+            <article
+              class="objective-transformation-card">
+
+              <div class="objective-source">
+
+                <div>
+
+                  <span class="objective-code">
+                    ${escapeHTML(node.codigo)}
+                  </span>
+
+                  <span class="
+                    objective-role
+                    ${roleClass}
+                  ">
+
+                    ${role}
+
+                  </span>
+
+                  <span class="objective-proposal-badge">
+                    Propuesta · Confianza baja
+                  </span>
+
+                </div>
+
+
+                <div class="objective-source-meta">
+
+                  Nivel ${escapeHTML(node.nivel ?? "—")}
+                  · Padre ${escapeHTML(node.padre || "P")}
+
+                </div>
+
+              </div>
+
+
+              <div class="objective-conversion">
+
+                <div class="objective-problem-side">
+
+                  <label>
+                    Estado negativo de origen
+                  </label>
+
+                  <div class="objective-source-text">
+
+                    ${escapeHTML(
+            node.enunciado ||
+            "Sin enunciado"
+          )}
+
+                  </div>
+
+                </div>
+
+
+                <div class="objective-arrow">
+                  →
+                </div>
+
+
+                <div class="objective-target-side">
+
+                  <label for="objective-${escapeHTML(node.codigo)}">
+
+                    Objetivo propuesto *
+
+                  </label>
+
+                  <textarea
+                    id="objective-${escapeHTML(node.codigo)}"
+                    rows="3"
+                    placeholder="Escribe un estado positivo deseado y viable..."
+                    onchange="updateObjectiveValue('${escapeHTML(node.codigo)}', this.value)"
+                  >${escapeHTML(
+            objective.objetivo || ""
+          )}</textarea>
+
+
+                  <div class="objective-edit-note">
+
+                    Editable por el formulador.
+                    No debe nombrar directamente una acción o solución.
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="objective-card-footer">
+
+                <label class="objective-assumption">
+
+                  <input
+                    type="checkbox"
+                    ${objective.posibleSupuesto
+              ? "checked"
+              : ""
+            }
+                    onchange="
+                      toggleObjectiveAssumption(
+                        '${escapeHTML(node.codigo)}',
+                        this.checked
+                      )
+                    "
+                  >
+
+                  <span>
+                    Marcar como posible supuesto
+                  </span>
+
+                </label>
+
+
+                <span class="objective-origin">
+
+                  ${objective.origen === "Propuesta IA"
+              ? "Origen: Propuesta"
+              : "Origen: Formulador"}
+
+                </span>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }).join("")
+
+          }
+
+    </div>
+
+
+    <div class="notice objective-method-note">
+
+      <strong>Regla metodológica:</strong>
+      convertir un problema en objetivo no significa agregar
+      "no" ni nombrar la solución. El resultado debe describir
+      una condición positiva, deseable y viable. Las acciones
+      se definirán posteriormente sobre los medios operacionalizables.
+
+    </div>
+
+  `;
+
+      }
+
+      function generateObjectiveProposals() {
+
+        if (!Array.isArray(state.nodos)) {
+          return;
+        }
+
+        syncObjectivesFromProblemNodes();
+
+
+        state.nodos.forEach(function (node) {
+
+          const objective =
+            state.objetivos.find(function (item) {
+
+              return item.codigo === node.codigo;
+
+            });
+
+
+          if (!objective) {
+            return;
+          }
+
+
+          /*
+           * Si el formulador ya escribió un objetivo,
+           * NO lo sobrescribimos.
+           */
+
+          if (
+            String(
+              objective.objetivo || ""
+            ).trim()
+          ) {
+            return;
+          }
+
+
+          objective.objetivo =
+            proposePositiveState(
+              node.enunciado
+            );
+
+          objective.propuesta = true;
+          objective.confianza = "Baja";
+          objective.origen = "Propuesta IA";
+
+        });
+
+
+        renderObjectiveTransformation();
+
+      }
+
+      function proposePositiveState(text) {
+
+        let value =
+          String(text || "")
+            .trim();
+
+
+        if (!value) {
+          return "";
+        }
+
+
+        /*
+         * Transformaciones de estado frecuentes.
+         * No son decisiones metodológicas definitivas.
+         */
+
+        const replacements = [
+
+          {
+            pattern:
+              /^limitadas oportunidades/i,
+
+            replacement:
+              "Mayores oportunidades"
+          },
+
+          {
+            pattern:
+              /^baja disponibilidad/i,
+
+            replacement:
+              "Mayor disponibilidad"
+          },
+
+          {
+            pattern:
+              /^limitada disponibilidad/i,
+
+            replacement:
+              "Mayor disponibilidad"
+          },
+
+          {
+            pattern:
+              /^limitada oferta/i,
+
+            replacement:
+              "Mayor oferta"
+          },
+
+          {
+            pattern:
+              /^baja oferta/i,
+
+            replacement:
+              "Mayor oferta"
+          },
+
+          {
+            pattern:
+              /^débil articulación/i,
+
+            replacement:
+              "Articulación fortalecida"
+          },
+
+          {
+            pattern:
+              /^baja articulación/i,
+
+            replacement:
+              "Articulación mejorada"
+          },
+
+          {
+            pattern:
+              /^menor disponibilidad/i,
+
+            replacement:
+              "Mayor disponibilidad"
+          },
+
+          {
+            pattern:
+              /^alto nivel de/i,
+
+            replacement:
+              "Nivel reducido de"
+          },
+
+          {
+            pattern:
+              /^alta proporción de/i,
+
+            replacement:
+              "Menor proporción de"
+          },
+
+          {
+            pattern:
+              /^baja proporción de/i,
+
+            replacement:
+              "Mayor proporción de"
+          },
+
+          {
+            pattern:
+              /^escasa/i,
+
+            replacement:
+              "Mayor disponibilidad de"
+          },
+
+          {
+            pattern:
+              /^insuficiente/i,
+
+            replacement:
+              "Nivel suficiente de"
+          }
+
+        ];
+
+
+        for (
+          let i = 0;
+          i < replacements.length;
+          i++
+        ) {
+
+          const item =
+            replacements[i];
+
+
+          if (
+            item.pattern.test(value)
+          ) {
+
+            return value.replace(
+              item.pattern,
+              item.replacement
+            );
+
+          }
+
+        }
+
+
+        /*
+         * Fallback deliberadamente conservador.
+         * Se marca como propuesta y requiere edición.
+         */
+
+        return "Condición mejorada: " +
+          value.charAt(0).toLowerCase() +
+          value.slice(1);
+
+      }
+
+      function updateObjectiveValue(
+        codigo,
+        value
+      ) {
+
+        if (!Array.isArray(state.objetivos)) {
+          return;
+        }
+
+
+        const objective =
+          state.objetivos.find(function (item) {
+
+            return item.codigo === codigo;
+
+          });
+
+
+        if (!objective) {
+          return;
+        }
+
+
+        objective.objetivo =
+          String(value || "").trim();
+
+
+        /*
+         * Sigue siendo propuesta hasta que el formulador
+         * la revise y valide posteriormente.
+         */
+
+        objective.propuesta = true;
+        objective.confianza = "Baja";
+
+      }
+
+      function toggleObjectiveAssumption(
+        codigo,
+        checked
+      ) {
+
+        if (!Array.isArray(state.objetivos)) {
+          return;
+        }
+
+        const objective =
+          state.objetivos.find(function (item) {
+
+            return item.codigo === codigo;
+
+          });
+
+
+        if (!objective) {
+          return;
+        }
+
+
+        objective.posibleSupuesto =
+          Boolean(checked);
+
+
+        renderObjectiveTransformation();
+
+        renderObjectiveAssumptions();
+
+      }
+
+      function renderObjectiveAssumptions() {
+
+        const workspace =
+          document.getElementById(
+            "potentialAssumptionsWorkspace"
+          );
+
+        if (!workspace) {
+          return;
+        }
+
+        const objectives =
+          Array.isArray(state.objetivos)
+            ? state.objetivos
+            : [];
+
+        const candidates =
+          objectives.filter(function (objective) {
+
+            return objective.posibleSupuesto === true;
+
+          });
+
+
+        if (!candidates.length) {
+
+          workspace.innerHTML = `
+      <div class="notice">
+        Aún no se han identificado objetivos candidatos
+        a supuesto.
+      </div>
+    `;
+
+          return;
+        }
+
+
+        workspace.innerHTML = `
+
+    <div class="potential-assumptions-list">
+
+      ${candidates.map(function (objective) {
+
+          return `
+
+            <div class="potential-assumption-card">
+
+              <div class="potential-assumption-header">
+
+                <div>
+
+                  <strong>
+                    ${escapeHTML(
+            objective.codigo
+          )}
+                  </strong>
+
+                  <span class="potential-assumption-badge">
+                    POSIBLE SUPUESTO
+                  </span>
+
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-mini"
+                  onclick="
+                    toggleObjectiveAssumption(
+                      '${escapeHTML(objective.codigo)}',
+                      false
+                    )
+                  ">
+
+                  Quitar
+
+                </button>
+
+              </div>
+
+
+              <div class="potential-assumption-objective">
+
+                ${escapeHTML(
+            objective.objetivo ||
+            "Objetivo pendiente de formulación"
+          )}
+
+              </div>
+
+
+              <div class="potential-assumption-note">
+
+                Candidato identificado por el formulador.
+                La decisión definitiva se realizará posteriormente
+                en el Paso 9 · Supuestos.
+
+              </div>
+
+            </div>
+
+          `;
+
+        }).join("")
+          }
+
+    </div>
+
+  `;
+
       }
 
       function actorValue(id) {
@@ -10979,6 +12057,14 @@ La decisión corresponde al formulador.
       if (button) {
         button.classList.add('active');
       }
+
+      if (subscreen === "transformacion") {
+
+        renderObjectiveTransformation();
+        renderObjectiveAssumptions();
+
+      }
+
     }
     function exportStateJSON() {
 
