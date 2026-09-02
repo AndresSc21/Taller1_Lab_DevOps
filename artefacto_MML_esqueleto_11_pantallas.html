@@ -1591,6 +1591,1144 @@
       }
 
     }
+
+    /* =========================================================
+   FIX · PASO 2.2 · PROBLEMA CENTRAL
+   ========================================================= */
+
+    #problemSubscreen-problema .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    #problemSubscreen-problema .field {
+      min-width: 0;
+    }
+
+    #problemSubscreen-problema .field.span-3 {
+      grid-column: span 1;
+    }
+
+    #problemSubscreen-problema textarea {
+      width: 100%;
+      min-width: 0;
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    #problemSubscreen-problema .field label {
+      display: block;
+      min-height: 34px;
+      line-height: 1.35;
+    }
+
+    /* En pantallas amplias: cuatro campos en una fila */
+    @media (min-width:1100px) {
+
+      #problemSubscreen-problema .grid {
+        grid-template-columns:
+          repeat(4, minmax(0, 1fr));
+      }
+
+      #problemSubscreen-problema .field.span-3 {
+        grid-column: span 1;
+      }
+
+    }
+
+    /* En tablet: dos por fila */
+    @media (min-width:700px) and (max-width:1099px) {
+
+      #problemSubscreen-problema .grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    /* En móvil: uno por fila */
+    @media (max-width:699px) {
+
+      #problemSubscreen-problema .grid {
+        grid-template-columns: 1fr;
+      }
+
+      #problemSubscreen-problema .field.span-3 {
+        grid-column: span 1;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 2.3 · EFECTOS Y CAUSAS
+   DISTRIBUCIÓN VISUAL
+   ========================================================= */
+
+    #problemSubscreen-causas>.card:first-child .grid {
+      display: grid;
+      grid-template-columns: 180px 180px minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 1 · Tipo / Nivel / Nodo padre
+   --------------------------------------------------------- */
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(1) {
+      grid-column: 1;
+    }
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(2) {
+      grid-column: 2;
+    }
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(3) {
+      grid-column: 3;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 2 · Enunciado
+   --------------------------------------------------------- */
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(4) {
+      grid-column: 1 / -1;
+    }
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(4) textarea {
+      min-height: 120px;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 3 · Evidencia / Línea base
+   --------------------------------------------------------- */
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(5) {
+      grid-column: 1 / 2;
+    }
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(6) {
+      grid-column: 2 / 4;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 4 · Confianza / Origen
+   --------------------------------------------------------- */
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(7) {
+      grid-column: 1 / 2;
+    }
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(8) {
+      grid-column: 2 / 4;
+    }
+
+    /* ---------------------------------------------------------
+   CAMPOS
+   --------------------------------------------------------- */
+
+    #problemSubscreen-causas>.card:first-child .field {
+      min-width: 0;
+    }
+
+    #problemSubscreen-causas>.card:first-child input,
+    #problemSubscreen-causas>.card:first-child select,
+    #problemSubscreen-causas>.card:first-child textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* ---------------------------------------------------------
+   ALTURAS Y PROPORCIONES
+   --------------------------------------------------------- */
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(1),
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(2),
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(3) {
+      min-height: 94px;
+    }
+
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(5),
+    #problemSubscreen-causas>.card:first-child .grid>.field:nth-child(6) {
+      min-height: 150px;
+    }
+
+    /* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+    @media (max-width:850px) {
+
+      #problemSubscreen-causas>.card:first-child .grid {
+        grid-template-columns: 150px 150px minmax(0, 1fr);
+      }
+
+    }
+
+    /* ---------------------------------------------------------
+   MÓVIL
+   --------------------------------------------------------- */
+
+    @media (max-width:620px) {
+
+      #problemSubscreen-causas>.card:first-child .grid {
+        grid-template-columns: 1fr;
+      }
+
+      #problemSubscreen-causas>.card:first-child .grid>.field {
+        grid-column: 1 / -1 !important;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 2.3 · FICHAS DE CAUSAS Y EFECTOS
+   ========================================================= */
+
+    #effectsWorkspace,
+    #causesWorkspace {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Ficha compacta */
+    #effectsWorkspace>.card,
+    #causesWorkspace>.card {
+      margin: 0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      box-shadow: none;
+      min-height: 0;
+    }
+
+    /* Encabezado de la ficha */
+    #effectsWorkspace>.card .section-head,
+    #causesWorkspace>.card .section-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+    }
+
+    /* Código + tipo */
+    #effectsWorkspace>.card .section-head>div:first-child>div,
+    #causesWorkspace>.card .section-head>div:first-child>div {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* Código del nodo */
+    #effectsWorkspace>.card strong,
+    #causesWorkspace>.card strong {
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* Título del nodo */
+    #effectsWorkspace>.card h4,
+    #causesWorkspace>.card h4 {
+      margin: 5px 0 0;
+      font-size: 12.5px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--ink-950);
+    }
+
+    /* Botón eliminar */
+    #effectsWorkspace>.card .btn-mini,
+    #causesWorkspace>.card .btn-mini {
+      flex: 0 0 auto;
+      min-height: 27px;
+      padding: 4px 8px;
+      font-size: 10px;
+    }
+
+    /* Metadatos */
+    #effectsWorkspace>.card .small-note,
+    #causesWorkspace>.card .small-note {
+      font-size: 10.5px;
+      line-height: 1.45;
+    }
+
+    /* Evidencia y línea base */
+    #effectsWorkspace>.card>div:last-child,
+    #causesWorkspace>.card>div:last-child {
+      margin-top: 7px !important;
+      gap: 4px !important;
+    }
+
+    #effectsWorkspace>.card>div:last-child .small-note,
+    #causesWorkspace>.card>div:last-child .small-note {
+      color: var(--ink-600);
+    }
+
+    /* Etiquetas */
+    #effectsWorkspace>.card .small-note strong,
+    #causesWorkspace>.card .small-note strong {
+      font-size: 10.5px;
+      color: var(--ink-800);
+    }
+
+    /* =========================================================
+   DIFERENCIACIÓN SUTIL
+   ========================================================= */
+
+    #effectsWorkspace>.card {
+      border-left: 3px solid #4b6b8a;
+      background: #fcfdfe;
+    }
+
+    #causesWorkspace>.card {
+      border-left: 3px solid #9a6735;
+      background: #fffdfb;
+    }
+
+    /* =========================================================
+   MÓVIL
+   ========================================================= */
+
+    @media(max-width:600px) {
+
+      #effectsWorkspace>.card .section-head,
+      #causesWorkspace>.card .section-head {
+        flex-direction: column;
+      }
+
+      #effectsWorkspace>.card .btn-mini,
+      #causesWorkspace>.card .btn-mini {
+        align-self: flex-start;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 2.4 · ÁRBOL JERÁRQUICO DE PROBLEMAS
+   ========================================================= */
+
+    #problemTreeWorkspace {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .problem-tree-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e9ec;
+    }
+
+    .problem-tree-header strong {
+      display: block;
+      color: #273442;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .problem-tree-header span {
+      display: block;
+      margin-top: 2px;
+      color: #7a858e;
+      font-size: 10.5px;
+    }
+
+    .problem-tree-legend {
+      display: flex !important;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .problem-tree-legend span {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 5px;
+      margin: 0;
+      color: #66737d;
+      font-size: 10px;
+    }
+
+    .tree-level-dot {
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      border-radius: 50%;
+    }
+
+    .effect-level-1 {
+      background: #315d82;
+    }
+
+    .cause-level-1 {
+      background: #9a6735;
+    }
+
+    .central-level {
+      background: #273442;
+    }
+
+    /* =========================================================
+   ÁRBOL DE PROBLEMAS · LIENZO ADAPTABLE
+   ========================================================= */
+
+    .problem-tree-canvas {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding: 6px 4px 18px;
+      box-sizing: border-box;
+    }
+
+    /*
+ * El SVG conserva su altura real.
+ * No se fuerza una altura fija que pueda recortar
+ * los niveles inferiores.
+ */
+
+    .problem-tree-svg {
+      display: block;
+      width: 100%;
+      min-width: 900px;
+      height: auto;
+      min-height: 620px;
+      overflow: visible;
+    }
+
+    /*
+ * Evita que el contenedor de la tarjeta
+ * corte el contenido del árbol.
+ */
+
+    #problemTreeWorkspace {
+      width: 100%;
+      min-height: 0;
+      overflow: visible;
+    }
+
+    #problemSubscreen-arbol .card {
+      overflow: visible;
+    }
+
+    /*
+ * Los nodos y conectores nunca deben quedar
+ * recortados por un contenedor intermedio.
+ */
+
+    #problemSubscreen-arbol .problem-tree-canvas,
+    #problemSubscreen-arbol .problem-tree-svg {
+      overflow: visible;
+    }
+
+    /*
+ * Si el árbol supera el ancho disponible,
+ * se mantiene completo y aparece desplazamiento
+ * horizontal en el lienzo.
+ */
+
+    @media(max-width:900px) {
+
+      .problem-tree-canvas {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .problem-tree-svg {
+        width: 1100px;
+        max-width: none;
+      }
+
+    }
+
+    .problem-tree-label {
+      fill: #687680;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .problem-tree-connector {
+      fill: none;
+      stroke: #b8c2c9;
+      stroke-width: 1.6;
+    }
+
+    .problem-tree-code {
+      fill: #263540;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .problem-tree-type {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .07em;
+    }
+
+    .problem-tree-node-text {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      color: #263540;
+      font-size: 10.5px;
+      line-height: 1.3;
+      font-weight: 650;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .problem-tree-meta {
+      fill: #7a858e;
+      font-size: 8px;
+    }
+
+    .problem-tree-central {
+      fill: #f3f5f6;
+      stroke: #273442;
+      stroke-width: 2;
+    }
+
+    .problem-tree-central-title {
+      fill: #273442;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .05em;
+    }
+
+    .problem-tree-central-text {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #273442;
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .problem-tree-reading {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border: 1px solid #e1e6e9;
+      border-radius: 8px;
+      background: #f8fafb;
+      color: #687680;
+      font-size: 10.5px;
+      line-height: 1.5;
+    }
+
+    .problem-tree-reading strong {
+      flex: 0 0 auto;
+      color: #34444f;
+    }
+
+    .problem-tree-reading b {
+      color: #34444f;
+    }
+
+    @media(max-width:700px) {
+
+      .problem-tree-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .problem-tree-legend {
+        width: 100%;
+      }
+
+      .problem-tree-reading {
+        flex-direction: column;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 2.4 · FICHA DE SUSTENTACIÓN DE NODOS
+   ========================================================= */
+
+    .node-evidence-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      padding: 11px 13px;
+      border: 1px solid #e1e6e9;
+      border-radius: 9px;
+      background: #f8fafb;
+    }
+
+    .node-evidence-summary strong {
+      display: block;
+      color: #273442;
+      font-size: 12px;
+    }
+
+    .node-evidence-summary span {
+      display: block;
+      margin-top: 3px;
+      color: #78848d;
+      font-size: 10.5px;
+    }
+
+    .node-evidence-legend {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .node-evidence-legend span {
+      display: inline-flex;
+      margin: 0;
+    }
+
+    .node-evidence-table-wrap {
+      width: 100%;
+      overflow: auto;
+      border: 1px solid #dfe5e8;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .node-evidence-table {
+      min-width: 1050px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+    }
+
+    .node-evidence-table th {
+      padding: 10px;
+      background: #f3f6f7;
+      border-bottom: 1px solid #dce2e5;
+      color: #52616c;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .node-evidence-table td {
+      padding: 10px;
+      border-bottom: 1px solid #edf0f2;
+      vertical-align: top;
+      color: #596873;
+      line-height: 1.45;
+    }
+
+    .node-evidence-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .node-evidence-table tbody tr:hover td {
+      background: #fafcfc;
+    }
+
+    .node-evidence-statement {
+      max-width: 270px;
+      color: #273442;
+      font-weight: 650;
+      line-height: 1.4;
+    }
+
+    .node-evidence-value {
+      max-width: 230px;
+      color: #596873;
+    }
+
+    .node-evidence-missing {
+      max-width: 230px;
+      padding: 5px 7px;
+      border-radius: 5px;
+      background: #fff5f3;
+      color: #a13e35;
+      font-size: 10px;
+    }
+
+    @media(max-width:700px) {
+
+      .node-evidence-summary {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 2.5 · VALIDACIÓN METODOLÓGICA
+   ========================================================= */
+
+    .problem-validation-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 16px;
+      padding: 13px 15px;
+      border: 1px solid #dfe5e8;
+      border-radius: 9px;
+      background: #f7f9fa;
+    }
+
+    .problem-validation-summary strong {
+      display: block;
+      color: #273442;
+      font-size: 12px;
+    }
+
+    .problem-validation-summary span {
+      display: block;
+      margin-top: 3px;
+      color: #73808a;
+      font-size: 10.5px;
+    }
+
+    .problem-validation-summary.success {
+      border-color: #cfe3d7;
+      background: #f2faf5;
+    }
+
+    .problem-validation-summary.warning {
+      border-color: #eadcb9;
+      background: #fff9eb;
+    }
+
+    .problem-validation-summary.error {
+      border-color: #e8cfca;
+      background: #fff4f2;
+    }
+
+    .problem-validation-counter {
+      display: flex !important;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .problem-validation-counter span {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      min-height: 24px;
+      margin: 0;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #dce2e5;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .problem-validation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .problem-validation-item {
+      padding: 14px;
+      border: 1px solid #dfe5e8;
+      border-left: 4px solid #9ca8af;
+      border-radius: 9px;
+      background: #fff;
+    }
+
+    .problem-validation-item.ok {
+      border-left-color: #4f8a68;
+      background: #fcfefd;
+    }
+
+    .problem-validation-item.pending {
+      border-left-color: #b28742;
+      background: #fffdf8;
+    }
+
+    .problem-validation-item.error {
+      border-left-color: #a9483e;
+      background: #fffdfc;
+    }
+
+    .problem-validation-item-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .problem-validation-item h4 {
+      margin: 6px 0 0;
+      color: #273442;
+      font-size: 12.5px;
+      font-weight: 750;
+    }
+
+    .problem-validation-status {
+      display: inline-flex;
+      min-height: 20px;
+      align-items: center;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-size: 8.5px;
+      font-weight: 850;
+      letter-spacing: .05em;
+    }
+
+    .problem-validation-status.ok {
+      background: #edf7f1;
+      color: #397054;
+    }
+
+    .problem-validation-status.pending {
+      background: #fff5df;
+      color: #806126;
+    }
+
+    .problem-validation-status.error {
+      background: #fff0ed;
+      color: #963c34;
+    }
+
+    .problem-validation-question {
+      margin: 9px 0 0;
+      color: #697680;
+      font-size: 10.5px;
+      line-height: 1.5;
+    }
+
+    .problem-validation-message {
+      margin-top: 10px;
+      padding: 8px 9px;
+      border-radius: 6px;
+      background: #f1f8f4;
+      color: #3e6e55;
+      font-size: 10.5px;
+    }
+
+    .problem-validation-message.pending {
+      background: #fff7e8;
+      color: #765d2b;
+    }
+
+    .problem-validation-findings {
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-radius: 6px;
+      background: #fff5f3;
+      color: #7f443d;
+      font-size: 10.5px;
+    }
+
+    .problem-validation-findings strong {
+      color: #963c34;
+    }
+
+    .problem-validation-findings ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .problem-validation-findings li {
+      margin: 3px 0;
+      line-height: 1.4;
+    }
+
+    .validation-decision {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .validation-radio {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      min-height: 80px;
+      padding: 12px;
+      border: 1px solid #dfe5e8;
+      border-radius: 9px;
+      background: #fafbfb;
+      cursor: pointer;
+    }
+
+    .validation-radio:hover {
+      background: #f5f8f8;
+    }
+
+    .validation-radio input {
+      width: auto;
+      min-height: auto;
+      margin-top: 3px;
+    }
+
+    .validation-radio strong {
+      display: block;
+      color: #34444f;
+      font-size: 11px;
+    }
+
+    .validation-radio small {
+      display: block;
+      margin-top: 4px;
+      color: #7a858d;
+      font-size: 9.5px;
+      line-height: 1.4;
+    }
+
+    @media(max-width:800px) {
+
+      .problem-validation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .validation-decision {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-validation-summary {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
+
+    /* =========================================================
+   PASO 2.7 · BITÁCORA DE IA
+   FORMULARIO
+   ========================================================= */
+
+    #problemSubscreen-bitacora .card:first-child .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 1
+   Propósito · Prompt
+   --------------------------------------------------------- */
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(1) {
+      grid-column: span 4;
+    }
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(2) {
+      grid-column: span 8;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 2
+   Salida · Error
+   --------------------------------------------------------- */
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(3) {
+      grid-column: span 6;
+    }
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(4) {
+      grid-column: span 6;
+    }
+
+    /* ---------------------------------------------------------
+   FILA 3
+   Detección · Corrección
+   --------------------------------------------------------- */
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(5) {
+      grid-column: span 6;
+    }
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(6) {
+      grid-column: span 6;
+    }
+
+    /* ---------------------------------------------------------
+   CAMPOS
+   --------------------------------------------------------- */
+
+    #problemSubscreen-bitacora .card:first-child .field {
+      min-width: 0;
+    }
+
+    #problemSubscreen-bitacora .card:first-child input,
+    #problemSubscreen-bitacora .card:first-child textarea,
+    #problemSubscreen-bitacora .card:first-child select {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* ---------------------------------------------------------
+   ALTURAS
+   --------------------------------------------------------- */
+
+    #problemSubscreen-bitacora .card:first-child textarea {
+      min-height: 108px;
+      resize: vertical;
+    }
+
+    #problemSubscreen-bitacora .card:first-child .grid>.field:nth-child(2) textarea {
+      min-height: 108px;
+    }
+
+    /* ---------------------------------------------------------
+   BOTONES
+   --------------------------------------------------------- */
+
+    #problemSubscreen-bitacora .card:first-child+.card {
+      margin-top: 16px;
+    }
+
+    #problemSubscreen-bitacora .card:first-child button {
+      white-space: nowrap;
+    }
+
+
+    /* =========================================================
+   REGISTROS
+   ========================================================= */
+
+    .problem-log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .problem-log-entry {
+      padding: 15px;
+      border: 1px solid #dfe5e8;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .problem-log-entry-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #edf0f2;
+    }
+
+    .problem-log-entry-head>div {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .problem-log-entry-head strong {
+      color: #273442;
+      font-size: 12px;
+    }
+
+    .problem-log-date {
+      color: #7b8790;
+      font-size: 10px;
+    }
+
+    .problem-log-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .problem-log-grid>div {
+      min-width: 0;
+    }
+
+    .problem-log-grid label {
+      display: block;
+      margin-bottom: 5px;
+      color: #566570;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .problem-log-content {
+      min-height: 55px;
+      padding: 9px 10px;
+      border: 1px solid #e1e6e9;
+      border-radius: 7px;
+      background: #f8fafb;
+      color: #596873;
+      font-size: 10.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .problem-log-content.proposal {
+      background: #fffdf8;
+      border-color: #eadfca;
+    }
+
+    .problem-log-content.error {
+      background: #fff8f6;
+      border-color: #ead6d2;
+      color: #7e4841;
+    }
+
+    .problem-log-content.correction {
+      background: #f3faf6;
+      border-color: #d2e5da;
+      color: #416b55;
+    }
+
+    .problem-log-correction {
+      grid-column: 1 / -1;
+    }
+
+    .problem-log-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+
+    /* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+    @media(max-width:750px) {
+
+      #problemSubscreen-bitacora .card:first-child .grid {
+        grid-template-columns: 1fr;
+      }
+
+      #problemSubscreen-bitacora .card:first-child .grid>.field {
+        grid-column: 1 / -1 !important;
+      }
+
+      .problem-log-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-log-correction {
+        grid-column: auto;
+      }
+
+      .problem-log-entry-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
   </style>
 </head>
 
@@ -2639,34 +3777,297 @@
                 </div>
               </div>
 
-              <div id="nodeEvidenceWorkspace">
-                <div class="notice">
-                  Aún no hay nodos registrados.
-                </div>
-              </div>
+              <div id="nodeEvidenceWorkspace"></div>
             </div>
 
           </div>
 
 
           <!-- 2.5 VALIDACIÓN -->
+          <!-- 2.5 VALIDACIÓN -->
           <div class="problem-subscreen" id="problemSubscreen-validacion">
 
             <div class="card">
+
               <div class="section-head">
+
                 <div>
                   <h3>5. Validación metodológica</h3>
+
                   <p>
                     Revisa la consistencia lógica del árbol antes de continuar.
+                    Las pruebas automáticas identifican hallazgos estructurales;
+                    la decisión metodológica final corresponde al formulador.
                   </p>
                 </div>
+
+                <button type="button" class="btn primary" onclick="runProblemValidation()">
+
+                  Ejecutar validación
+
+                </button>
+
               </div>
 
-              <div id="problemValidationWorkspace">
+
+              <div id="problemValidationSummary" class="problem-validation-summary">
+
+                <div>
+
+                  <strong>
+                    Validación pendiente
+                  </strong>
+
+                  <span>
+                    Ejecuta las cinco pruebas sobre el árbol construido.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div id="problemValidationWorkspace" class="problem-validation-grid">
+
                 <div class="notice">
                   Las pruebas de validez se ejecutarán sobre el árbol construido.
                 </div>
+
               </div>
+
+            </div>
+
+
+            <!-- VALIDACIÓN EXTERNA -->
+
+            <div class="card">
+
+              <div class="section-head">
+
+                <div>
+
+                  <h3>Validación con evidencia e involucrados</h3>
+
+                  <p>
+                    La validación automática no sustituye la confrontación
+                    del árbol con quienes conocen o viven el problema.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="notice">
+
+                <strong>Regla metodológica:</strong>
+                registre qué nodos son reconocidos, cuáles no son reconocidos
+                y qué elementos consideran que hacen falta. Si no es posible
+                realizar contacto directo, documente explícitamente la
+                validación mediante fuentes secundarias.
+
+              </div>
+
+
+              <div class="grid" style="margin-top:16px;">
+
+                <div class="field span-4">
+
+                  <label for="validationRecognized">
+                    Nodos reconocidos
+                  </label>
+
+                  <textarea id="validationRecognized"
+                    placeholder="Códigos o elementos del árbol que los involucrados reconocen como parte del problema."></textarea>
+
+                </div>
+
+
+                <div class="field span-4">
+
+                  <label for="validationRejected">
+                    Nodos no reconocidos
+                  </label>
+
+                  <textarea id="validationRejected"
+                    placeholder="Códigos o elementos que fueron cuestionados o no reconocidos."></textarea>
+
+                </div>
+
+
+                <div class="field span-4">
+
+                  <label for="validationMissing">
+                    Nodos o relaciones faltantes
+                  </label>
+
+                  <textarea id="validationMissing"
+                    placeholder="Causas, efectos o relaciones que los involucrados consideran ausentes."></textarea>
+
+                </div>
+
+
+                <div class="field span-6">
+
+                  <label for="validationSource">
+                    Modalidad / fuente de validación
+                  </label>
+
+                  <select id="validationSource">
+
+                    <option value="">
+                      Seleccione...
+                    </option>
+
+                    <option value="Consulta directa">
+                      Consulta directa con involucrados
+                    </option>
+
+                    <option value="Taller participativo">
+                      Taller participativo
+                    </option>
+
+                    <option value="Entrevistas">
+                      Entrevistas
+                    </option>
+
+                    <option value="Fuentes secundarias">
+                      Fuentes secundarias
+                    </option>
+
+                    <option value="Pendiente">
+                      Pendiente
+
+                    </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="field span-6">
+
+                  <label for="validationObservations">
+                    Observaciones y decisiones
+                  </label>
+
+                  <textarea id="validationObservations"
+                    placeholder="¿Qué se mantiene, qué se corrige y por qué?"></textarea>
+
+                </div>
+
+              </div>
+
+
+              <div style="margin-top:14px;">
+
+                <button type="button" class="btn" onclick="saveProblemExternalValidation()">
+
+                  Registrar validación externa
+
+                </button>
+
+              </div>
+
+
+              <div id="externalValidationNotice" style="margin-top:12px;">
+              </div>
+
+            </div>
+
+
+            <!-- DECISIÓN DE CIERRE -->
+
+            <div class="card">
+
+              <div class="section-head">
+
+                <div>
+
+                  <h3>Cierre de la validación</h3>
+
+                  <p>
+                    La validación no modifica automáticamente los nodos.
+                    Los hallazgos deben llevar a una corrección deliberada
+                    del árbol.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="validation-decision">
+
+                <label class="validation-radio">
+
+                  <input type="radio" name="problemValidationDecision" value="aprobado">
+
+                  <span>
+
+                    <strong>Árbol consistente</strong>
+
+                    <small>
+                      Las pruebas y la confrontación no presentan
+                      hallazgos pendientes relevantes.
+                    </small>
+
+                  </span>
+
+                </label>
+
+
+                <label class="validation-radio">
+
+                  <input type="radio" name="problemValidationDecision" value="ajustes">
+
+                  <span>
+
+                    <strong>Requiere ajustes</strong>
+
+                    <small>
+                      Existen hallazgos que deben corregirse antes
+                      de avanzar.
+                    </small>
+
+                  </span>
+
+                </label>
+
+
+                <label class="validation-radio">
+
+                  <input type="radio" name="problemValidationDecision" value="pendiente">
+
+                  <span>
+
+                    <strong>Validación pendiente</strong>
+
+                    <small>
+                      Aún falta evidencia o confrontación suficiente.
+                    </small>
+
+                  </span>
+
+                </label>
+
+              </div>
+
+
+              <div style="margin-top:14px;">
+
+                <button type="button" class="btn primary" onclick="saveProblemValidationDecision()">
+
+                  Guardar decisión
+
+                </button>
+
+              </div>
+
+
+              <div id="problemValidationDecisionNotice" style="margin-top:12px;">
+              </div>
+
             </div>
 
           </div>
@@ -2703,6 +4104,9 @@
                   <button class="btn" onclick="generateProblemPrompt('problema')">
                     Preparar consulta
                   </button>
+                  <button class="btn" type="button" onclick="copyProblemPrompt('problemPromptProblema')">
+                    Copiar consulta
+                  </button>
                   <textarea id="problemPromptProblema" style="margin-top:10px" readonly
                     placeholder="La instrucción aparecerá aquí."></textarea>
                 </div>
@@ -2715,6 +4119,9 @@
                   <button class="btn" onclick="generateProblemPrompt('arbol')">
                     Preparar consulta
                   </button>
+                  <button class="btn" type="button" onclick="copyProblemPrompt('problemPromptArbol')">
+                    Copiar consulta
+                  </button>
                   <textarea id="problemPromptArbol" style="margin-top:10px" readonly
                     placeholder="La instrucción aparecerá aquí."></textarea>
                 </div>
@@ -2726,6 +4133,9 @@
                   </p>
                   <button class="btn" onclick="generateProblemPrompt('validacion')">
                     Preparar consulta
+                  </button>
+                  <button class="btn" type="button" onclick="copyProblemPrompt('problemPromptValidacion')">
+                    Copiar consulta
                   </button>
                   <textarea id="problemPromptValidacion" style="margin-top:10px" readonly
                     placeholder="La instrucción aparecerá aquí."></textarea>
@@ -2747,21 +4157,151 @@
           <div class="problem-subscreen" id="problemSubscreen-bitacora">
 
             <div class="card">
+
               <div class="section-head">
+
                 <div>
-                  <h3>7. Bitácora</h3>
+                  <h3>7. Bitácora de uso de IA</h3>
+
                   <p>
-                    Registra el uso de IA, las propuestas recibidas y las decisiones
-                    tomadas por el formulador.
+                    Registra cómo se utilizó la inteligencia artificial,
+                    qué produjo, qué se detectó y qué decisión tomó
+                    el formulador.
                   </p>
                 </div>
+
               </div>
 
-              <div id="problemBitacoraWorkspace">
-                <div class="notice">
-                  No hay registros en la bitácora.
-                </div>
+
+              <div class="notice">
+
+                <strong>Uso crítico de IA:</strong>
+                una bitácora sin errores o correcciones no demuestra
+                verificación. Las propuestas del modelo deben ser
+                contrastadas antes de incorporarse al proyecto.
+
               </div>
+
+
+              <div class="grid" style="margin-top:16px;">
+
+                <div class="field span-4">
+
+                  <label for="logPattern">
+                    Propósito / tarea *
+                  </label>
+
+                  <input id="logPattern" type="text" placeholder="Ej. Depurar problema central">
+
+                </div>
+
+
+                <div class="field span-8">
+
+                  <label for="logPrompt">
+                    Prompt empleado (resumen) *
+                  </label>
+
+                  <textarea id="logPrompt" placeholder="Resume la instrucción utilizada con el modelo."></textarea>
+
+                </div>
+
+
+                <div class="field span-6">
+
+                  <label for="logOutput">
+                    ¿Qué produjo el modelo? *
+                  </label>
+
+                  <textarea id="logOutput"
+                    placeholder="Resume la salida relevante del modelo, indicando que se trata de una propuesta."></textarea>
+
+                </div>
+
+
+                <div class="field span-6">
+
+                  <label for="logError">
+                    ¿Qué produjo mal el modelo? *
+                  </label>
+
+                  <textarea id="logError"
+                    placeholder="Describe el error, inconsistencia, dato no sustentado o problema metodológico detectado."></textarea>
+
+                </div>
+
+
+                <div class="field span-6">
+
+                  <label for="logDetection">
+                    ¿Cómo se detectó?
+                  </label>
+
+                  <textarea id="logDetection"
+                    placeholder="Prueba, comparación con fuente, revisión metodológica, contraste con involucrados, etc."></textarea>
+
+                </div>
+
+
+                <div class="field span-6">
+
+                  <label for="logCorrection">
+                    Corrección humana *
+                  </label>
+
+                  <textarea id="logCorrection" placeholder="Qué se aceptó, descartó o corrigió y por qué."></textarea>
+
+                </div>
+
+              </div>
+
+
+              <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;">
+
+                <button type="button" class="btn primary" onclick="addProblemLog()">
+
+                  Agregar registro
+
+                </button>
+
+                <button type="button" class="btn" onclick="clearProblemLogForm()">
+
+                  Limpiar
+
+                </button>
+
+              </div>
+
+
+              <div id="problemLogNotice" style="margin-top:12px;">
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="section-head">
+
+                <div>
+
+                  <h3>Registros de la bitácora</h3>
+
+                  <p>
+                    Los registros se conservan dentro del estado del proyecto
+                    y posteriormente podrán exportarse junto con el JSON.
+                  </p>
+
+                </div>
+
+                <span id="problemLogCount" class="badge">
+                  0 registros
+                </span>
+
+              </div>
+
+
+              <div id="problemLogWorkspace"></div>
 
             </div>
 
@@ -3440,6 +4980,7 @@
       prepararPaso2();
       renderProblemContext();
       renderProblemModule();
+      renderNodeEvidence();
       showScreen(2);
     }
     function prepararPaso2() {
@@ -3623,6 +5164,866 @@
         problemasPercibidos;
 
     }
+
+    function runProblemValidation() {
+
+      const nodes =
+        Array.isArray(state.nodos)
+          ? state.nodos
+          : [];
+
+      const root =
+        nodes.find(function (node) {
+          return node && node.codigo === "P";
+        });
+
+
+      /* =========================================================
+         1. DIRECCIÓN CAUSAL
+         ========================================================= */
+
+      const directionProblems = [];
+
+      nodes
+        .filter(function (node) {
+          return node && node.codigo !== "P";
+        })
+        .forEach(function (node) {
+
+          const parent =
+            nodes.find(function (candidate) {
+              return candidate &&
+                candidate.codigo === node.padre;
+            });
+
+          if (!parent) {
+
+            directionProblems.push(
+              node.codigo +
+              " no tiene un padre válido."
+            );
+
+            return;
+          }
+
+          if (node.tipo === "causa") {
+
+            if (
+              parent.codigo !== "P" &&
+              parent.tipo !== "causa"
+            ) {
+
+              directionProblems.push(
+                node.codigo +
+                " está conectado a un nodo que no corresponde a una causa."
+              );
+
+            }
+
+          }
+
+
+          if (node.tipo === "efecto") {
+
+            if (
+              parent.codigo !== "P" &&
+              parent.tipo !== "efecto"
+            ) {
+
+              directionProblems.push(
+                node.codigo +
+                " está conectado a un nodo que no corresponde a un efecto."
+              );
+
+            }
+
+          }
+
+        });
+
+
+      /* =========================================================
+         2. NIVEL
+         ========================================================= */
+
+      const levelProblems = [];
+
+      nodes
+        .filter(function (node) {
+          return node && node.codigo !== "P";
+        })
+        .forEach(function (node) {
+
+          const parent =
+            nodes.find(function (candidate) {
+              return candidate &&
+                candidate.codigo === node.padre;
+            });
+
+          if (!parent) {
+            return;
+          }
+
+          const expectedLevel =
+            parent.codigo === "P"
+              ? 1
+              : Number(parent.nivel) + 1;
+
+          if (Number(node.nivel) !== expectedLevel) {
+
+            levelProblems.push(
+              node.codigo +
+              " está en nivel " +
+              node.nivel +
+              " pero su padre " +
+              parent.codigo +
+              " corresponde al nivel " +
+              expectedLevel +
+              "."
+            );
+
+          }
+
+        });
+
+
+      /* =========================================================
+         3. SUFICIENCIA
+         ========================================================= */
+
+      /*
+       * Esta prueba no puede resolverse completamente por código.
+       * El sistema identifica ramas terminales y solicita juicio
+       * del formulador.
+       */
+
+      const causeRoots =
+        nodes.filter(function (node) {
+
+          if (!node || node.tipo !== "causa") {
+            return false;
+          }
+
+          return !nodes.some(function (child) {
+
+            return child &&
+              child.padre === node.codigo;
+
+          });
+
+        });
+
+
+      const effectLeaves =
+        nodes.filter(function (node) {
+
+          if (!node || node.tipo !== "efecto") {
+            return false;
+          }
+
+          return !nodes.some(function (child) {
+
+            return child &&
+              child.padre === node.codigo;
+
+          });
+
+        });
+
+
+      const sufficiencyReady =
+        causeRoots.length > 0 &&
+        Boolean(root);
+
+
+      /* =========================================================
+         4. NO CIRCULARIDAD
+         ========================================================= */
+
+      const circularProblems = [];
+
+
+      function createsCycle(node) {
+
+        const visited =
+          new Set();
+
+        let current =
+          node.padre;
+
+        while (
+          current &&
+          current !== "P"
+        ) {
+
+          if (visited.has(current)) {
+            return true;
+          }
+
+          if (current === node.codigo) {
+            return true;
+          }
+
+          visited.add(current);
+
+          const parent =
+            nodes.find(function (candidate) {
+
+              return candidate &&
+                candidate.codigo === current;
+
+            });
+
+          if (!parent) {
+            return false;
+          }
+
+          current =
+            parent.padre;
+
+        }
+
+        return false;
+
+      }
+
+
+      nodes
+        .filter(function (node) {
+          return node && node.codigo !== "P";
+        })
+        .forEach(function (node) {
+
+          if (createsCycle(node)) {
+
+            circularProblems.push(
+              node.codigo
+            );
+
+          }
+
+        });
+
+
+      /* =========================================================
+         5. EVIDENCIA
+         ========================================================= */
+
+      const evidenceProblems = [];
+
+      nodes
+        .filter(function (node) {
+          return node && node.codigo !== "P";
+        })
+        .forEach(function (node) {
+
+          const hasEvidence =
+            Boolean(
+              String(
+                node.evidencia || ""
+              ).trim()
+            );
+
+          const hasBaseline =
+            Boolean(
+              String(
+                node.lineaBase || ""
+              ).trim()
+            );
+
+          if (!hasEvidence) {
+
+            evidenceProblems.push(
+              node.codigo +
+              ": falta evidencia."
+            );
+
+          } else if (!hasBaseline) {
+
+            evidenceProblems.push(
+              node.codigo +
+              ": tiene evidencia pero falta línea base."
+            );
+
+          }
+
+        });
+
+
+      /*
+       * El problema central también debe quedar sustentado.
+       */
+
+      if (root) {
+
+        if (
+          !String(
+            root.evidencia || ""
+          ).trim()
+        ) {
+
+          evidenceProblems.push(
+            "P: falta evidencia del problema central."
+          );
+
+        }
+
+      } else {
+
+        evidenceProblems.push(
+          "No existe el problema central P."
+        );
+
+      }
+
+
+      /* =========================================================
+         RESULTADOS
+         ========================================================= */
+
+      const tests = [
+
+        {
+          key: "direccion",
+          title: "1. Dirección causal",
+          question:
+            "Cada vínculo debe poder leerse como «X produce Y» y «Y ocurre porque X».",
+          ok:
+            directionProblems.length === 0,
+          details:
+            directionProblems
+        },
+
+        {
+          key: "nivel",
+          title: "2. Nivel",
+          question:
+            "Entre un nodo y su superior inmediato no debe faltar un eslabón causal evidente.",
+          ok:
+            levelProblems.length === 0,
+          details:
+            levelProblems
+        },
+
+        {
+          key: "suficiencia",
+          title: "3. Suficiencia",
+          question:
+            "Si las causas inferiores se resolvieran, ¿sería razonable esperar que desapareciera el nodo superior?",
+          ok:
+            false,
+          pending:
+            true,
+          details:
+            sufficiencyReady
+              ? [
+                "El sistema identificó " +
+                causeRoots.length +
+                " causa(s) terminal(es). " +
+                "La suficiencia causal requiere juicio del formulador."
+              ]
+              : [
+                "El árbol todavía no tiene una estructura suficiente para realizar esta lectura."
+              ]
+        },
+
+        {
+          key: "circularidad",
+          title: "4. No circularidad",
+          question:
+            "Ningún nodo debe terminar dependiendo de sí mismo mediante su cadena de padres.",
+          ok:
+            circularProblems.length === 0,
+          details:
+            circularProblems
+        },
+
+        {
+          key: "evidencia",
+          title: "5. Evidencia",
+          question:
+            "Cada nodo debe contar con al menos una fuente o registro que permita contrastarlo.",
+          ok:
+            evidenceProblems.length === 0,
+          details:
+            evidenceProblems
+        }
+
+      ];
+
+
+      renderProblemValidationResults(
+        tests
+      );
+
+      return tests;
+
+    }
+
+    function renderProblemValidationResults(tests) {
+
+      const box =
+        document.getElementById(
+          "problemValidationWorkspace"
+        );
+
+      const summary =
+        document.getElementById(
+          "problemValidationSummary"
+        );
+
+      if (!box) {
+        return;
+      }
+
+
+      const failed =
+        tests.filter(function (test) {
+
+          return !test.ok &&
+            !test.pending;
+
+        });
+
+
+      const pending =
+        tests.filter(function (test) {
+
+          return test.pending;
+
+        });
+
+
+      const passed =
+        tests.filter(function (test) {
+
+          return test.ok;
+
+        });
+
+
+      let summaryTitle;
+      let summaryText;
+      let summaryClass;
+
+
+      if (failed.length > 0) {
+
+        summaryTitle =
+          "El árbol requiere correcciones";
+
+        summaryText =
+          failed.length +
+          " prueba(s) presentan hallazgos.";
+
+        summaryClass =
+          "error";
+
+      } else if (pending.length > 0) {
+
+        summaryTitle =
+          "Validación estructural favorable, juicio pendiente";
+
+        summaryText =
+          "Las pruebas automáticas no detectan fallas estructurales, " +
+          "pero aún debe revisarse la suficiencia y la validación externa.";
+
+        summaryClass =
+          "warning";
+
+      } else {
+
+        summaryTitle =
+          "Validación automática favorable";
+
+        summaryText =
+          "No se detectaron fallas automáticas en las cinco pruebas.";
+
+        summaryClass =
+          "success";
+
+      }
+
+
+      if (summary) {
+
+        summary.className =
+          "problem-validation-summary " +
+          summaryClass;
+
+        summary.innerHTML = `
+
+      <div>
+
+        <strong>
+          ${escapeHTML(summaryTitle)}
+        </strong>
+
+        <span>
+          ${escapeHTML(summaryText)}
+        </span>
+
+      </div>
+
+      <div class="problem-validation-counter">
+
+        <span>
+          ✓ ${passed.length}
+        </span>
+
+        <span>
+          ! ${pending.length}
+        </span>
+
+        <span>
+          ✕ ${failed.length}
+        </span>
+
+      </div>
+
+    `;
+
+      }
+
+
+      box.innerHTML =
+        tests.map(function (test) {
+
+          const status =
+            test.pending
+              ? "pending"
+              : test.ok
+                ? "ok"
+                : "error";
+
+
+          const statusLabel =
+            test.pending
+              ? "JUICIO REQUERIDO"
+              : test.ok
+                ? "CONFORME"
+                : "REVISAR";
+
+
+          return `
+
+        <div
+          class="problem-validation-item ${status}">
+
+          <div class="problem-validation-item-head">
+
+            <div>
+
+              <span class="
+                problem-validation-status
+                ${status}
+              ">
+
+                ${statusLabel}
+
+              </span>
+
+              <h4>
+                ${escapeHTML(test.title)}
+              </h4>
+
+            </div>
+
+          </div>
+
+
+          <p class="problem-validation-question">
+
+            ${escapeHTML(test.question)}
+
+          </p>
+
+
+          ${test.ok
+
+              ? `
+
+                <div class="problem-validation-message">
+
+                  ✓ No se encontraron hallazgos automáticos.
+
+                </div>
+
+              `
+
+              : test.pending
+
+                ? `
+
+                  <div class="problem-validation-message pending">
+
+                    ${test.details
+                  .map(function (detail) {
+
+                    return `
+                            <div>
+                              ${escapeHTML(detail)}
+                            </div>
+                          `;
+
+                  })
+                  .join("")
+                }
+
+                  </div>
+
+                `
+
+                : `
+
+                  <div class="problem-validation-findings">
+
+                    <strong>
+                      Hallazgos
+                    </strong>
+
+                    <ul>
+
+                      ${test.details
+                  .map(function (detail) {
+
+                    return `
+                              <li>
+                                ${escapeHTML(detail)}
+                              </li>
+                            `;
+
+                  })
+                  .join("")
+                }
+
+                    </ul>
+
+                  </div>
+
+                `
+            }
+
+        </div>
+
+      `;
+
+        }).join("");
+    }
+
+    function saveProblemExternalValidation() {
+
+      const recognized =
+        document
+          .getElementById("validationRecognized")
+          ?.value.trim() || "";
+
+      const rejected =
+        document
+          .getElementById("validationRejected")
+          ?.value.trim() || "";
+
+      const missing =
+        document
+          .getElementById("validationMissing")
+          ?.value.trim() || "";
+
+      const source =
+        document
+          .getElementById("validationSource")
+          ?.value || "";
+
+      const observations =
+        document
+          .getElementById("validationObservations")
+          ?.value.trim() || "";
+
+
+      if (
+        !recognized &&
+        !rejected &&
+        !missing &&
+        !observations
+      ) {
+
+        alert(
+          "Registra al menos un resultado de la validación."
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * La validación externa se conserva en la bitácora
+       * del artefacto, sin guardar nombres ni datos personales.
+       */
+
+      if (!Array.isArray(state.bitacora)) {
+        state.bitacora = [];
+      }
+
+
+      state.bitacora.push({
+
+        fecha:
+          new Date().toISOString(),
+
+        patron:
+          "Validación externa del árbol",
+
+        salida:
+          [
+            source
+              ? "Modalidad: " + source
+              : "",
+
+            recognized
+              ? "Reconocidos: " + recognized
+              : "",
+
+            rejected
+              ? "No reconocidos: " + rejected
+              : "",
+
+            missing
+              ? "Faltantes: " + missing
+              : ""
+          ]
+            .filter(Boolean)
+            .join("\n"),
+
+        correccion:
+          observations ||
+          "Sin corrección registrada."
+
+      });
+
+
+      const notice =
+        document.getElementById(
+          "externalValidationNotice"
+        );
+
+
+      if (notice) {
+
+        notice.innerHTML = `
+
+      <div class="notice success">
+
+        <strong>
+          ✓ Validación registrada
+        </strong>
+
+        <div style="margin-top:4px">
+
+          El resultado quedó incorporado a la bitácora
+          para conservar la trazabilidad de la revisión.
+
+        </div>
+
+      </div>
+
+    `;
+
+      }
+
+    }
+
+    function saveProblemValidationDecision() {
+
+      const selected =
+        document.querySelector(
+          'input[name="problemValidationDecision"]:checked'
+        );
+
+      if (!selected) {
+
+        alert(
+          "Selecciona el estado de cierre de la validación."
+        );
+
+        return;
+
+      }
+
+
+      if (!Array.isArray(state.bitacora)) {
+        state.bitacora = [];
+      }
+
+
+      const labels = {
+
+        aprobado:
+          "Árbol consistente",
+
+        ajustes:
+          "Requiere ajustes",
+
+        pendiente:
+          "Validación pendiente"
+
+      };
+
+
+      state.bitacora.push({
+
+        fecha:
+          new Date().toISOString(),
+
+        patron:
+          "Cierre de validación metodológica",
+
+        salida:
+          "Decisión: " +
+          labels[selected.value],
+
+        correccion:
+          selected.value === "aprobado"
+            ? "El formulador considera que el árbol puede continuar."
+            : selected.value === "ajustes"
+              ? "El árbol debe ser corregido antes de continuar."
+              : "La validación aún no es suficiente."
+
+      });
+
+
+      const notice =
+        document.getElementById(
+          "problemValidationDecisionNotice"
+        );
+
+
+      if (notice) {
+
+        notice.innerHTML = `
+
+      <div class="notice success">
+
+        <strong>
+          ✓ Decisión registrada
+        </strong>
+
+        <div style="margin-top:4px">
+
+          ${escapeHTML(
+          labels[selected.value]
+        )}
+
+        </div>
+
+      </div>
+
+    `;
+
+      }
+
+    }
+
+
     function renderProblemContext() {
 
       const caso = state.caso || {};
@@ -3631,7 +6032,9 @@
       const fields = {
 
         problemCaseName:
-          caso.nombre || "",
+          caso.titulo ||
+          caso.nombre ||
+          "",
 
         problemTerritory:
           caso.territorio || "",
@@ -3667,11 +6070,405 @@
           return;
         }
 
-        field.value = fields[fieldId];
+        field.value =
+          fields[fieldId];
 
       });
 
     }
+
+    function addProblemLog() {
+
+      const pattern =
+        document.getElementById("logPattern")
+          ?.value.trim() || "";
+
+      const prompt =
+        document.getElementById("logPrompt")
+          ?.value.trim() || "";
+
+      const output =
+        document.getElementById("logOutput")
+          ?.value.trim() || "";
+
+      const error =
+        document.getElementById("logError")
+          ?.value.trim() || "";
+
+      const detection =
+        document.getElementById("logDetection")
+          ?.value.trim() || "";
+
+      const correction =
+        document.getElementById("logCorrection")
+          ?.value.trim() || "";
+
+
+      if (!pattern || !prompt || !output || !error || !correction) {
+
+        alert(
+          "Completa propósito, prompt, salida, error y corrección humana."
+        );
+
+        return;
+      }
+
+
+      if (!Array.isArray(state.bitacora)) {
+        state.bitacora = [];
+      }
+
+
+      state.bitacora.push({
+
+        fecha:
+          new Date().toISOString(),
+
+        patron:
+          "Paso 2 · " + pattern,
+
+        prompt:
+          prompt,
+
+        salida:
+          output,
+
+        error:
+          error,
+
+        comoSeDetecto:
+          detection,
+
+        correccion:
+          correction
+
+      });
+
+
+      renderProblemBitacora();
+
+      clearProblemLogForm();
+
+
+      const notice =
+        document.getElementById(
+          "problemLogNotice"
+        );
+
+
+      if (notice) {
+
+        notice.innerHTML = `
+
+      <div class="notice success">
+
+        <strong>
+          ✓ Registro agregado
+        </strong>
+
+        <div style="margin-top:4px">
+          La intervención quedó incorporada a la bitácora.
+        </div>
+
+      </div>
+
+    `;
+
+      }
+
+    }
+
+    function renderProblemBitacora() {
+
+      const box =
+        document.getElementById(
+          "problemLogWorkspace"
+        );
+
+      if (!box) {
+        return;
+      }
+
+
+      const logs =
+        Array.isArray(state.bitacora)
+          ? state.bitacora
+          : [];
+
+
+      const count =
+        document.getElementById(
+          "problemLogCount"
+        );
+
+
+      if (count) {
+
+        count.textContent =
+          logs.length +
+          (logs.length === 1
+            ? " registro"
+            : " registros");
+
+      }
+
+
+      if (!logs.length) {
+
+        box.innerHTML = `
+
+      <div class="notice">
+        Aún no hay registros de bitácora.
+      </div>
+
+    `;
+
+        return;
+      }
+
+
+      box.innerHTML = `
+
+    <div class="problem-log-list">
+
+      ${logs
+          .map(function (log, index) {
+
+            const date =
+              formatProblemLogDate(
+                log.fecha
+              );
+
+
+            return `
+
+              <article
+                class="problem-log-entry">
+
+                <div class="problem-log-entry-head">
+
+                  <div>
+
+                    <span class="badge">
+                      #${index + 1}
+                    </span>
+
+                    <strong>
+                      ${escapeHTML(
+              log.patron ||
+              "Intervención IA"
+            )}
+                    </strong>
+
+                  </div>
+
+                  <span class="problem-log-date">
+                    ${escapeHTML(date)}
+                  </span>
+
+                </div>
+
+
+                <div class="problem-log-grid">
+
+                  <div>
+
+                    <label>
+                      Prompt empleado
+                    </label>
+
+                    <div class="problem-log-content">
+                      ${escapeHTML(
+              log.prompt ||
+              "No registrado"
+            )}
+                    </div>
+
+                  </div>
+
+
+                  <div>
+
+                    <label>
+                      Salida del modelo
+                    </label>
+
+                    <div class="problem-log-content proposal">
+                      <span class="badge warning">
+                        Propuesta
+                      </span>
+
+                      <div style="margin-top:6px">
+                        ${escapeHTML(
+              log.salida ||
+              "No registrada"
+            )}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  <div>
+
+                    <label>
+                      Qué produjo mal
+                    </label>
+
+                    <div class="problem-log-content error">
+                      ${escapeHTML(
+              log.error ||
+              "No registrado"
+            )}
+                    </div>
+
+                  </div>
+
+
+                  <div>
+
+                    <label>
+                      Cómo se detectó
+                    </label>
+
+                    <div class="problem-log-content">
+                      ${escapeHTML(
+              log.comoSeDetecto ||
+              "No registrado"
+            )}
+                    </div>
+
+                  </div>
+
+
+                  <div class="problem-log-correction">
+
+                    <label>
+                      Corrección humana
+                    </label>
+
+                    <div class="problem-log-content correction">
+                      ${escapeHTML(
+              log.correccion ||
+              "No registrada"
+            )}
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="problem-log-actions">
+
+                  <button
+                    type="button"
+                    class="btn-mini"
+                    onclick="deleteProblemLog(${index})">
+
+                    Eliminar registro
+
+                  </button>
+
+                </div>
+
+              </article>
+
+            `;
+
+          })
+          .join("")
+        }
+
+    </div>
+
+  `;
+
+    }
+
+    function deleteProblemLog(index) {
+
+      if (
+        !Array.isArray(state.bitacora) ||
+        !state.bitacora[index]
+      ) {
+        return;
+      }
+
+
+      const confirmed =
+        confirm(
+          "¿Desea eliminar este registro de la bitácora?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      state.bitacora.splice(
+        index,
+        1
+      );
+
+
+      renderProblemBitacora();
+
+    }
+
+    function clearProblemLogForm() {
+
+      [
+        "logPattern",
+        "logPrompt",
+        "logOutput",
+        "logError",
+        "logDetection",
+        "logCorrection"
+
+      ].forEach(function (id) {
+
+        const field =
+          document.getElementById(id);
+
+        if (field) {
+          field.value = "";
+        }
+
+      });
+
+    }
+
+    function formatProblemLogDate(value) {
+
+      if (!value) {
+        return "Fecha no registrada";
+      }
+
+
+      const date =
+        new Date(value);
+
+
+      if (Number.isNaN(date.getTime())) {
+        return String(value);
+      }
+
+
+      return date.toLocaleString(
+        "es-CO",
+        {
+          dateStyle: "short",
+          timeStyle: "short"
+        }
+      );
+
+    }
+
+
+
     (function () {
       "use strict";
 
@@ -5684,6 +8481,8 @@
 
       refreshNodeParentOptions();
 
+      renderProblemBitacora();
+
     });
 
     const originalShowProblemSubscreen = showProblemSubscreen;
@@ -6198,6 +8997,10 @@
       };
 
       window.state.nodos.push(node);
+      renderProblemModule();
+      renderNodeEvidence();
+      refreshNodeParentOptions();
+
 
       /*
        * Limpiar únicamente los campos de captura.
@@ -6246,6 +9049,10 @@
       }
 
       window.state.nodos.splice(index, 1);
+
+      renderProblemNodes();
+      renderProblemTree();
+      renderNodeEvidence();
 
       /*
        * Si otros nodos apuntaban al nodo eliminado,
@@ -6408,173 +9215,1009 @@
       }
 
       const nodes =
-        Array.isArray(window.state.nodos)
-          ? window.state.nodos
+        Array.isArray(state.nodos)
+          ? state.nodos
           : [];
 
-      const problem =
-        window.state.problema?.enunciado || "";
+      /* ---------------------------------------------------------
+         PROBLEMA CENTRAL
+         Se toma del nodo P, que es la fuente estructural
+         del árbol.
+         --------------------------------------------------------- */
+
+      const root =
+        nodes.find(function (node) {
+          return node && node.codigo === "P";
+        });
+
+      const problemText =
+        root?.enunciado ||
+        state.problema?.enunciado ||
+        "Problema central pendiente";
+
+
+      /* ---------------------------------------------------------
+         SEPARACIÓN DE NODOS
+         --------------------------------------------------------- */
 
       const effects =
-        nodes
-          .filter(function (node) {
-            return node &&
-              node.tipo === "efecto";
-          })
-          .sort(function (a, b) {
-            return Number(a.nivel || 0) -
-              Number(b.nivel || 0);
-          });
+        nodes.filter(function (node) {
+          return node &&
+            node.tipo === "efecto";
+        });
 
       const causes =
-        nodes
-          .filter(function (node) {
-            return node &&
-              node.tipo === "causa";
-          })
-          .sort(function (a, b) {
-            return Number(b.nivel || 0) -
-              Number(a.nivel || 0);
+        nodes.filter(function (node) {
+          return node &&
+            node.tipo === "causa";
+        });
+
+
+      /* ---------------------------------------------------------
+         ORGANIZAR POR NIVEL
+         --------------------------------------------------------- */
+
+      function groupByLevel(list) {
+
+        const groups = {};
+
+        list.forEach(function (node) {
+
+          const level =
+            Number(node.nivel || 1);
+
+          if (!groups[level]) {
+            groups[level] = [];
+          }
+
+          groups[level].push(node);
+
+        });
+
+        Object.keys(groups).forEach(function (level) {
+
+          groups[level].sort(function (a, b) {
+
+            return String(a.codigo)
+              .localeCompare(
+                String(b.codigo),
+                undefined,
+                { numeric: true }
+              );
+
           });
 
-      function cards(list) {
+        });
 
-        if (!list.length) {
+        return groups;
+      }
 
-          return `
-        <div class="notice">
-          No hay nodos registrados.
-        </div>
-      `;
 
-        }
+      const effectLevels =
+        groupByLevel(effects);
 
-        return list.map(function (node) {
+      const causeLevels =
+        groupByLevel(causes);
 
-          return `
-        <div class="tree-node"
-          style="
-            min-width:220px;
-            max-width:360px;
-          ">
 
-          <strong>
-            ${escapeHTML(node.codigo)}
-          </strong>
+      /* ---------------------------------------------------------
+         NIVELES EXISTENTES
+         --------------------------------------------------------- */
 
-          <div style="margin-top:6px;">
-            ${escapeHTML(node.enunciado)}
-          </div>
+      const effectLevelNumbers =
+        Object.keys(effectLevels)
+          .map(Number)
+          .sort(function (a, b) {
+            return b - a;
+          });
 
-          <small
-            style="
-              display:block;
-              margin-top:7px;
-            ">
+      const causeLevelNumbers =
+        Object.keys(causeLevels)
+          .map(Number)
+          .sort(function (a, b) {
+            return a - b;
+          });
 
-            Nivel ${escapeHTML(node.nivel)}
-            · Padre ${escapeHTML(node.padre || "P")}
 
-          </small>
+      /* ---------------------------------------------------------
+         COLOR POR JERARQUÍA
+         --------------------------------------------------------- */
 
-        </div>
-      `;
+      const effectColors = [
+        "#315d82",
+        "#557d9e",
+        "#7698b2",
+        "#98b1c3"
+      ];
 
-        }).join("");
+      const causeColors = [
+        "#9a6735",
+        "#b7834e",
+        "#c89b70",
+        "#d9b897"
+      ];
+
+
+      function hierarchyColor(type, level) {
+
+        const palette =
+          type === "causa"
+            ? causeColors
+            : effectColors;
+
+        return palette[
+          Math.min(
+            Math.max(Number(level) - 1, 0),
+            palette.length - 1
+          )
+        ];
+      }
+
+
+      /* ---------------------------------------------------------
+         ESCAPE SVG
+         --------------------------------------------------------- */
+
+      function svgText(text) {
+
+        return escapeHTML(
+          String(text || "")
+        );
 
       }
 
+
+      /* ---------------------------------------------------------
+         CONFIGURACIÓN DEL LIENZO
+         --------------------------------------------------------- */
+
+      const width = 1180;
+
+      const nodeWidth = 210;
+      const nodeHeight = 82;
+
+      const horizontalGap = 28;
+      const verticalGap = 72;
+
+      const allLevels =
+        Math.max(
+          effectLevelNumbers.length,
+          causeLevelNumbers.length,
+          1
+        );
+
+      const height =
+        Math.max(
+          620,
+          190 +
+          allLevels * (nodeHeight + verticalGap)
+        );
+
+
+      /* ---------------------------------------------------------
+         POSICIONES
+         --------------------------------------------------------- */
+
+      const positions = new Map();
+
+
+      function distribute(nodesList, y) {
+
+        if (!nodesList.length) {
+          return;
+        }
+
+        const totalWidth =
+          nodesList.length * nodeWidth +
+          Math.max(0, nodesList.length - 1) *
+          horizontalGap;
+
+        let startX =
+          (width - totalWidth) / 2;
+
+        nodesList.forEach(function (node, index) {
+
+          positions.set(
+            node.codigo,
+            {
+              x: startX +
+                index *
+                (nodeWidth + horizontalGap),
+
+              y: y
+            }
+          );
+
+        });
+
+      }
+
+
+      /* ---------------------------------------------------------
+         EFECTOS
+         Los niveles superiores van arriba.
+         --------------------------------------------------------- */
+
+      let currentY = 35;
+
+      effectLevelNumbers.forEach(function (level) {
+
+        distribute(
+          effectLevels[level],
+          currentY
+        );
+
+        currentY +=
+          nodeHeight +
+          verticalGap;
+
+      });
+
+
+      /* ---------------------------------------------------------
+         PROBLEMA CENTRAL
+         --------------------------------------------------------- */
+
+      const problemY =
+        currentY + 5;
+
+      positions.set(
+        "P",
+        {
+          x: (width - 390) / 2,
+          y: problemY
+        }
+      );
+
+
+      /* ---------------------------------------------------------
+         CAUSAS
+         --------------------------------------------------------- */
+
+      currentY =
+        problemY +
+        125;
+
+      causeLevelNumbers.forEach(function (level) {
+
+        distribute(
+          causeLevels[level],
+          currentY
+        );
+
+        currentY +=
+          nodeHeight +
+          verticalGap;
+
+      });
+
+
+      /* ---------------------------------------------------------
+         SVG
+         --------------------------------------------------------- */
+
+      let svg = `
+    <svg
+      class="problem-tree-svg"
+      viewBox="0 0 ${width} ${height}"
+      role="img"
+      aria-label="Árbol jerárquico de problemas">
+
+      <defs>
+
+        <filter
+          id="problemTreeShadow"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%">
+
+          <feDropShadow
+            dx="0"
+            dy="2"
+            stdDeviation="2"
+            flood-opacity=".10"/>
+
+        </filter>
+
+      </defs>
+
+      <!-- TÍTULO EFECTOS -->
+
+      <text
+        x="${width / 2}"
+        y="18"
+        text-anchor="middle"
+        class="problem-tree-label">
+
+        EFECTOS
+
+      </text>
+  `;
+
+
+      /* ---------------------------------------------------------
+         CONECTORES
+         --------------------------------------------------------- */
+
+      function drawConnector(child, parent) {
+
+        const childPos =
+          positions.get(child.codigo);
+
+        const parentPos =
+          positions.get(parent.codigo);
+
+        if (!childPos || !parentPos) {
+          return;
+        }
+
+        const childCenter =
+          childPos.x +
+          nodeWidth / 2;
+
+        const parentCenter =
+          parentPos.x +
+          nodeWidth / 2;
+
+        /*
+         * Para efectos:
+         * hijo arriba → padre abajo.
+         *
+         * Para causas:
+         * padre arriba → hijo abajo.
+         */
+
+        const isEffect =
+          child.tipo === "efecto";
+
+        const startY =
+          isEffect
+            ? childPos.y + nodeHeight
+            : parentPos.y + nodeHeight;
+
+        const endY =
+          isEffect
+            ? parentPos.y
+            : childPos.y;
+
+        const middleY =
+          (startY + endY) / 2;
+
+        return `
+      <path
+        d="
+          M ${isEffect ? childCenter : parentCenter}
+            ${startY}
+
+          C ${isEffect ? childCenter : parentCenter}
+            ${middleY},
+
+            ${isEffect ? parentCenter : childCenter}
+            ${middleY},
+
+            ${isEffect ? parentCenter : childCenter}
+            ${endY}
+        "
+        class="problem-tree-connector"
+      />
+    `;
+      }
+
+
+      /* Conectores de efectos */
+
+      effects.forEach(function (node) {
+
+        const parent =
+          nodes.find(function (candidate) {
+
+            return candidate &&
+              candidate.codigo === node.padre;
+
+          });
+
+        if (parent) {
+          svg += drawConnector(node, parent);
+        }
+
+      });
+
+
+      /* Conectores de causas */
+
+      causes.forEach(function (node) {
+
+        const parent =
+          nodes.find(function (candidate) {
+
+            return candidate &&
+              candidate.codigo === node.padre;
+
+          });
+
+        if (parent) {
+          svg += drawConnector(node, parent);
+        }
+
+      });
+
+
+      /* ---------------------------------------------------------
+         NODO CENTRAL
+         --------------------------------------------------------- */
+
+      const rootPosition =
+        positions.get("P");
+
+      svg += `
+
+    <g filter="url(#problemTreeShadow)">
+
+      <rect
+        x="${rootPosition.x}"
+        y="${rootPosition.y}"
+        width="390"
+        height="82"
+        rx="10"
+        class="problem-tree-central"/>
+
+      <text
+        x="${width / 2}"
+        y="${rootPosition.y + 23}"
+        text-anchor="middle"
+        class="problem-tree-central-title">
+
+        PROBLEMA CENTRAL
+
+      </text>
+
+      <foreignObject
+        x="${rootPosition.x + 12}"
+        y="${rootPosition.y + 31}"
+        width="366"
+        height="45">
+
+        <div class="problem-tree-central-text">
+
+          ${svgText(problemText)}
+
+        </div>
+
+      </foreignObject>
+
+    </g>
+
+  `;
+
+
+      /* ---------------------------------------------------------
+         NODOS
+         --------------------------------------------------------- */
+
+      function drawNode(node) {
+
+        const position =
+          positions.get(node.codigo);
+
+        if (!position) {
+          return "";
+        }
+
+        const color =
+          hierarchyColor(
+            node.tipo,
+            node.nivel
+          );
+
+        const label =
+          node.tipo === "causa"
+            ? "CAUSA"
+            : "EFECTO";
+
+        const parentText =
+          node.padre
+            ? "Padre " + node.padre
+            : "";
+
+
+        return `
+
+      <g
+        class="problem-tree-node"
+        filter="url(#problemTreeShadow)">
+
+        <rect
+          x="${position.x}"
+          y="${position.y}"
+          width="${nodeWidth}"
+          height="${nodeHeight}"
+          rx="9"
+          fill="#ffffff"
+          stroke="${color}"
+          stroke-width="2"/>
+
+        <rect
+          x="${position.x}"
+          y="${position.y}"
+          width="5"
+          height="${nodeHeight}"
+          rx="3"
+          fill="${color}"/>
+
+        <text
+          x="${position.x + 15}"
+          y="${position.y + 19}"
+          class="problem-tree-code">
+
+          ${svgText(node.codigo)}
+
+        </text>
+
+        <text
+          x="${position.x + nodeWidth - 12}"
+          y="${position.y + 19}"
+          text-anchor="end"
+          class="problem-tree-type"
+          fill="${color}">
+
+          ${label}
+
+        </text>
+
+        <foreignObject
+          x="${position.x + 14}"
+          y="${position.y + 27}"
+          width="${nodeWidth - 28}"
+          height="39">
+
+          <div class="problem-tree-node-text">
+
+            ${svgText(node.enunciado)}
+
+          </div>
+
+        </foreignObject>
+
+        <text
+          x="${position.x + 14}"
+          y="${position.y + 76}"
+          class="problem-tree-meta">
+
+          Nivel ${svgText(node.nivel)}
+          ${parentText ? " · " + svgText(parentText) : ""}
+
+        </text>
+
+      </g>
+
+    `;
+
+      }
+
+
+      effects.forEach(function (node) {
+        svg += drawNode(node);
+      });
+
+      causes.forEach(function (node) {
+        svg += drawNode(node);
+      });
+
+
+      /* ---------------------------------------------------------
+         ETIQUETA CAUSAS
+         --------------------------------------------------------- */
+
+      const causesLabelY =
+        problemY + 112;
+
+      svg += `
+
+    <text
+      x="${width / 2}"
+      y="${causesLabelY}"
+      text-anchor="middle"
+      class="problem-tree-label">
+
+      CAUSAS
+
+    </text>
+
+  `;
+
+
+      svg += `</svg>`;
+
+
       container.innerHTML = `
 
-    <div style="
-      display:grid;
-      grid-template-columns:1fr;
-      gap:16px;
-      align-items:center;
-    ">
+    <div class="problem-tree-header">
 
       <div>
 
-        <div
-          class="small-note"
-          style="
-            text-align:center;
-            font-weight:700;
-            margin-bottom:8px;
-          ">
+        <strong>Árbol jerárquico de problemas</strong>
 
-          EFECTOS
-
-        </div>
-
-        <div style="
-          display:flex;
-          flex-wrap:wrap;
-          gap:10px;
-          justify-content:center;
-        ">
-
-          ${cards(effects)}
-
-        </div>
+        <span>
+          ${nodes.filter(n => n.codigo !== "P").length}
+          nodos · relaciones padre-hijo explícitas
+        </span>
 
       </div>
 
+      <div class="problem-tree-legend">
 
-      <div
-        class="tree-node"
-        style="
-          border:2px solid #374151;
-          background:#f3f4f6;
-          text-align:center;
-          max-width:560px;
-          margin:0 auto;
-          width:100%;
-        ">
+        <span>
+          <i class="tree-level-dot effect-level-1"></i>
+          Efectos
+        </span>
 
-        <strong>
-          PROBLEMA CENTRAL
-        </strong>
+        <span>
+          <i class="tree-level-dot cause-level-1"></i>
+          Causas
+        </span>
 
-        <div style="margin-top:8px;">
-
-          ${escapeHTML(
-        problem || "Problema central pendiente"
-      )}
-
-        </div>
-
-      </div>
-
-
-      <div>
-
-        <div
-          class="small-note"
-          style="
-            text-align:center;
-            font-weight:700;
-            margin-bottom:8px;
-          ">
-
-          CAUSAS
-
-        </div>
-
-        <div style="
-          display:flex;
-          flex-wrap:wrap;
-          gap:10px;
-          justify-content:center;
-        ">
-
-          ${cards(causes)}
-
-        </div>
+        <span>
+          <i class="tree-level-dot central-level"></i>
+          Problema
+        </span>
 
       </div>
 
     </div>
+
+    <div class="problem-tree-canvas">
+
+      ${svg}
+
+    </div>
+
+    <div class="problem-tree-reading">
+
+      <strong>Lectura metodológica</strong>
+
+      <span>
+        Los efectos se leen hacia arriba como consecuencias;
+        las causas se leen hacia abajo preguntando
+        «¿por qué ocurre?». Cada relación se determina mediante
+        el campo <b>padre</b>, no únicamente por el nivel.
+      </span>
+
+    </div>
+
+  `;
+
+    }
+
+    function renderNodeEvidence() {
+
+      const box =
+        document.getElementById("nodeEvidenceWorkspace");
+
+      if (!box) {
+        return;
+      }
+
+      const nodes =
+        Array.isArray(state.nodos)
+          ? state.nodos
+          : [];
+
+      if (!nodes.length) {
+
+        box.innerHTML = `
+      <div class="notice">
+        Aún no hay nodos registrados.
+      </div>
+    `;
+
+        return;
+      }
+
+      /*
+       * Para el Avance 2:
+       * P y nodos de primer nivel requieren sustentación.
+       * Los demás se muestran para trazabilidad.
+       */
+
+      const ordered =
+        [...nodes].sort(function (a, b) {
+
+          if (a.codigo === "P") return -1;
+          if (b.codigo === "P") return 1;
+
+          if (a.tipo !== b.tipo) {
+            return a.tipo === "efecto" ? -1 : 1;
+          }
+
+          return Number(a.nivel || 0) -
+            Number(b.nivel || 0);
+
+        });
+
+
+      function requirement(node) {
+
+        if (node.codigo === "P") {
+          return "Obligatoria";
+        }
+
+        if (Number(node.nivel) === 1) {
+          return "Obligatoria";
+        }
+
+        return "Opcional en Avance 2";
+      }
+
+
+      function confidenceClass(value) {
+
+        if (value === "Alta") {
+          return "success";
+        }
+
+        if (value === "Baja") {
+          return "danger";
+        }
+
+        return "warning";
+      }
+
+
+      box.innerHTML = `
+
+    <div class="node-evidence-summary">
+
+      <div>
+        <strong>
+          ${ordered.length}
+          elementos con trazabilidad
+        </strong>
+
+        <span>
+          La ficha se alimenta directamente de los nodos
+          registrados en el árbol.
+        </span>
+      </div>
+
+      <div class="node-evidence-legend">
+
+        <span class="badge success">
+          Sustentación completa
+        </span>
+
+        <span class="badge warning">
+          Pendiente de fortalecer
+        </span>
+
+        <span class="badge danger">
+          Sin evidencia
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="node-evidence-table-wrap">
+
+      <table class="node-evidence-table">
+
+        <thead>
+
+          <tr>
+
+            <th>Código</th>
+
+            <th>Enunciado</th>
+
+            <th>Tipo / nivel</th>
+
+            <th>Evidencia</th>
+
+            <th>Línea base</th>
+
+            <th>Confianza</th>
+
+            <th>Estado</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${ordered.map(function (node) {
+
+        const hasEvidence =
+          Boolean(
+            String(node.evidencia || "").trim()
+          );
+
+        const hasBaseline =
+          Boolean(
+            String(node.lineaBase || "").trim()
+          );
+
+        const complete =
+          hasEvidence &&
+          hasBaseline;
+
+        const confidence =
+          node.confianza || "Baja";
+
+        const statusClass =
+          complete
+            ? "success"
+            : hasEvidence
+              ? "warning"
+              : "danger";
+
+        const statusText =
+          complete
+            ? "Sustentada"
+            : hasEvidence
+              ? "Completar línea base"
+              : "Falta evidencia";
+
+        return `
+
+              <tr>
+
+                <td>
+
+                  <strong>
+                    ${escapeHTML(node.codigo)}
+                  </strong>
+
+                  ${node.codigo === "P"
+            ? `<span class="badge">Problema</span>`
+            : ""}
+
+                </td>
+
+
+                <td>
+
+                  <div class="node-evidence-statement">
+
+                    ${escapeHTML(
+              node.enunciado || ""
+            )}
+
+                  </div>
+
+                  <div class="small-note">
+
+                    Padre:
+                    ${escapeHTML(
+              node.padre || "—"
+            )}
+
+                  </div>
+
+                </td>
+
+
+                <td>
+
+                  <span class="badge">
+
+                    ${node.tipo === "causa"
+            ? "Causa"
+            : node.tipo === "efecto"
+              ? "Efecto"
+              : "Problema"}
+
+                  </span>
+
+                  <div class="small-note"
+                    style="margin-top:5px">
+
+                    Nivel
+                    ${escapeHTML(
+                node.nivel ?? "—"
+              )}
+
+                  </div>
+
+                </td>
+
+
+                <td>
+
+                  <div class="
+                    ${hasEvidence
+            ? "node-evidence-value"
+            : "node-evidence-missing"}
+                  ">
+
+                    ${escapeHTML(
+              node.evidencia ||
+              "Pendiente de fuente"
+            )}
+
+                  </div>
+
+                </td>
+
+
+                <td>
+
+                  <div class="
+                    ${hasBaseline
+            ? "node-evidence-value"
+            : "node-evidence-missing"}
+                  ">
+
+                    ${escapeHTML(
+              node.lineaBase ||
+              "Pendiente de dato"
+            )}
+
+                  </div>
+
+                </td>
+
+
+                <td>
+
+                  <span class="
+                    badge
+                    ${confidenceClass(confidence)}
+                  ">
+
+                    ${escapeHTML(confidence)}
+
+                  </span>
+
+                </td>
+
+
+                <td>
+
+                  <span class="
+                    badge
+                    ${statusClass}
+                  ">
+
+                    ${statusText}
+
+                  </span>
+
+                  <div class="small-note"
+                    style="margin-top:5px">
+
+                    ${requirement(node)}
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            `;
+
+      }).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <div class="notice"
+      style="margin-top:12px">
+
+      <strong>Regla de sustentación:</strong>
+      un nodo no se considera suficientemente sustentado solo
+      porque sea plausible. Debe poder señalarse una fuente,
+      un dato de línea base o una verificación pendiente.
+      Las propuestas de IA deben contrastarse antes de aceptarse.
+
+    </div>
+
   `;
     }
 
@@ -6583,6 +10226,591 @@
       renderProblemNodes();
 
       renderProblemTree();
+
+    }
+
+    /* =========================================================
+   PASO 2.6 · ASISTENTE IA
+   Generación contextualizada de prompts
+   ========================================================= */
+
+    function generateProblemPrompt(tipo) {
+
+      const caso = state.caso || {};
+      const problema = state.problema || {};
+
+      const nodos =
+        Array.isArray(state.nodos)
+          ? state.nodos
+          : [];
+
+
+      /* ---------------------------------------------------------
+         DATOS DEL CASO
+         --------------------------------------------------------- */
+
+      const casoNombre =
+        caso.nombre ||
+        caso.titulo ||
+        "No registrado";
+
+      const territorio =
+        caso.territorio ||
+        "No registrado";
+
+      const poblacion =
+        caso.poblacion ||
+        problema.poblacion ||
+        "No registrada";
+
+      const periodo =
+        caso.periodo ||
+        "No registrado";
+
+      const situacion =
+        caso.situacion ||
+        "No registrada";
+
+
+      /* ---------------------------------------------------------
+         PROBLEMA CENTRAL
+         --------------------------------------------------------- */
+
+      const root =
+        nodos.find(function (node) {
+          return node &&
+            node.codigo === "P";
+        });
+
+      const problemaCentral =
+        root?.enunciado ||
+        problema.enunciado ||
+        "";
+
+
+      /* ---------------------------------------------------------
+         COMPONENTES DEL PROBLEMA
+         --------------------------------------------------------- */
+
+      const condicion =
+        problema.condicion ||
+        problema.cond ||
+        "";
+
+      const atributo =
+        problema.atributo ||
+        "";
+
+      const poblacionProblema =
+        problema.poblacion ||
+        poblacion;
+
+      const delimitacion =
+        problema.delimitacion ||
+        problema.delim ||
+        territorio;
+
+
+      /* ---------------------------------------------------------
+         REPRESENTACIÓN DEL ÁRBOL
+         --------------------------------------------------------- */
+
+      function formatNodes(type) {
+
+        const filtered =
+          nodos.filter(function (node) {
+
+            return node &&
+              node.codigo !== "P" &&
+              node.tipo === type;
+
+          });
+
+
+        if (!filtered.length) {
+          return "No hay nodos registrados.";
+        }
+
+
+        return filtered
+          .sort(function (a, b) {
+
+            return String(a.codigo)
+              .localeCompare(
+                String(b.codigo),
+                undefined,
+                {
+                  numeric: true
+                }
+              );
+
+          })
+          .map(function (node) {
+
+            return [
+              node.codigo,
+              "Nivel " + (node.nivel ?? "—"),
+              "Padre " + (node.padre || "P"),
+              node.enunciado || "Sin enunciado",
+              "Evidencia: " +
+              (node.evidencia || "Pendiente"),
+              "Línea base: " +
+              (node.lineaBase || "Pendiente"),
+              "Confianza: " +
+              (node.confianza || "Baja"),
+              "Origen: " +
+              (node.origen || "Formulador")
+            ].join(" | ");
+
+          })
+          .join("\n");
+
+      }
+
+
+      const causas =
+        formatNodes("causa");
+
+      const efectos =
+        formatNodes("efecto");
+
+
+      /* ---------------------------------------------------------
+         CONTEXTO COMÚN
+         --------------------------------------------------------- */
+
+      const contexto = `
+
+CONTEXTO DEL CASO
+Nombre del caso: ${casoNombre}
+Territorio: ${territorio}
+Población afectada: ${poblacion}
+Periodo: ${periodo}
+
+Situación problemática:
+${situacion}
+
+PROBLEMA CENTRAL ACTUAL
+${problemaCentral || "Pendiente"}
+
+COMPONENTES DE FORMULACIÓN
+Condición negativa:
+${condicion || "Pendiente"}
+
+Atributo o manifestación:
+${atributo || "Pendiente"}
+
+Población:
+${poblacionProblema || "Pendiente"}
+
+Delimitación:
+${delimitacion || "Pendiente"}
+
+RESTRICCIONES
+- No inventes datos.
+- No inventes fuentes.
+- No conviertas hipótesis en hechos.
+- No introduzcas datos personales.
+- Diferencia evidencia disponible de inferencias.
+- Toda propuesta debe quedar marcada como propuesta.
+- El formulador conserva la decisión final.
+`;
+
+
+      /* ---------------------------------------------------------
+         PROMPT 1 · PROBLEMA CENTRAL
+         --------------------------------------------------------- */
+
+      if (tipo === "problema") {
+
+        const prompt = `
+
+ACTÚA COMO ASESOR METODOLÓGICO EN LA FORMULACIÓN
+DE PROYECTOS CON METODOLOGÍA DE MARCO LÓGICO
+CEPAL/ILPES.
+
+Tu función es DEPURAR críticamente la formulación
+del problema central. No debes decidir ni reemplazar
+automáticamente el problema del formulador.
+
+${contexto}
+
+PROBLEMA A REVISAR
+${problemaCentral || "No formulado"}
+
+EVALÚA:
+
+1. Si expresa un estado negativo observable.
+2. Si identifica una población afectada.
+3. Si está delimitado territorial y temporalmente.
+4. Si el atributo problemático es concreto.
+5. Si puede ser respaldado mediante evidencia.
+6. Si realmente corresponde al problema central.
+7. Si está formulado como causa.
+8. Si está formulado como efecto.
+9. Si contiene una solución implícita.
+10. Si une problemas diferentes mediante una conjunción.
+
+ENTREGA:
+
+A. Hallazgos críticos.
+B. Elementos que deberían conservarse.
+C. Riesgos o ambigüedades.
+D. Una o máximo tres ALTERNATIVAS DE REDACCIÓN
+   del problema central.
+
+No selecciones una alternativa por el formulador.
+
+Para cada alternativa indica qué cambiaste
+y por qué.
+
+IMPORTANTE:
+Las alternativas son PROPUESTAS DE IA.
+No son hechos ni decisiones finales.
+`;
+
+        writeProblemPrompt(
+          "problemPromptProblema",
+          prompt,
+          "Depuración del problema central"
+        );
+
+        return;
+      }
+
+
+      /* ---------------------------------------------------------
+         PROMPT 2 · CAUSAS Y EFECTOS
+         --------------------------------------------------------- */
+
+      if (tipo === "arbol") {
+
+        const prompt = `
+
+ACTÚA COMO ASESOR METODOLÓGICO EN LA CONSTRUCCIÓN
+DE ÁRBOLES DE PROBLEMAS CON METODOLOGÍA DE MARCO
+LÓGICO CEPAL/ILPES.
+
+Tu función es PROPONER hipótesis causales y de efectos
+para ampliar el análisis. No debes modificar
+automáticamente el árbol ni presentar hipótesis como hechos.
+
+${contexto}
+
+ÁRBOL ACTUAL · CAUSAS
+${causas}
+
+ÁRBOL ACTUAL · EFECTOS
+${efectos}
+
+TAREA
+
+Identifica posibles:
+
+1. Causas adicionales.
+2. Eslabones causales intermedios que podrían faltar.
+3. Causas raíz que podrían explicar causas superiores.
+4. Efectos directos adicionales.
+5. Efectos indirectos adicionales.
+6. Relaciones padre-hijo que deberían revisarse.
+
+CRITERIOS
+
+- Cada causa debe expresar un estado negativo.
+- Cada efecto debe expresar una consecuencia.
+- No redactes causas como actividades o soluciones.
+- No repitas el problema central con otras palabras.
+- No inventes evidencia.
+- No inventes cifras.
+- No asumas que una hipótesis es verdadera.
+- Distingue claramente entre evidencia y propuesta.
+- Respeta la estructura causal existente.
+
+FORMATO DE RESPUESTA
+
+PROPUESTA 1
+Tipo:
+Nivel sugerido:
+Padre sugerido:
+Enunciado:
+Justificación causal:
+Evidencia requerida:
+
+PROPUESTA 2
+...
+
+Al final incluye:
+
+NODOS QUE NO DEBERÍAN AGREGARSE
+Indica cuáles propuestas podrían ser redundantes,
+demasiado generales, soluciones disfrazadas o efectos
+que realmente corresponden a causas.
+
+Todas las propuestas tienen confianza BAJA hasta
+ser contrastadas por el formulador.
+`;
+
+        writeProblemPrompt(
+          "problemPromptArbol",
+          prompt,
+          "Propuesta de causas y efectos"
+        );
+
+        return;
+      }
+
+
+      /* ---------------------------------------------------------
+         PROMPT 3 · CONTRADICCIÓN
+         --------------------------------------------------------- */
+
+      if (tipo === "validacion") {
+
+        const prompt = `
+
+ACTÚA COMO REVISOR CRÍTICO DE UN ÁRBOL DE PROBLEMAS
+CONSTRUIDO BAJO LA METODOLOGÍA DE MARCO LÓGICO
+CEPAL/ILPES.
+
+No reconstruyas el árbol automáticamente.
+Tu función es intentar ENCONTRAR RUPTURAS,
+contradicciones y relaciones débiles.
+
+${contexto}
+
+CAUSAS ACTUALES
+${causas}
+
+EFECTOS ACTUALES
+${efectos}
+
+REVISA CRÍTICAMENTE:
+
+1. DIRECCIÓN CAUSAL
+¿La relación padre-hijo puede leerse realmente
+como causa → consecuencia?
+
+2. NIVELES
+¿Existe continuidad lógica entre los niveles?
+¿Hay saltos o nodos colocados en niveles incorrectos?
+
+3. SUFICIENCIA
+¿Las causas terminales explican razonablemente
+los nodos superiores?
+
+4. NO CIRCULARIDAD
+¿Existe alguna relación circular o dependencia
+que termine explicando un nodo mediante sí mismo?
+
+5. REDUNDANCIA
+¿Hay nodos que expresan prácticamente lo mismo?
+
+6. REPETICIÓN DEL PROBLEMA
+¿Alguna causa simplemente repite el problema central?
+
+7. CAUSAS COMO SOLUCIONES
+Busca expresiones como:
+"falta", "se necesita", "capacitar",
+"implementar", "crear", "construir",
+"fortalecer", "promover".
+
+8. EFECTOS MAL CLASIFICADOS
+Determina si algún supuesto efecto parece realmente
+una causa o una condición previa.
+
+9. EVIDENCIA
+Identifica nodos cuya afirmación necesita evidencia
+adicional.
+
+10. PADRES INCORRECTOS
+Revisa si cada relación padre-hijo es causalmente
+defendible.
+
+FORMATO
+
+HALLAZGO 1
+Nodo:
+Tipo de problema:
+Qué resulta débil:
+Por qué:
+Evidencia que debería revisarse:
+
+HALLAZGO 2
+...
+
+CIERRE
+
+Clasifica cada hallazgo como:
+
+- Crítico
+- Requiere revisión
+- Observación
+
+NO MODIFIQUES LOS NODOS.
+
+Tu resultado es una PROPUESTA DE REVISIÓN.
+La decisión corresponde al formulador.
+`;
+
+        writeProblemPrompt(
+          "problemPromptValidacion",
+          prompt,
+          "Contradicción del árbol"
+        );
+
+        return;
+      }
+
+
+      alert(
+        "No se reconoce el tipo de consulta solicitado."
+      );
+
+    }
+
+    function copyProblemPrompt(elementId) {
+
+      const textarea =
+        document.getElementById(elementId);
+
+      if (!textarea || !textarea.value.trim()) {
+
+        alert(
+          "Primero prepara la consulta."
+        );
+
+        return;
+      }
+
+
+      /*
+       * Clipboard API cuando está disponible.
+       */
+
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+
+        navigator.clipboard
+          .writeText(textarea.value)
+          .then(function () {
+
+            alert(
+              "Consulta copiada al portapapeles."
+            );
+
+          })
+          .catch(function () {
+
+            fallbackCopyProblemPrompt(
+              textarea
+            );
+
+          });
+
+        return;
+      }
+
+
+      fallbackCopyProblemPrompt(
+        textarea
+      );
+
+    }
+
+
+    function fallbackCopyProblemPrompt(textarea) {
+
+      textarea.focus();
+      textarea.select();
+
+      try {
+
+        document.execCommand("copy");
+
+        alert(
+          "Consulta copiada al portapapeles."
+        );
+
+      } catch (error) {
+
+        alert(
+          "No fue posible copiar automáticamente. " +
+          "Selecciona el texto y cópialo manualmente."
+        );
+
+      }
+
+    }
+
+    function writeProblemPrompt(
+      elementId,
+      prompt,
+      taskName
+    ) {
+
+      const textarea =
+        document.getElementById(elementId);
+
+      if (!textarea) {
+        return;
+      }
+
+      textarea.value =
+        prompt.trim();
+
+
+      /*
+       * El prompt generado se registra en la bitácora.
+       * Todavía NO registramos una "salida del modelo"
+       * porque el artefacto offline no está ejecutando IA.
+       */
+
+      if (!Array.isArray(state.bitacora)) {
+        state.bitacora = [];
+      }
+
+
+      state.bitacora.push({
+
+        fecha:
+          new Date().toISOString(),
+
+        patron:
+          "Paso 2.6 · " + taskName,
+
+        prompt:
+          prompt,
+
+        salida:
+          "Prompt preparado. Pendiente de ejecutar y contrastar con el modelo.",
+
+        error:
+          "Pendiente de ejecutar la consulta y verificar la salida.",
+
+        comoSeDetecto:
+          "",
+
+        correccion:
+          "Pendiente de registrar la revisión humana."
+
+      });
+
+
+      /*
+       * Si posteriormente existe la función de renderizado
+       * de bitácora, actualizarla.
+       */
+
+      if (
+        typeof renderProblemBitacora ===
+        "function"
+      ) {
+
+        renderProblemBitacora();
+
+      }
 
     }
 
