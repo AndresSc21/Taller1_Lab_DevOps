@@ -63,8 +63,8 @@ se cargan en orden y comparten el mismo ámbito global, así que la concatenaci�
 herramienta de desarrollo y empaquetado.
 
 El núcleo (`02-core.js`) sigue siendo un bloque grande porque el código original ya lo
-tenía encapsulado en un IIFE; descomponerlo más requiere desenvolver ese IIFE y queda
-como paso futuro.
+tenía encapsulado en un IIFE; descomponerlo más requiere desenvolver ese IIFE y este quedaria
+como paso a futuro.
 
 ### Problema conocido (preexistente)
 
