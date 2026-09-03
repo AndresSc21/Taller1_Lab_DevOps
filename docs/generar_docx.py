@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Genera docs/estrategia_despliegue_MML.docx a partir de contenido estructurado."""
+"""Genera docs/estrategia_despliegue_MML.docx a partir de contenido estructurado.
+
+Uso:  python generar_docx.py            -> escribe junto a este script
+      DOCX_OUT=/ruta.docx python ...    -> escribe en la ruta indicada
+"""
+import os
 from docx import Document
 from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -7,7 +12,10 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
-OUT = r"D:\Universidad\SEMESTRE-VIII\Laboratorio de DevOps\ArtefactoUnal\docs\estrategia_despliegue_MML.docx"
+OUT = os.environ.get(
+    "DOCX_OUT",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "estrategia_despliegue_MML.docx"),
+)
 
 GREEN = RGBColor(0x0B, 0x5D, 0x3B)
 DARK = RGBColor(0x1F, 0x29, 0x33)
@@ -196,7 +204,14 @@ add_code(
 "  05-paso2-detalle.css        Problema central, causas/efectos, arbol, validacion, bitacora\n"
 "  06-transiciones.css         Transicion entre modulos y Paso 3.1+\n"
 "public/\n"
-"  app.js                     Logica de la aplicacion (identica byte a byte al original)\n"
+"  js/                        Logica de la aplicacion: 7 scripts clasicos por responsabilidad\n"
+"    01-flujo-validacion.js     Asistente + validacion/contexto/bitacora del Paso 2\n"
+"    02-core.js                 Navegacion, estado, Paso 1 (involucrados), Paso 3 (objetivos)\n"
+"    03-problema-central.js     Subpantallas del Paso 2 y problema central\n"
+"    04-nodos.js                Alta/baja de nodos de causas y efectos\n"
+"    05-arbol.js                Render del arbol de problemas (SVG)\n"
+"    06-evidencia-prompts.js    Evidencia de nodos, modulo del problema y prompts de IA\n"
+"    07-objetivos-json.js       Subpantallas del Paso 3 y exportar/importar JSON\n"
 "  caso_uso_jovenes_rurales_manizales.json   Caso de ejemplo\n"
 "vite.config.js               Configuracion de construccion\n"
 "legacy/                      Monolito original y archivos v7 (trazabilidad)"
@@ -204,7 +219,7 @@ add_code(
 add_para("Criterio de preservación aplicado:", bold=True)
 add_bullets([
     "El CSS son las mismas reglas en el mismo orden (la cascada no cambia); los `@media` viajan dentro de su sección.",
-    "`public/app.js` es idéntico byte a byte al `<script>` original y se carga como script clásico al final del `<body>` (mismo modelo de ejecución que antes).",
+    "El JavaScript se cortó en 7 scripts clásicos por responsabilidad, cargados en orden al final del `<body>`. Comparten el mismo ámbito global y se ejecutan en secuencia, así que la concatenación de los 7 archivos es idéntica byte a byte al `<script>` original. El núcleo (`02-core.js`) se deja como un bloque porque el original ya lo tenía dentro de un IIFE; descomponerlo más queda como paso futuro.",
     "El marcado de las 11 `<section class=\"screen\">` no se tocó.",
 ])
 add_para("Verificación realizada (entorno DOM simulado, monolito vs. versión modular): "
@@ -326,7 +341,7 @@ add_code(
 "|  Repositorio GitHub         |        |  GitHub Actions (runner)       |\n"
 "|  - index.html               |  push  |  Node 20                       |\n"
 "|  - src/styles/*.css         |------->|  npm ci -> npm run build       |\n"
-"|  - public/app.js            |        |  salida: dist/                 |\n"
+"|  - public/js/*.js           |        |  salida: dist/                 |\n"
 "|  - vite.config.js           |        +---------------+---------------+\n"
 "+-----------------------------+                        | deploy\n"
 "                                                       v\n"
@@ -339,7 +354,7 @@ add_code(
 "                                                       v\n"
 "                                       +-------------------------------+\n"
 "                                       |  Navegador del usuario        |\n"
-"                                       |  ejecuta app.js (vanilla JS)   |\n"
+"                                       |  ejecuta los 7 scripts (vanilla)|\n"
 "                                       |  estado en memoria + JSON      |\n"
 "                                       +-------------------------------+"
 )

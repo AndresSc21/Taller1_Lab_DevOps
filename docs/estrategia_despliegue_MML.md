@@ -74,7 +74,14 @@ src/styles/                 CSS dividido en 6 módulos por responsabilidad
   05-paso2-detalle.css        Problema central, causas/efectos, árbol, validación, bitácora
   06-transiciones.css         Transición entre módulos y Paso 3.1+
 public/
-  app.js                     Lógica de la aplicación (idéntica byte a byte al original)
+  js/                        Lógica de la aplicación, 7 scripts clásicos por responsabilidad
+    01-flujo-validacion.js     Asistente + validación/contexto/bitácora del Paso 2
+    02-core.js                 Navegación, estado, Paso 1 (involucrados), Paso 3 (objetivos)
+    03-problema-central.js     Subpantallas del Paso 2 y problema central
+    04-nodos.js                Alta/baja de nodos de causas y efectos
+    05-arbol.js                Render del árbol de problemas (SVG)
+    06-evidencia-prompts.js    Evidencia de nodos, módulo del problema y prompts de IA
+    07-objetivos-json.js       Subpantallas del Paso 3 y exportar/importar JSON
   caso_uso_jovenes_rurales_manizales.json   Caso de ejemplo
 vite.config.js               Configuración de construcción
 legacy/                      Monolito original y archivos v7 (trazabilidad)
@@ -84,8 +91,12 @@ Criterio de preservación aplicado:
 
 - El CSS son **las mismas reglas en el mismo orden** (la cascada no cambia); los
   `@media` viajan dentro de su sección.
-- `public/app.js` es **idéntico byte a byte** al `<script>` original y se carga como
-  *script clásico* al final del `<body>` (mismo modelo de ejecución que antes).
+- El JavaScript se cortó en **7 scripts clásicos** por responsabilidad, cargados en
+  orden al final del `<body>`. Comparten el mismo ámbito global y se ejecutan en
+  secuencia, así que **la concatenación de los 7 archivos es idéntica byte a byte** al
+  `<script>` original (mismo modelo de ejecución que antes). El núcleo (`02-core.js`)
+  se deja como un bloque porque el original ya lo tenía dentro de un IIFE;
+  descomponerlo más queda como paso futuro.
 - El marcado de las 11 `<section class="screen">` no se tocó.
 
 Verificación realizada (entorno DOM simulado, monolito vs. versión modular):
@@ -229,7 +240,7 @@ no el proceso de construcción.
 │  Repositorio GitHub         │        │  GitHub Actions (runner)       │
 │  - index.html               │  push  │  Node 20                       │
 │  - src/styles/*.css         │───────▶│  npm ci → npm run build        │
-│  - public/app.js            │        │  salida: dist/                 │
+│  - public/js/*.js           │        │  salida: dist/                 │
 │  - vite.config.js           │        └───────────────┬───────────────┘
 └─────────────────────────────┘                        │ deploy
                                                        ▼
@@ -242,7 +253,7 @@ no el proceso de construcción.
                                                        ▼
                                        ┌───────────────────────────────┐
                                        │  Navegador del usuario        │
-                                       │  ejecuta app.js (vanilla JS)   │
+                                       │  ejecuta los 7 scripts (vanilla)│
                                        │  estado en memoria + JSON      │
                                        └───────────────────────────────┘
 ```

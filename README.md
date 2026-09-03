@@ -36,7 +36,14 @@ src/styles/                 Hoja de estilos dividida por responsabilidad
                               fichas de nodos, árbol jerárquico, validación, bitácora
   06-transiciones.css         Transición entre módulos y Paso 3.1 en adelante
 public/
-  app.js                     Lógica de la aplicación (JavaScript vanilla, sin dependencias)
+  js/                        Lógica de la aplicación (JavaScript vanilla, sin dependencias)
+    01-flujo-validacion.js     Asistente + validación, contexto y bitácora del Paso 2
+    02-core.js                 Navegación, estado, Paso 1 (involucrados), Paso 3 (objetivos)
+    03-problema-central.js     Subpantallas del Paso 2 y definición del problema central
+    04-nodos.js                Alta/baja de nodos de causas y efectos
+    05-arbol.js                Render del árbol de problemas (SVG)
+    06-evidencia-prompts.js    Evidencia de nodos, módulo del problema y prompts de IA
+    07-objetivos-json.js       Subpantallas del Paso 3 y exportar / importar JSON
   caso_uso_jovenes_rurales_manizales.json   Caso de ejemplo para "Importar JSON"
 vite.config.js               Configuración de build (rutas relativas, salida en dist/)
 docs/                        Estrategia de despliegue (documento del Módulo 3)
@@ -49,9 +56,15 @@ legacy/                      Versiones anteriores conservadas para trazabilidad
 
 Se separó el archivo monolítico `artefacto_MML_esqueleto_11_pantallas.html` (~12.000
 líneas) en HTML, 6 hojas de estilo y la lógica JavaScript, **sin modificar el
-comportamiento ni los estilos**: el CSS son las mismas reglas en el mismo orden y
-`public/app.js` es idéntico byte a byte al `<script>` original. Se añadió Vite como
+comportamiento ni los estilos**: el CSS son las mismas reglas en el mismo orden.
+El JavaScript se repartió en **7 scripts clásicos** (`public/js/`) por responsabilidad;
+se cargan en orden y comparten el mismo ámbito global, así que la concatenación de los
+7 archivos es idéntica byte a byte al `<script>` original. Se añadió Vite como
 herramienta de desarrollo y empaquetado.
+
+El núcleo (`02-core.js`) sigue siendo un bloque grande porque el código original ya lo
+tenía encapsulado en un IIFE; descomponerlo más requiere desenvolver ese IIFE y queda
+como paso futuro.
 
 ### Problema conocido (preexistente)
 
