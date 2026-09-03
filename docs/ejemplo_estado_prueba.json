@@ -1,0 +1,220 @@
+{
+  "current": 2,
+  "caso": {
+    "titulo": "Permanencia de jóvenes en la zona rural de Manizales",
+    "sector": "Desarrollo rural y desarrollo productivo",
+    "territorio": "Manizales, Caldas — zona rural (siete corregimientos)",
+    "poblacion": "Jóvenes rurales de 14 a 28 años",
+    "periodo": "2026-2",
+    "situacion": "Los jóvenes rurales perciben las oportunidades urbanas como más atractivas y viables para su proyecto de vida. Persisten barreras de empleo formal, ingresos inestables, acceso restringido a tierra y capital, desconexión formativa y canales de comercialización débiles.",
+    "pregunta": "¿Qué condiciones laborales, productivas, educativas y territoriales influyen en la decisión de los jóvenes de permanecer en la zona rural de Manizales?",
+    "delimitacion": "El análisis se concentra en los factores socioeconómicos, productivos, formativos y comerciales que determinan la permanencia de jóvenes de 14 a 28 años en los siete corregimientos rurales de Manizales durante el periodo 2026-2."
+  },
+  "involucrados": [
+    {
+      "grupo": "Alcaldía de Manizales — Secretaría de Desarrollo Rural",
+      "naturaleza": "Institucional",
+      "relacion": "Responsable de política pública rural en el municipio",
+      "rol": "Regulador y financiador parcial",
+      "intereses": "Reducir la migración juvenil rural y dinamizar la economía de los corregimientos.",
+      "problemas_percibidos": [
+        "Presupuesto insuficiente para programas rurales sostenidos",
+        "Poca articulación entre oferta formativa y necesidades productivas"
+      ],
+      "recursos_mandatos": "Competencia legal sobre desarrollo rural municipal, capacidad de convocatoria y cofinanciación.",
+      "posicion": "1",
+      "fuerza": "4",
+      "intensidad": "3",
+      "razon": "Tiene mandato y recursos, pero su prioridad se reparte entre muchos frentes.",
+      "estrategia": "Involucrar como aliado estratégico y coordinador de la mesa técnica rural."
+    },
+    {
+      "grupo": "Asociaciones de productores y comités cafeteros",
+      "naturaleza": "Gremial",
+      "relacion": "Agrupan a las unidades productivas donde podrían vincularse los jóvenes",
+      "rol": "Beneficiario y aliado operativo",
+      "intereses": "Asegurar relevo generacional y mano de obra calificada para sus cultivos.",
+      "problemas_percibidos": [
+        "Envejecimiento de la base asociativa",
+        "Baja participación de jóvenes en cargos y decisiones"
+      ],
+      "recursos_mandatos": "Conocimiento técnico, infraestructura de acopio y canales de comercialización.",
+      "posicion": "1",
+      "fuerza": "3",
+      "intensidad": "4",
+      "razon": "Muy interesados en el relevo generacional, con capacidad media de incidencia.",
+      "estrategia": "Vincular como oferentes de práctica y empleo, y como mentores."
+    },
+    {
+      "grupo": "Jóvenes rurales de los corregimientos",
+      "naturaleza": "Comunitaria",
+      "relacion": "Población directamente afectada por el problema",
+      "rol": "Beneficiario principal",
+      "intereses": "Ingresos dignos y estables, formación pertinente y un proyecto de vida viable en el territorio.",
+      "problemas_percibidos": [
+        "Ingresos inestables y estacionales",
+        "Acceso restringido a tierra y a financiamiento",
+        "Oferta educativa poco pertinente para la vida rural"
+      ],
+      "recursos_mandatos": "Tiempo, disposición a formarse, conocimiento del territorio y redes comunitarias.",
+      "posicion": "1",
+      "fuerza": "2",
+      "intensidad": "5",
+      "razon": "Son quienes más sufren el problema, pero con poca capacidad individual de incidencia.",
+      "estrategia": "Colocar en el centro del diseño; fortalecer su organización y voz."
+    },
+    {
+      "grupo": "SENA — Centro de formación agropecuaria regional",
+      "naturaleza": "Educativa",
+      "relacion": "Provee formación técnica y tecnológica para el sector rural",
+      "rol": "Aliado formativo",
+      "intereses": "Aumentar la pertinencia y la tasa de vinculación laboral de sus egresados rurales.",
+      "problemas_percibidos": [
+        "Deserción en programas rurales por costos de transporte",
+        "Débil seguimiento a egresados en el territorio"
+      ],
+      "recursos_mandatos": "Programas de formación gratuitos, instructores, contrato de aprendizaje.",
+      "posicion": "1",
+      "fuerza": "3",
+      "intensidad": "3",
+      "razon": "Recurso clave para la formación, con oferta a veces poco flexible.",
+      "estrategia": "Coordinar formación dual y modular adaptada a los ciclos productivos."
+    },
+    {
+      "grupo": "Entidades financieras y fondos de crédito rural",
+      "naturaleza": "Financiera",
+      "relacion": "Controlan el acceso a capital para emprendimientos productivos",
+      "rol": "Habilitador o barrera según condiciones",
+      "intereses": "Colocar crédito con bajo riesgo y baja morosidad.",
+      "problemas_percibidos": [
+        "Percepción de alto riesgo en jóvenes sin historial ni garantías",
+        "Costos de operación altos en zonas dispersas"
+      ],
+      "recursos_mandatos": "Líneas de crédito, garantías, educación financiera.",
+      "posicion": "0",
+      "fuerza": "4",
+      "intensidad": "2",
+      "razon": "Tienen el recurso decisivo (capital) pero poco interés en este segmento.",
+      "estrategia": "Negociar líneas con garantía compartida y acompañamiento técnico."
+    }
+  ],
+  "problema": {
+    "condicion": "Dificultades para consolidar oportunidades laborales y productivas",
+    "atributo": "suficientemente atractivas y estables",
+    "poblacion": "para los jóvenes de 14 a 28 años",
+    "delimitacion": "en la zona rural de Manizales (siete corregimientos), periodo 2026-2.",
+    "enunciado": "Dificultades para consolidar oportunidades laborales y productivas suficientemente atractivas y estables para los jóvenes de 14 a 28 años en la zona rural de Manizales (siete corregimientos), periodo 2026-2."
+  },
+  "nodos": [
+    {
+      "codigo": "P",
+      "tipo": "problema",
+      "nivel": 0,
+      "padre": "",
+      "enunciado": "Dificultades para consolidar oportunidades laborales y productivas atractivas y estables para los jóvenes rurales de Manizales.",
+      "evidencia": "Encuesta local de juventud rural 2025; registros de la Secretaría de Desarrollo Rural.",
+      "lineaBase": "Migración juvenil rural estimada en 38% del grupo 18-24 años (2025).",
+      "confianza": "Media",
+      "origen": "Formulador"
+    },
+    {
+      "codigo": "C1.1",
+      "tipo": "causa",
+      "nivel": 1,
+      "padre": "P",
+      "enunciado": "Escasez de empleo rural formal y bien remunerado para jóvenes.",
+      "evidencia": "Cámara de Comercio: <5% de vacantes formales en corregimientos.",
+      "lineaBase": "1 de cada 10 jóvenes ocupados tiene contrato formal (2025).",
+      "confianza": "Alta",
+      "origen": "Formulador"
+    },
+    {
+      "codigo": "C1.2",
+      "tipo": "causa",
+      "nivel": 1,
+      "padre": "P",
+      "enunciado": "Acceso restringido a tierra, activos productivos y financiamiento.",
+      "evidencia": "Fondo de crédito rural: 7% de las colocaciones fueron a menores de 29 años.",
+      "lineaBase": "Edad promedio del titular de la unidad productiva: 54 años.",
+      "confianza": "Media",
+      "origen": "Formulador"
+    },
+    {
+      "codigo": "C2.1",
+      "tipo": "causa",
+      "nivel": 2,
+      "padre": "C1.1",
+      "enunciado": "Baja pertinencia de la formación técnica frente a las cadenas productivas del territorio.",
+      "evidencia": "Seguimiento a egresados SENA rural 2024: 41% de vinculación en el sector.",
+      "lineaBase": "41% de vinculación laboral pertinente de egresados (2024).",
+      "confianza": "Media",
+      "origen": "Formulador"
+    },
+    {
+      "codigo": "C2.2",
+      "tipo": "causa",
+      "nivel": 2,
+      "padre": "C1.2",
+      "enunciado": "Canales de comercialización directa débiles: los jóvenes venden a intermediarios a bajo precio.",
+      "evidencia": "Estudio de cadena de valor del café y hortalizas, 2024.",
+      "lineaBase": "El productor joven capta 22% del precio final promedio.",
+      "confianza": "Baja",
+      "origen": "Propuesta IA"
+    },
+    {
+      "codigo": "E1.1",
+      "tipo": "efecto",
+      "nivel": 1,
+      "padre": "P",
+      "enunciado": "Migración de jóvenes hacia el casco urbano y otras ciudades.",
+      "evidencia": "Proyecciones de población rural DANE; registros escolares.",
+      "lineaBase": "Caída del 12% en matrícula secundaria rural entre 2020 y 2025.",
+      "confianza": "Alta",
+      "origen": "Formulador"
+    },
+    {
+      "codigo": "E1.2",
+      "tipo": "efecto",
+      "nivel": 1,
+      "padre": "P",
+      "enunciado": "Pérdida de relevo generacional en las unidades productivas rurales.",
+      "evidencia": "Censo de asociaciones de productores, 2024.",
+      "lineaBase": "Solo 9% de los asociados son menores de 30 años.",
+      "confianza": "Media",
+      "origen": "Formulador"
+    },
+    {
+      "codigo": "E2.1",
+      "tipo": "efecto",
+      "nivel": 2,
+      "padre": "E1.2",
+      "enunciado": "Envejecimiento de la fuerza laboral y riesgo de abandono de predios productivos.",
+      "evidencia": "Diagnóstico agropecuario municipal, 2025.",
+      "lineaBase": "6% de predios cafeteros sin relevo identificado.",
+      "confianza": "Baja",
+      "origen": "Propuesta IA"
+    }
+  ],
+  "objetivos": [],
+  "acciones": [],
+  "alternativas": [],
+  "evaluacion": {
+    "criterios": [],
+    "pesos": {},
+    "valoraciones": {},
+    "sensibilidad": {}
+  },
+  "seleccion": {
+    "alternativa": "",
+    "justificacion": ""
+  },
+  "bitacora": [
+    {
+      "fecha": "2026-08-20",
+      "actividad": "Taller de validación del problema con líderes juveniles de tres corregimientos.",
+      "hallazgo": "Los participantes priorizaron el acceso a tierra y crédito por encima del empleo asalariado.",
+      "fuente": "Relatoría del taller, agosto 2026",
+      "decision": "Se mantiene C1.2 como causa directa y se agrega C2.2 sobre comercialización."
+    }
+  ]
+}
