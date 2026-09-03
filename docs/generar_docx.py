@@ -309,18 +309,27 @@ add_para("Cuando el curso aborde servidores propios, el mismo dist/ se serviría
 
 # ======================= 7. CI/CD =======================
 doc.add_heading("7. Flujo de despliegue (CI/CD con GitHub Actions)", level=1)
-add_para("Descrito aquí como diseño; la implementación del workflow corresponde a la fase "
-         "siguiente del curso.", italic=True)
-add_para("Disparador: push a la rama main.", bold=True)
+add_para("Implementado en .github/workflows/deploy.yml (método “GitHub Actions” de Pages: "
+         "sin rama gh-pages, sin Jekyll). Habilitación única: Settings → Pages → Source = "
+         "GitHub Actions.")
+add_para("Disparador: push a la rama main (o ejecución manual con workflow_dispatch).", bold=True)
 add_para("Etapas del pipeline:", bold=True)
+add_para("Job build:", bold=True)
 add_numbered([
-    "Checkout — descarga del código.",
-    "Preparar Node — Node 20, caché de npm.",
+    "Checkout — actions/checkout@v4.",
+    "Preparar Node — actions/setup-node@v4, Node 20, caché de npm.",
     "Instalar — `npm ci` (instalación limpia y reproducible desde package-lock.json).",
-    "(Recomendado) Lint — `npm run lint` (Prettier/ESLint) para no publicar código con errores.",
     "Construir — `npm run build` → genera dist/.",
-    "Publicar — subir dist/ como artefacto de Pages y desplegar (actions/upload-pages-artifact + actions/deploy-pages).",
+    "Subir artefacto — actions/upload-pages-artifact@v3 con path: dist.",
 ])
+add_para("Job deploy (needs: build):", bold=True)
+add_numbered([
+    "Publicar — actions/deploy-pages@v4 despliega el artefacto en el environment "
+    "github-pages y expone la URL.",
+])
+add_para("Permisos mínimos: contents:read, pages:write, id-token:write. concurrency sobre "
+         "el grupo pages para que dos pushes seguidos no se pisen. Un paso de lint "
+         "(Prettier/ESLint) antes de build queda como mejora futura.")
 add_para("Resultado: el artefacto queda disponible en https://andressc21.github.io/Taller1_Lab_DevOps/ "
          "a los pocos minutos de cada push.")
 doc.add_heading("Diagrama del flujo", level=3)
@@ -329,8 +338,8 @@ add_code(
 "--------------   -------------------------   --------------------------   -----------------------\n"
 " git push main -> Repositorio (rama main) -> checkout                       navegador\n"
 "                                             setup-node + npm ci\n"
-"                                             (lint)\n"
 "                                             npm run build  -->  dist/\n"
+"                                             upload-pages-artifact\n"
 "                                             deploy-pages   -----------> GitHub Pages (CDN+HTTPS)\n"
 "                                                                         |\n"
 "                                                                         '-> andressc21.github.io/Taller1_Lab_DevOps/"
