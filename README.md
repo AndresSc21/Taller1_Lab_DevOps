@@ -77,6 +77,13 @@ para `showScreen`, `state`, etc.) sería un arreglo de una línea si se decide a
 
 ## Despliegue
 
-Ver `docs/estrategia_despliegue_MML.docx`. En resumen: `push` a `main` →
-GitHub Actions ejecuta `npm ci` y `npm run build` → publica `dist/` en GitHub Pages.
-El despliegue en VPS con servidor propio queda como trabajo futuro.
+Automático con **GitHub Actions** (`.github/workflows/deploy.yml`): cada `push` a `main`
+ejecuta `npm ci` + `npm run build` y publica `dist/` en **GitHub Pages** →
+<https://andressc21.github.io/Taller1_Lab_DevOps/>
+
+Habilitación única en el repo: `Settings → Pages → Build and deployment → Source =
+GitHub Actions`. El workflow también se puede lanzar a mano desde la pestaña *Actions*
+(*Run workflow*).
+
+Detalle y justificación en `docs/estrategia_despliegue_MML.docx`. El despliegue en VPS
+con servidor propio queda como trabajo futuro.

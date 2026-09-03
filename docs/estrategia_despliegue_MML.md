@@ -201,20 +201,30 @@ no el proceso de construcción.
 
 ## 7. Flujo de despliegue (CI/CD con GitHub Actions)
 
-> Descrito aquí como diseño; la implementación del workflow corresponde a la fase
-> siguiente del curso.
+Implementado en **`.github/workflows/deploy.yml`** (método "GitHub Actions" de Pages:
+sin rama `gh-pages`, sin Jekyll). Habilitación única: `Settings → Pages → Source =
+GitHub Actions`.
 
-**Disparador:** `push` a la rama `main`.
+**Disparador:** `push` a la rama `main` (o ejecución manual con `workflow_dispatch`).
 
 **Etapas del pipeline:**
 
-1. **Checkout** — descarga del código.
-2. **Preparar Node** — Node 20, caché de `npm`.
+*Job `build`:*
+1. **Checkout** — `actions/checkout@v4`.
+2. **Preparar Node** — `actions/setup-node@v4`, Node 20, caché de `npm`.
 3. **Instalar** — `npm ci` (instalación limpia y reproducible desde `package-lock.json`).
-4. *(Recomendado)* **Lint** — `npm run lint` (Prettier/ESLint) para no publicar código con errores.
-5. **Construir** — `npm run build` → genera `dist/`.
-6. **Publicar** — subir `dist/` como artefacto de Pages y desplegar
-   (`actions/upload-pages-artifact` + `actions/deploy-pages`).
+4. **Construir** — `npm run build` → genera `dist/`.
+5. **Subir artefacto** — `actions/upload-pages-artifact@v3` con `path: dist`.
+
+*Job `deploy`* (`needs: build`):
+6. **Publicar** — `actions/deploy-pages@v4` despliega el artefacto en el *environment*
+   `github-pages` y expone la URL.
+
+Permisos mínimos: `contents: read`, `pages: write`, `id-token: write`. `concurrency`
+sobre el grupo `pages` para que dos pushes seguidos no se pisen.
+
+*(Un paso de `lint` con Prettier/ESLint antes de `build` queda como mejora futura;
+requiere añadir esas herramientas de desarrollo.)*
 
 **Resultado:** el artefacto queda disponible en
 `https://andressc21.github.io/Taller1_Lab_DevOps/` a los pocos minutos de cada `push`.
@@ -226,8 +236,8 @@ no el proceso de construcción.
  ──────────────      ────────────────────────      ─────────────────────────────      ─────────────────────────
   git push main  ─▶   Repositorio (rama main)  ─▶   checkout                             navegador
                                                     setup-node + npm ci
-                                                    (lint)
                                                     npm run build  ──▶  dist/
+                                                    upload-pages-artifact
                                                     deploy-pages   ──────────────▶  GitHub Pages (CDN + HTTPS)
                                                                                     │
                                                                                     └──▶  https://andressc21.github.io/Taller1_Lab_DevOps/
